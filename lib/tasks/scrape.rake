@@ -61,26 +61,34 @@ TIMEOUT = 10 # seconds
   f = a.css('tr td').first.attr(['value'])
   z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
   z.each do |i|
-    puts b[i]['href']
+    link = b[i]['href']
+    puts link
+    url = 'http://www.rottentomatoes.com' + link
+    title = b[i].text
+    puts title
+    @movie = Movie.find_or_create_by(title: title, url: url)
+    @movie.save
+    puts 'Movie created!'
+    puts " "
   end
   puts ' '
-  b.each do |movie|
-    title = movie.text
-    puts title
-    if title.present?
-        puts title
-        if Movie.find_by(title: title)
-          puts 'Movie already there!'
-        else
-          @movie = Movie.find_or_create_by(title: title)
-          @movie.save
-          puts 'Movie created!'
-          puts " "
-        end
+#  b.each do |movie|
+#    title = movie.text
+#    puts title
+#    if title.present?
+#        puts title
+        # if Movie.find_by(title: title)
+        #   puts 'Movie already there!'
+        # else
+#          @movie = Movie.find_or_create_by(title: title, url: url)
+#          @movie.save
+#          puts 'Movie created!'
+#          puts " "
+        # end
         # end
     end
-  end
+#  end
+#end
 
-  end
 
 end

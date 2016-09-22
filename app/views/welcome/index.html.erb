@@ -1,5 +1,5 @@
 <style>
-body{ margin: 0; padding: 0; background: #fafafa; }
+
 </style>
 <div class="row">
   <div class='col-md-12' style="width:100%">
@@ -9,11 +9,11 @@ body{ margin: 0; padding: 0; background: #fafafa; }
   </div>
 </div>
 <div class="row">
-    <div class="col-md-4">
-      <h3>Top Rated New Movies</h3>
-      <p>
+    <div class="col-md-12">
+      <p style="text-align:center; margin-bottom:0px">Top Rated New Movies</p>
+      <p style="font-size:.7em; text-align:center">
         <% @movies.each do |m| %>
-        <%= m.title %><br>
+      <a href='<%=m.url%>'>  <%= m.title %></a> |
         <% end %>
       </p>
     </div>
