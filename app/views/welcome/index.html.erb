@@ -3,9 +3,10 @@
 </style>
 <div class="row">
   <div class='col-md-12' style="width:100%">
-    <p style="text-align:center">Today is
+    <p style="text-align:center; margin-bottom:0px">Today is
       <%= Time.now.strftime("%m/%d/%Y") %>
     </p>
+    <p style="text-align:center; font-size:.8em">Updated Daily</p>
   </div>
 </div>
 <div class="row">
@@ -20,7 +21,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Medium</p>
+    <p style="text-align:center; margin-bottom:0px">Medium Most Read</p>
     <p style="font-size:.7em; text-align:center">
       <% @mediums.each do |m| %>
       <a href='<%=m.url%>'>  <%= m.title %></a> |
@@ -30,7 +31,7 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Site of Day</p>
+    <p style="text-align:center; margin-bottom:0px">Awwward of Day</p>
     <p style="font-size:.7em; text-align:center">
       <% @awwwards.each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %></a> |

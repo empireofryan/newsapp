@@ -58,9 +58,9 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  #movies #run movies scraper
-  #medium #run medium scraper
-  #awwwards #run awwwards scraper
+  #movies   #run movies scraper
+  #medium   #run medium scraper
+  awwwards #run awwwards scraper
 end
 
   def movies
@@ -114,4 +114,27 @@ end
      end
   end # end of medium
 
-  def
+  def awwwards
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://www.awwwards.com/awards-of-the-day/'
+
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.inner .rollover')
+    b = doc.css('.inner .rollover a[2]')
+    c = doc.css('.inner .rollover img')
+    puts a
+    z = (0..11).to_a
+    puts z
+     z.each do |i|
+       url = b[i]['href']
+       puts url
+       rough_title = c[i]['alt']
+       title_refactor = rough_title.slice(0..(rough_title.index('|')))
+       title = title_refactor[0..-3]
+       puts title
+       @awward = Awwward.find_or_create_by(title: title, url: url)
+       @awward.save
+       puts 'Awwward entry created!'
+       puts " "
+     end
+  end #end of awwwards
