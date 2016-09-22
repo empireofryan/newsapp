@@ -10,7 +10,12 @@ body{ margin: 0; padding: 0; background: #fafafa; }
 </div>
 <div class="row">
     <div class="col-md-4">
-      <p>COL 1</p>
+      <h3>Top Rated New Movies</h3>
+      <p>
+        <% @movies.each do |m| %>
+        <%= m.title %><br>
+        <% end %>
+      </p>
     </div>
     <p class="col-md-4">COL 2</p>
     <p class="col-md-4">COL 3</p>
