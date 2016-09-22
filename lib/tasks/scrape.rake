@@ -43,9 +43,8 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-
-
-  movies
+  #movies #run movies scraper
+  medium
 end
 
   def movies
@@ -74,3 +73,12 @@ end
     end
     end
   end # end movies
+
+  def medium
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'https://medium.com/browse/top'
+
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.postArticle-content .graf graf--h3 graf-after--figure graf--leading graf--title')
+    puts a
+  end
