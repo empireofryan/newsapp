@@ -1,0 +1,2 @@
+class Awwward < ApplicationRecord
+end

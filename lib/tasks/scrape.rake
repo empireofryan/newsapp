@@ -31,20 +31,36 @@ namespace :scrape do
   #   props_found: @props_found, props_created: @props_created, props_updated: @props_updated)
   # end
 
-  puts ' ____  __.__        __                              _________'
-  puts '|    |/ _|__| ____ |  | _______    ______ ______   /   _____/ ________________  ______   ___________'
-  puts '|      < |  |/ ___\|  |/ /\__  \  /  ___//  ___/   \_____  \_/ ___\_  __ \__  \ \____ \_/ __ \_  __ \ '
-  puts '|    |  \|  \  \___|    <  / __ \_\___ \ \___ \    /        \  \___|  | \// __ \|  |_> >  ___/|  | \/ '
-  puts '|____|__ \__|\___  >__|_ \(____  /____  >____  >  /_______  /\___  >__|  (____  /   __/ \___  >__| '
-  puts '        \/       \/     \/     \/     \/     \/           \/     \/           \/|__|        \/        '
-  puts ' '
-  puts 'Bringing you the best of the web...'
-  puts ' '
+  puts '!WWWWWeeu..   ..ueeWWWWW! '
+  puts ' "$$(    R$$e$$R    )$$" '
+  puts '  "$8oeeo. "*" .oeeo8$" '
+  puts '  .$$#"""*$i i$*"""#$$. '
+  puts '  9$" @*c $$ $$F @*c $N '
+  puts '   9$  NeP $$ $$L NeP $$ '
+  puts '  `$$uuuuo$$ $$uuuuu$$" '
+  puts '  x$P**$$P*$"$P#$$$*R$L '
+  puts "  x$$   $$k $$F :$P` '$$i "
+  puts ' $$     #$  #  $$     #$k '
+  puts 'd$"     "$L   x$F     "$$ '
+  puts "$$      '$E   9$>      9$>"
+  puts "$6       $F   ?$>      9$>"
+  puts "$$      d$    '$&      8$"
+  puts '"$k    x$$     !$k    :$$'
+  puts ' #$b  u$$L      9$b.  $$"'
+  puts ' "#$od$#$$u....u$P$Nu@$"'
+  puts '  ..?$R)..?R$$$$*"  #$P'
+  puts ' $$$$$$$$$$$$$$@WWWW$NWWW'
+  puts ' `````""3$F""""#$F"""""""'
+  puts "        @$.... '$B"
+  puts '       d$$$$$$$$$$:'
+  puts '       ````````````'
+
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
   #movies #run movies scraper
-  medium
+  #medium #run medium scraper
+  #awwwards #run awwwards scraper
 end
 
   def movies
@@ -96,10 +112,6 @@ end
        puts 'Medium article created!'
        puts " "
      end
+  end # end of medium
 
-    # a.each do |article|
-    #   puts article.text
-    #   link = article['href']
-    #   puts link
-    # end
-  end
+  def
