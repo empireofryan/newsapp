@@ -9,16 +9,24 @@
   </div>
 </div>
 <div class="row">
-    <div class="col-md-12">
-      <p style="text-align:center; margin-bottom:0px">Top Rated New Movies</p>
-      <p style="font-size:.7em; text-align:center">
-        <% @movies.each do |m| %>
+  <div class="col-md-12">
+    <p style="text-align:center; margin-bottom:0px">Top Rated Movies</p>
+    <p style="font-size:.7em; text-align:center">
+      <% @movies.each do |m| %>
+    <a href='<%=m.url%>'>  <%= m.title %></a> |
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <p style="text-align:center; margin-bottom:0px">Medium</p>
+    <p style="font-size:.7em; text-align:center">
+      <% @mediums.each do |m| %>
       <a href='<%=m.url%>'>  <%= m.title %></a> |
-        <% end %>
-      </p>
-    </div>
-    <p class="col-md-4">COL 2</p>
-    <p class="col-md-4">COL 3</p>
+      <% end %>
+    </p>
+  </div>
 </div>
 
 

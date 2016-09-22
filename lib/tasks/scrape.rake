@@ -79,6 +79,27 @@ end
     b.goto 'https://medium.com/browse/top'
 
     doc = Nokogiri::HTML(b.html)
-    a = doc.css('.postArticle-content .graf graf--h3 graf-after--figure graf--leading graf--title')
-    puts a
+    a = doc.css('.postArticle-content a h3')
+    b = doc.css('.postArticle-content a')
+    c = a.count.to_i
+    c = c - 1
+    z = (0..c).to_a
+    puts z
+     z.each do |i|
+       link = b[i]['href']
+       puts link
+       url = link
+       title = a[i.to_i].text
+       puts title
+       @medium = Medium.find_or_create_by(title: title, url: url)
+       @medium.save
+       puts 'Medium article created!'
+       puts " "
+     end
+
+    # a.each do |article|
+    #   puts article.text
+    #   link = article['href']
+    #   puts link
+    # end
   end
