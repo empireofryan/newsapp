@@ -1,6 +1,6 @@
-class CreateMediums < ActiveRecord::Migration[5.0]
+class CreateMedia < ActiveRecord::Migration[5.0]
   def change
-    create_table :mediums do |t|
+    create_table :media do |t|
       t.string :title
       t.string :url
       t.timestamps
