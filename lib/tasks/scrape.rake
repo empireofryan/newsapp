@@ -35,8 +35,8 @@ namespace :scrape do
   puts ' "$$(    R$$e$$R    )$$" '
   puts '  "$8oeeo. "*" .oeeo8$" '
   puts '  .$$#"""*$i i$*"""#$$. '
-  puts '  9$" @*c $$ $$F @*c $N '
-  puts '   9$  NeP $$ $$L NeP $$ '
+  puts '  9$" @@@ $$ $$F @@@ $N '
+  puts '   9$  `` $$ $$L `` $$ '
   puts '  `$$uuuuo$$ $$uuuuu$$" '
   puts '  x$P**$$P*$"$P#$$$*R$L '
   puts "  x$$   $$k $$F :$P` '$$i "
@@ -64,7 +64,8 @@ namespace :scrape do
   #deals_pt1
   #deals_pt2
   #deals_pt3
-  deals_pt4
+  #deals_pt4
+  economists
 end
 
   def movies
@@ -180,8 +181,108 @@ end
   #   puts page.content.strip
   # end
 
-  def deals_pt4
-    b = Watir::Browser.new
-    b.goto('https://www.amazon.com/gp/goldbox/ref=gbps_ftr_s-3_3422_page_2?gb_f_GB-SUPPLE=enforcedCategories:7192394011%252C7147440011%252C2619525011%252C2102313011%252C2858778011%252C2617941011%252C15684181%252C165796011%252C7147444011%252C3760911%252C283155%252C7147443011%252C502394%252C2335752011%252C4991425011%252C541966%252C7586165011%252C1233514011%252C228013%252C2625373011%252C172282%252C1063306%252C7147442011%252C16310101%252C3760901%252C1055398%252C16310091%252C133140011%252C284507%252C9479199011%252C679255011%252C6358539011%252C1040658%252C7147441011%252C11091801%252C1064954%252C2972638011%252C2619533011%252C3375251%252C165793011%252C679337011%252C6358543011%252C1040660,page:2,sortOrder:BY_DISCOUNT_DESCENDING,dealsPerPage:32&pf_rd_p=2609053422&pf_rd_s=slot-3&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=WCCZMK5T7Q5W6JYM7DV4&nocache=1474582112196')
-    puts b.span(:id, 'dealTitle').when_present.text
-  end
+  # def deals_pt4
+  #   b = Watir::Browser.new
+  #   b.goto('https://www.amazon.com/gp/goldbox/ref=gbps_ftr_s-3_3422_page_2?gb_f_GB-SUPPLE=enforcedCategories:7192394011%252C7147440011%252C2619525011%252C2102313011%252C2858778011%252C2617941011%252C15684181%252C165796011%252C7147444011%252C3760911%252C283155%252C7147443011%252C502394%252C2335752011%252C4991425011%252C541966%252C7586165011%252C1233514011%252C228013%252C2625373011%252C172282%252C1063306%252C7147442011%252C16310101%252C3760901%252C1055398%252C16310091%252C133140011%252C284507%252C9479199011%252C679255011%252C6358539011%252C1040658%252C7147441011%252C11091801%252C1064954%252C2972638011%252C2619533011%252C3375251%252C165793011%252C679337011%252C6358543011%252C1040660,page:2,sortOrder:BY_DISCOUNT_DESCENDING,dealsPerPage:32&pf_rd_p=2609053422&pf_rd_s=slot-3&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=WCCZMK5T7Q5W6JYM7DV4&nocache=1474582112196')
+  #   puts b.span(:id, 'dealTitle').when_present.text
+  # end
+
+  def economists
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://www.economist.com/'
+    doc = Nokogiri::HTML(b.html)
+    # one
+    # two
+    # three
+    # four
+    # def one
+      a = doc.css('.hero-item-1')
+      b = doc.css('.hero-item-1 a')[1]['href']
+      url = 'http://www.theeconomist.com' + b.to_s
+      puts url
+      c = doc.css('.hero-item-1 .fly-title')
+      title = c.text
+      puts title
+      d = doc.css('.hero-item-1 .headline')
+      subtitle = d.text
+      puts subtitle
+      @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
+      @economist.save
+      puts 'Economist entry created!'
+    # end
+    # def two
+      a = doc.css('.hero-item-2')
+      b = doc.css('.hero-item-2 a')[0]['href']
+      url = 'http://www.theeconomist.com' + b.to_s
+      puts url
+      c = doc.css('.hero-item-2 .fly-title')
+      title = c.text
+      puts title
+      d = doc.css('.hero-item-2 .headline')
+      subtitle = d.text
+      puts subtitle
+      @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
+      @economist.save
+      puts 'Economist entry created!'
+    # end
+    # def three
+      a = doc.css('.hero-item-3')
+      b = doc.css('.hero-item-3 a')[1]['href']
+      url = 'http://www.theeconomist.com' + b.to_s
+      puts url
+      c = doc.css('.hero-item-3 .fly-title')
+      title = c.text
+      puts title
+      d = doc.css('.hero-item-3 .headline')
+      subtitle = d.text
+      puts subtitle
+      @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
+      @economist.save
+      puts 'Economist entry created!'
+    # end
+    # def four
+      a = doc.css('.hero-item-4')
+      b = doc.css('.hero-item-4 a')[1]['href']
+      url = 'http://www.theeconomist.com' + b.to_s
+      puts url
+      c = doc.css('.hero-item-4 .fly-title')
+      title = c.text
+      puts title
+      d = doc.css('.hero-item-4 .headline')
+      subtitle = d.text
+      puts subtitle
+      @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
+      @economist.save
+      puts 'Economist entry created!'
+    # end
+    # homepage center
+    f = doc.css('#homepage-center-inner article')
+    puts 'number of articles'
+    c = f.count.to_i
+    c = c - 1
+    z = (0..c).to_a
+    puts 'number of z'
+    puts z
+    z.each do |i|
+      a = doc.css('#homepage-center-inner .news-package')[i]
+      b = doc.css('#homepage-center-inner article a')[0]['href']
+      url = 'http://www.theeconomist.com' + b.to_s
+      puts url
+      c = doc.css('#homepage-center-inner article .headline')[i]
+      # c.each do |title|
+      #   @title = title.text
+      # end
+      # puts @title
+      title = c.text
+      puts 'title'
+      puts title
+      d = doc.css('#homepage-center-inner article .rubric')[i]
+      subtitle = d.text[0..-10].strip
+      # subtitle = subtitle[1..8]
+      puts 'subtitle'
+      puts subtitle
+      @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
+      @economist.save
+      puts 'Economist entry created!'
+    end
+  end # end of economists

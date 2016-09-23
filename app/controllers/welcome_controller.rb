@@ -3,5 +3,6 @@ class WelcomeController < ApplicationController
     @movies = Movie.all
     @mediums = Medium.all
     @awwwards = Awwward.all
+    @economists = Economist.all
   end
 end
