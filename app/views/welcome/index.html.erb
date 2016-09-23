@@ -1,5 +1,7 @@
 <style>
-
+.site {
+text-align:center; margin-bottom:0px; font-size:1.2em
+}
 </style>
 <div class="row">
   <div class='col-md-12' style="width:100%">
@@ -9,10 +11,11 @@
     <p style="text-align:center; font-size:.8em">Updated Daily</p>
   </div>
 </div>
+<br><br>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Top Rated Movies</p>
-    <p style="font-size:.7em; text-align:center">
+    <p class="site">Top Rated Movies</p>
+    <p style="font-size:.9em; text-align:center">
       <% @movies.each do |m| %>
     <a href='<%=m.url%>'>  <%= m.title %></a> |
       <% end %>
@@ -21,8 +24,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Medium Most Read</p>
-    <p style="font-size:.7em; text-align:center">
+    <p class="site">Medium Most Read</p>
+    <p style="font-size:.9em; text-align:center">
       <% @mediums.each do |m| %>
       <a href='<%=m.url%>'>  <%= m.title %></a> |
       <% end %>
@@ -31,8 +34,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Awwward of Day</p>
-    <p style="font-size:.7em; text-align:center">
+    <p class="site">Awwward of Day</p>
+    <p style="font-size:.9em; text-align:center">
       <% @awwwards.each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %></a> |
       <% end %>
@@ -41,8 +44,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Deal of Day</p>
-    <p style="font-size:.7em; text-align:center">
+    <p class="site">Deal of Day</p>
+    <p style="font-size:.9em; text-align:center">
       <#% @deals.each do |d| %>
       <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
       <#% end %>
@@ -51,8 +54,8 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Economist</p>
-    <p style="font-size:.7em; text-align:center">
+    <p class="site">Latest Economist</p>
+    <p style="font-size:.9em; text-align:center">
       <% @economists.each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
       <% end %>
@@ -61,15 +64,22 @@
 </div>
 <div class="row">
   <div class="col-md-12">
-    <p style="text-align:center; margin-bottom:0px">Vimeo</p>
+    <p class="site">Best of Vimeo</p>
     <p style="font-size:.7em; text-align:center">
-      <% @vimeos.each do |a| %>
-      <div class="col-md-2"><a href='<%=a.url%>'><img src='<%= a.picture %>'><br><%= a.title %> </a></div>
+      <% @vimeos[0..11].each do |a| %>
+      <div class="col-md-2">
+        <a href='<%=a.url%>'>
+          <img src='<%= a.picture %>'><br>
+          <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
+            <span style="font-size:.8em"><%= a.title %></span>
+          </div>
+        </a>
+      </div>
       <% end %>
     </p>
   </div>
 </div>
-
+<br><br>
 
 
 
