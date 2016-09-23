@@ -65,7 +65,8 @@ namespace :scrape do
   #deals_pt2
   #deals_pt3
   #deals_pt4
-  economists
+  #economists
+  vimeo
 end
 
   def movies
@@ -191,10 +192,6 @@ end
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://www.economist.com/'
     doc = Nokogiri::HTML(b.html)
-    # one
-    # two
-    # three
-    # four
     # def one
       a = doc.css('.hero-item-1')
       b = doc.css('.hero-item-1 a')[1]['href']
@@ -269,16 +266,11 @@ end
       url = 'http://www.theeconomist.com' + b.to_s
       puts url
       c = doc.css('#homepage-center-inner article .headline')[i]
-      # c.each do |title|
-      #   @title = title.text
-      # end
-      # puts @title
       title = c.text
       puts 'title'
       puts title
       d = doc.css('#homepage-center-inner article .rubric')[i]
       subtitle = d.text[0..-10].strip
-      # subtitle = subtitle[1..8]
       puts 'subtitle'
       puts subtitle
       @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
@@ -286,3 +278,25 @@ end
       puts 'Economist entry created!'
     end
   end # end of economists
+
+  def vimeo
+    b = Watir::Browser.new(:phantomjs)
+    z = (1..3).to_a
+    z.each do |i|
+      b.goto 'https://vimeo.com/channels/staffpicks/page:' + i.to_s
+      doc = Nokogiri::HTML(b.html)
+      a = doc.css('#gallery ol li')
+    #  puts a
+      a.each do |video|
+        url = video.css('a')[0]['href']
+        puts url
+        title = video.css('a')[0]['title']
+        puts title
+        picture = video.css('img')[0]['src']
+        puts picture
+        @vimeo = Vimeo.find_or_create_by(title: title, picture: picture, url: url)
+        @vimeo.save
+        puts 'Vimeo entry created!'
+      end
+    end
+  end

@@ -4,5 +4,6 @@ class WelcomeController < ApplicationController
     @mediums = Medium.all
     @awwwards = Awwward.all
     @economists = Economist.all
+    @vimeos = Vimeo.all
   end
 end
