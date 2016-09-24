@@ -66,7 +66,8 @@ namespace :scrape do
   #deals_pt3
   #deals_pt4
   #economists
-  vimeo
+  #vimeo
+  twitter
 end
 
   def movies
@@ -299,4 +300,25 @@ end
         puts 'Vimeo entry created!'
       end
     end
-  end
+  end# end vimeo
+
+  def twitter
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://trends24.in/united-states/'
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.trend-card__list li')
+    # puts a
+    # b = doc.css('.trend-items .trend-item')
+    # puts b
+     a.each do |twitter|
+       hashtag = twitter.text
+       puts hashtag
+       url = twitter.css('a')[0]['href']
+      #  hashtag = video.css('a')[0]['title']
+       puts url
+      @twitter = Twitter.find_or_create_by(hashtag: hashtag, url: url)
+      @twitter.save
+      puts 'Twitter entry created!'
+    end #end a.each
+  end # end twitter
+#dont need an end
