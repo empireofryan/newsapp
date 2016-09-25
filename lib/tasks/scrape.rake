@@ -350,12 +350,12 @@ end
     a = doc.css('.section-popular-trigger')
     # puts a
      a.each do |article|
-       title = article.text
+       title = article
        puts title
-      # url = article.css('a')[0]['href']
-      # puts url
-      @next_web = Nextweb.find_or_create_by(title: title, url: url)
-      @next_web.save
+      #  url = article[0]['href']
+      #  puts url
+      # @next_web = Nextweb.find_or_create_by(title: title, url: url)
+      # @next_web.save
       puts 'Next Web entry created!'
     end #end a.each
   end # end twitter
