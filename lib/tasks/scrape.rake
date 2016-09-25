@@ -61,13 +61,14 @@ namespace :scrape do
   #movies   #run movies scraper
   #medium   #run medium scraper
   #awwwards #run awwwards scraper
-  deals_pt1
+#  deals_pt1
   #deals_pt2
   #deals_pt3
   #deals_pt4
   #economists
   #vimeo
   #twitter
+  next_web
 end
 
   def movies
@@ -339,6 +340,23 @@ end
       @twitter = Twitter.find_or_create_by(hashtag: hashtag, url: url)
       @twitter.save
       puts 'Twitter entry created!'
+    end #end a.each
+  end # end twitter
+
+  def next_web
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://thenextweb.com/'
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.section-popular-trigger')
+    # puts a
+     a.each do |article|
+       title = article.text
+       puts title
+      # url = article.css('a')[0]['href']
+      # puts url
+      @next_web = Nextweb.find_or_create_by(title: title, url: url)
+      @next_web.save
+      puts 'Next Web entry created!'
     end #end a.each
   end # end twitter
 #dont need an end
