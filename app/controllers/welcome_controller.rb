@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
     @awwwards = Awwward.all
     @economists = Economist.all
     @vimeos = Vimeo.all
+    @deals = Amazon.all
     @twitters = Twitter.all
   end
 end

@@ -50,7 +50,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <p class="site">Deal of Day</p>
     <p style="font-size:.9em; text-align:center">
       <#% @deals.each do |d| %>
-      <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
+      <a href='<%=d.url%>'>  <%= d.title %></a> $<%= d.price %> <%= d.discount%>% off |
       <#% end %>
     </p>
   </div>
@@ -96,7 +96,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 
 
 
-<!-- 
+<!--
 <div class="row">
 <iframe scrolling="no" style="border:none;" width="250" height="413" src="https://www.google.com/trends/hottrends/widget?pn=p1&amp;tn=10&amp;h=413"></iframe>
 </div> -->

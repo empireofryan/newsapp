@@ -61,13 +61,13 @@ namespace :scrape do
   #movies   #run movies scraper
   #medium   #run medium scraper
   #awwwards #run awwwards scraper
-  #deals_pt1
+  deals_pt1
   #deals_pt2
   #deals_pt3
   #deals_pt4
   #economists
   #vimeo
-  twitter
+  #twitter
 end
 
   def movies
@@ -152,14 +152,34 @@ end
     b = Watir::Browser.new(:phantomjs)
     b.goto url
     doc = Nokogiri::HTML(b.html)
-    # a = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_0 .dealContainer .a-section .layer')
-    # puts a
-     b = doc.css('.dealContainer .priceBlock span')
-     puts b
-  #  c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
-  #  puts c
-#    d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
-#    puts d
+    z = (0..7).to_a
+    z.each do |i|
+      # a = doc.css('.dealContainer')[i]
+      # puts a
+      b = doc.css('.dealContainer .priceBlock span')[i]
+      price = b.text
+       price = price.gsub('$', '')
+       price = price.to_i
+      puts price
+      #c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
+  #works refactor for iterator  #c = doc.css('.dealContainer .a-spacing-mini .hiddenCss').text
+      c = doc.css('.dealContainer .a-spacing-mini .hiddenCss')[i].text
+      title = c.strip
+      puts 'title'
+      puts title
+      puts 'discount'
+      d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text
+  #    d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
+      discount = d.strip
+      puts discount
+      puts 'url'
+      e = doc.css('.dealContainer .a-spacing-mini a')[i]['href']
+      puts e
+      @deal = Amazon.find_or_create_by(title: title, url: url,
+        price: price, discount: discount)
+      @deal.save
+      puts 'Amazon Deal entry created!'
+    end
   end
 
   #not working just loading
