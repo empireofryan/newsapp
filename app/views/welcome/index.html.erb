@@ -4,97 +4,129 @@
 text-align:center; margin-bottom:0px; font-size:1.2em
 }
 </style>
+<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
+</script>
+<div class="container-fluid">
 <div class="row">
   <div class='col-md-12' style="width:100%">
-    <p style="text-align:center; font-family: 'Arvo', serif;">
-      Today is
-      <%= Time.now.strftime("%m/%d/%Y") %>
-    </p>
-    <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;
-">Updated Daily</p>
-  </div>
-</div>
-<br><br>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Top Rated Movies</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @movies.each do |m| %>
-    <a href='<%=m.url%>'>  <%= m.title %></a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Medium Most Read</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @mediums.each do |m| %>
-      <a href='<%=m.url%>'>  <%= m.title %></a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Awwward of Day</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @awwwards.each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %></a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Deal of Day</p>
-    <p style="font-size:.9em; text-align:center">
-      <%# @deals.each do |d| %>
-      <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
-      <%# end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Latest Economist</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @economists.each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Best of Vimeo</p>
-    <p style="font-size:.7em; text-align:center">
-      <% @vimeos[0..11].each do |a| %>
-      <div class="col-md-2">
-        <a href='<%=a.url%>'>
-          <img src='<%= a.picture %>'><br>
-          <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
-            <span style="font-size:.8em"><%= a.title %></span>
-          </div>
-        </a>
-      </div>
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <p class="site">Trending Tweets</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @twitters.each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
-      <% end %>
-    </p>
-  </div>
 </div>
 
-<br><br>
+<!-- <div class="row"> -->
+<div class="col-md-3" style="position:relative;">
+  <div id='#sidebar' style="position:fixed;
+    z-index:1;
+    background-color:#FFCE00;
+    width:24.5%;
+    top:0;
+    bottom:0;
+    border-right:2px solid black;">
 
+  <span style="text-align:center; margin-top:-50px"><br><br><br>
+    <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif;">BOEGROVE</p>
+    <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
+    <span style="text-align:center">
+      <p style="text-align:center"><img style="width:200px;" src="http://i678.photobucket.com/albums/vv149/75renegade/Bridgetscoloringbook/owl-mandala-t4570-2.png">
+    </span></p>
+  </span>
+  <p style="text-align:center; font-family: 'Arvo', serif;">
+    Today is
+    <%= Time.now.strftime("%m/%d/%Y") %>
+  </p>
+  <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;">Updated Daily</p>
+</div>
+</div>
+
+  <div class="col-md-9">
+    <div class="row" style='margin-top:400px; background:#0375B4; color:white; font-family: "Cabin"; padding:20px'>
+    <div class="col-md-12">
+      <p class="site">
+        <img src='https://d2a5cgar23scu2.cloudfront.net/static/images/icons/cf-lg.png'
+        style='width:50px; margin-top:0px'><br>
+        Top Rated Movies
+      </p>
+      <p style="font-size:.9em; text-align:center;">
+        <% @movies.each do |m| %>
+      <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row" style="background:#007849; color:white; font-family: 'Cabin'; padding:20px">
+    <div class="col-md-12">
+      <p class="site">
+        <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
+        style='width:50px; margin-top:0px'><br>
+        Medium Most Read</p>
+      <p style="font-size:.9em; text-align:center">
+        <% @mediums.each do |m| %>
+        <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row" style="background:#262228; color:white; font-family: 'Cabin'; padding:20px">
+    <div class="col-md-12">
+      <p class="site">
+        <img src='http://www.eqtr.com/media/557763/awwwards2.png'
+        style='width:50px; margin-top:0px'><br>
+        Awwward of Day</p>
+      <p style="font-size:.9em; text-align:center">
+        <% @awwwards.each do |a| %>
+        <a href='<%=a.url%>' style="color:#FFCE00">  <%= a.title %></a> |
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="site">Deal of Day</p>
+      <p style="font-size:.9em; text-align:center">
+        <%# @deals.each do |d| %>
+        <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
+        <%# end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="site">Latest Economist</p>
+      <p style="font-size:.9em; text-align:center">
+        <% @economists.each do |a| %>
+        <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="site">Best of Vimeo</p>
+      <p style="font-size:.7em; text-align:center">
+        <% @vimeos[0..11].each do |a| %>
+        <div class="col-md-2">
+          <a href='<%=a.url%>'>
+            <img src='<%= a.picture %>'><br>
+            <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
+              <span style="font-size:.8em"><%= a.title %></span>
+            </div>
+          </a>
+        </div>
+        <% end %>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p class="site">Trending Tweets</p>
+      <p style="font-size:.9em; text-align:center">
+        <% @twitters.each do |a| %>
+        <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
+        <% end %>
+      </p>
+    </div>
+  </div>
+</div> <!-- end div col-md-9 -->
+<br><br>
+</div> <!-- end container-fluid -->
 
 
 <!--
