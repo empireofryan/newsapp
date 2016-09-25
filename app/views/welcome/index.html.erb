@@ -49,9 +49,9 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <div class="col-md-12">
     <p class="site">Deal of Day</p>
     <p style="font-size:.9em; text-align:center">
-      <#% @deals.each do |d| %>
-      <a href='<%=d.url%>'>  <%= d.title %></a> $<%= d.price %> <%= d.discount%>% off |
-      <#% end %>
+      <%# @deals.each do |d| %>
+      <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
+      <%# end %>
     </p>
   </div>
 </div>
@@ -92,6 +92,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </p>
   </div>
 </div>
+
 <br><br>
 
 
