@@ -10,17 +10,26 @@
 .header {
   background-color:gray;
 }
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    overflow: auto;
+}
 </style>
 <link href="https://fonts.googleapis.com/css?family=Arvo|Cabin" rel="stylesheet">
 <body>
-  <div class="row" style=' position:relative'>
+  <!-- <div class="row" style=' position:relative'>
     <img style="
     z-index:9999;
     position:absolute;
     max-width: 100%;
     height: auto;
     width: auto;
-    text-align:center;" src="https://s3.eu-central-1.amazonaws.com/eu-ddream/dream_587a9c2043.jpg?1474658618849" alt="">
+    text-align:center;" src="https://s3.eu-central-1.amazonaws.com/eu-ddream/dream_587a9c2043.jpg?1474658618849" alt=""> -->
 
      <!-- style="   #transform text at angle
 -webkit-transform: rotate(40deg);
@@ -30,7 +39,7 @@ transform: rotate(40deg);
 "> -->
 
 
-<div class="container">
+<!-- <div class="container"> -->
 
   <!-- <div class="row">
     <div class="col-md-2">
@@ -43,11 +52,11 @@ transform: rotate(40deg);
     </div>
   </div> -->
 
-
+<!--
       <div class="row">
 </div>
   <br><br>
-</div>
+</div> -->
 <%= yield %>
 
 

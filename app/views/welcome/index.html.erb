@@ -34,19 +34,20 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <div id='#sidebar' style="position:fixed;
     z-index:1;
     background-color:#FFCE00;
-    width:24.5%;
+    width:25%;
     top:0;
+    left:0;
     bottom:0;
     border-right:2px solid black;">
 
   <span style="text-align:center; margin-top:-50px"><br><br>
-    <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif;">BOEGROVE</p>
+    <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif; margin-bottom:25px">BOEGROVE</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
     <span style="text-align:center">
-      <p style="text-align:center; margin-top:-20px"><img style="width:200px;" src="http://i678.photobucket.com/albums/vv149/75renegade/Bridgetscoloringbook/owl-mandala-t4570-2.png">
+      <p style="text-align:center; margin-top:-20px"><img style="width:200px;" src="http://s13.postimg.org/t9fropdxz/owllogo.png">
     </span></p>
   </span>
-  <p style="text-align:center; font-family: 'Arvo', serif; margin-top:-30px">
+  <p style="text-align:center; font-family: 'Arvo', serif; margin-top:0px">
     Today is
     <%= Time.now.strftime("%m/%d/%Y") %>
   </p>
@@ -54,7 +55,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 </div>
 </div>
   <div class="col-md-9">
-    <div class="row style1" style='margin-top:400px'>
+    <div class="row style1" style='margin-top:0px'>
     <div class="col-md-12">
       <p class="site">
         <img src='https://d2a5cgar23scu2.cloudfront.net/static/images/icons/cf-lg.png'
@@ -96,7 +97,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   </div>
   <div class="row style1">
     <div class="col-md-12">
-      <p class="site">Deal of Day</p>
+      <p class="site">
+        <img src='http://logonoid.com/images/amazon-logo.png'
+        style='width:67px; margin-top:0px'><br>
+        Deal of Day</p>
       <p style="font-size:.9em; text-align:center">
         <%# @deals.each do |d| %>
         <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
@@ -106,7 +110,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   </div>
   <div class="row style2">
     <div class="col-md-12">
-      <p class="site">Latest Economist</p>
+      <p class="site">
+        <img src='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif'
+        style='width:75px; margin-top:0px'><br>
+        Latest Economist</p>
       <p style="font-size:.9em; text-align:center">
         <% @economists.each do |a| %>
         <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
@@ -116,7 +123,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   </div>
   <div class="row style3">
     <div class="col-md-12">
-      <p class="site">Best of Vimeo</p>
+      <p class="site">
+        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_Logo.svg/2000px-Vimeo_Logo.svg.png'
+        style='width:75px; margin-top:0px'><br>
+        Best of Vimeo</p>
       <p style="font-size:.7em; text-align:center">
         <% @vimeos[0..11].each do |a| %>
         <div class="col-md-2">
