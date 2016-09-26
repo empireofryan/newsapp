@@ -69,6 +69,7 @@ namespace :scrape do
   vimeo
   twitter
   #next_web
+  puts 'Scraper successfully executed.'
 end
 
   def movies
