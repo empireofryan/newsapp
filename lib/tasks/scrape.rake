@@ -58,16 +58,16 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  movies   #run movies scraper
-  medium   #run medium scraper
-  awwwards #run awwwards scraper
-#  deals_pt1
+#  movies   #run movies scraper
+#  medium   #run medium scraper
+#  awwwards #run awwwards scraper
+  deals_pt1
   #deals_pt2
   #deals_pt3
   #deals_pt4
-  economists
-  vimeo
-  twitter
+#  economists
+#  vimeo
+#  twitter
   #next_web
   puts 'Scraper successfully executed.'
 end
@@ -154,31 +154,32 @@ end
     b = Watir::Browser.new(:phantomjs)
     b.goto url
     doc = Nokogiri::HTML(b.html)
-    z = (0..7).to_a
+    z = (0..6).to_a
     z.each do |i|
       # a = doc.css('.dealContainer')[i]
       # puts a
       b = doc.css('.dealContainer .priceBlock span')[i]
-      price = b.text
-       price = price.gsub('$', '')
-       price = price.to_i
-      puts price
+      price_a = b.text
+      puts price_a
       #c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
-  #works refactor for iterator  #c = doc.css('.dealContainer .a-spacing-mini .hiddenCss').text
+  #   works refactor for iterator  #c = doc.css('.dealContainer .a-spacing-mini .hiddenCss').text
       c = doc.css('.dealContainer .a-spacing-mini .hiddenCss')[i].text
       title = c.strip
       puts 'title'
       puts title
       puts 'discount'
       d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text
-  #    d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
-      discount = d.strip
-      puts discount
+  #   d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
+      discount_a = d.strip
+      discount_a[0] = ''
+      discount_a[-1] = ''
+
+      puts discount_a
       puts 'url'
-      e = doc.css('.dealContainer .a-spacing-mini a')[i]['href']
-      puts e
+      url = doc.css('.dealContainer .a-spacing-mini a')[i]['href']
+      puts url
       @deal = Amazon.find_or_create_by(title: title, url: url,
-        price: price, discount: discount)
+        price_a: price_a, discount_a: discount_a)
       @deal.save
       puts 'Amazon Deal entry created!'
     end

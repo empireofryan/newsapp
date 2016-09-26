@@ -39,7 +39,6 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     left:0;
     bottom:0;
     border-right:2px solid black;">
-
   <span style="text-align:center; margin-top:-50px"><br><br>
     <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif; margin-bottom:25px">BOEGROVE</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
@@ -51,7 +50,9 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     Today is
     <%= Time.now.strftime("%m/%d/%Y") %>
   </p>
-  <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;">Updated Daily</p>
+  <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;">
+    Updated Daily
+  </p>
 </div>
 </div>
   <div class="col-md-9">
@@ -100,11 +101,14 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       <p class="site">
         <img src='http://logonoid.com/images/amazon-logo.png'
         style='width:67px; margin-top:0px'><br>
-        Deal of Day</p>
+        Deals of Day</p>
       <p style="font-size:.9em; text-align:center">
-        <%# @deals.each do |d| %>
-        <a href='<%#=d.url%>'>  <%#= d.title %></a> $<%#= d.price %> <%#= d.discount%>% off |
-        <%# end %>
+        <% @deals[0..5].each do |d| %>
+        <div class="col-md-2">
+          <a href='<%=d.url%>'>  <%= d.title %></a><br><%= d.price_a %><br> <%= d.discount_a %>
+            </div>
+        <% end %>
+
       </p>
     </div>
   </div>
@@ -143,7 +147,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   </div>
   <div class="row style1">
     <div class="col-md-12">
-      <p class="site">Trending Tweets</p>
+      <p class="site">
+        <img src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/220px-Twitter_bird_logo_2012.svg.png'
+        style='width:45px; margin-top:0px'><br>
+        Trending Tweets</p>
       <p style="font-size:.9em; text-align:center">
         <% @twitters.each do |a| %>
         <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
