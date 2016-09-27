@@ -1,0 +1,2 @@
+class Thenextweb < ApplicationRecord
+end

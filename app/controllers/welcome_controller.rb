@@ -7,5 +7,8 @@ class WelcomeController < ApplicationController
     @vimeos = Vimeo.all
     @deals = Amazon.all
     @twitters = Twitter.all
+    @nytimes = Nytime.all
+    @googles = Google.all
+    @nextwebs = Thenextweb.all
   end
 end

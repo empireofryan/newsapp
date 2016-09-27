@@ -1,6 +1,6 @@
-class CreateNextwebs < ActiveRecord::Migration[5.0]
+class CreateNytimes < ActiveRecord::Migration[5.0]
   def change
-    create_table :nextwebs do |t|
+    create_table :nytimes do |t|
       t.string :title
       t.string :url
       t.timestamps

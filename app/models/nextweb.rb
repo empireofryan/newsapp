@@ -1,2 +1,0 @@
-class Nextweb < ApplicationRecord
-end

@@ -31,7 +31,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 
 <!-- <div class="row"> -->
 <div class="col-md-3" style="position:relative;">
-  <div id='#sidebar' style="position:fixed;
+  <div class="fade-in one" id='#sidebar' style="position:fixed;
     z-index:1;
     background-color:#FFCE00;
     width:25%;
@@ -56,11 +56,11 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 </div>
 </div>
   <div class="col-md-9">
-    <div class="row style1" style='margin-top:0px'>
+    <div class="row style1 fade-in two" style='margin-top:0px'>
     <div class="col-md-12">
       <p class="site">
         <img src='https://d2a5cgar23scu2.cloudfront.net/static/images/icons/cf-lg.png'
-        style='width:50px; margin-top:0px'><br>
+        style='width:90px; margin-top:0px'><br>
         Top Rated Movies
       </p>
       <p style="font-size:.9em; text-align:center;">
@@ -70,11 +70,11 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
     </div>
   </div>
-  <div class="row style2" style="">
+  <div class="row style2 fade-in three" style="">
     <div class="col-md-12">
       <p class="site">
         <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
-        style='width:50px; margin-top:0px'><br>
+        style='width:90px; margin-top:0px'><br>
         Medium Most Read</p>
       <p style="font-size:.9em; text-align:center">
         <% @mediums.each do |m| %>
@@ -83,11 +83,11 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
     </div>
   </div>
-  <div class="row style3" style="">
+  <div class="row style3 fade-in four" style="">
     <div class="col-md-12">
       <p class="site">
         <img src='http://www.eqtr.com/media/557763/awwwards2.png'
-        style='width:50px; margin-top:0px'><br>
+        style='width:140px; margin-top:0px'><br>
         Awwward of Day</p>
       <p style="font-size:.9em; text-align:center">
         <% @awwwards.each do |a| %>
@@ -96,11 +96,11 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
     </div>
   </div>
-  <div class="row style1">
+  <div class="row style1 fade-in four">
     <div class="col-md-12">
       <p class="site">
         <img src='http://logonoid.com/images/amazon-logo.png'
-        style='width:67px; margin-top:0px'><br>
+        style='width:140px; margin-top:0px'><br>
         Deals of Day</p>
       <p style="font-size:.9em; text-align:center">
         <% @deals[0..5].each do |d| %>
@@ -116,7 +116,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <div class="col-md-12">
       <p class="site">
         <img src='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif'
-        style='width:75px; margin-top:0px'><br>
+        style='width:155px; margin-top:0px'><br>
         Latest Economist</p>
       <p style="font-size:.9em; text-align:center">
         <% @economists.each do |a| %>
@@ -129,7 +129,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <div class="col-md-12">
       <p class="site">
         <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_Logo.svg/2000px-Vimeo_Logo.svg.png'
-        style='width:75px; margin-top:0px'><br>
+        style='width:135px; margin-top:0px'><br>
         Best of Vimeo</p>
       <p style="font-size:.7em; text-align:center">
         <% @vimeos[0..11].each do |a| %>
@@ -149,7 +149,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <div class="col-md-12">
       <p class="site">
         <img src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/220px-Twitter_bird_logo_2012.svg.png'
-        style='width:45px; margin-top:0px'><br>
+        style='width:75px; margin-top:0px'><br>
         Trending Tweets</p>
       <p style="font-size:.9em; text-align:center">
         <% @twitters.each do |a| %>
@@ -158,6 +158,45 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
     </div>
   </div>
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png'
+      style='width:335px; margin-top:0px'><br>
+      Latest News</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @nytimes.each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row style3">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png'
+      style='width:195px; margin-top:0px'><br>
+      Trending Searches</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @googles.each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row style1">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://lh5.ggpht.com/64N-cwJ14nR3t-0wJ5nRbz2VTo9UC0jj7GKiUnHxOjCzxduSs3_FO2S0CT3gv2RFZChg92XYpw=w300'
+      style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
+      Latest Stories</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @nextwebs.each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>
 </div> <!-- end div col-md-9 -->
 <br><br>
 </div> <!-- end container-fluid -->

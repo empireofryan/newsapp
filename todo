@@ -1,6 +1,6 @@
 TO DO
 
 done # set cron job to scrape daily
-# fixed vertical col-md-2/3 section bar on left
+done # fixed vertical col-md-2/3 section bar on left
+done # deploy heroku
 # save prior day's news and replace
-# deploy heroku

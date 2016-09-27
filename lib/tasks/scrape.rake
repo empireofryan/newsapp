@@ -61,14 +61,16 @@ namespace :scrape do
 #  movies   #run movies scraper
 #  medium   #run medium scraper
 #  awwwards #run awwwards scraper
-  deals_pt1
+#  deals_pt1
   #deals_pt2
   #deals_pt3
   #deals_pt4
 #  economists
 #  vimeo
 #  twitter
-  #next_web
+  next_web
+  #google
+#  nytimes
   puts 'Scraper successfully executed.'
 end
 
@@ -158,7 +160,7 @@ end
     z.each do |i|
       # a = doc.css('.dealContainer')[i]
       # puts a
-      b = doc.css('.dealContainer .priceBlock span')[i]
+      b = doc.css('.dealContainer .priceBlock span')[i-1]
       price_a = b.text
       puts price_a
       #c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
@@ -354,11 +356,55 @@ end
      a.each do |article|
        title = article
        puts title
-      #  url = article[0]['href']
-      #  puts url
+#       url = article['href']
+#       puts url
       # @next_web = Nextweb.find_or_create_by(title: title, url: url)
       # @next_web.save
       puts 'Next Web entry created!'
     end #end a.each
-  end # end twitter
+  end # end next_web
+
+  def google
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'https://www.google.com/trends/hottrends'
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.hottrends-trends-list-trend-container')
+    # puts a
+     a.each do |article|
+       title = article.css('.hottrends-single-trend-title').text
+       puts title
+       a_url = article.css('.hottrends-single-trend-title-container a')[1]['href']
+       url = 'http://www.google.com' + a_url
+       puts url
+       @google = Google.find_or_create_by(title: title, url: url)
+       @google.save
+      puts 'Google trending entry created!'
+    end #end a.each
+  end # end google
+
+  def nytimes
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://mobile.nytimes.com/'
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.sfgAsset-li')
+  #   puts a
+     a.each do |article|
+       begin
+         a_url = article.css('a')[0]['href']
+        if a_url.start_with?('/2016')
+          url = 'http://www.nytimes.com' + a_url
+          puts url
+        end
+      title = article.css('.sfgAsset-hed').text.strip
+      puts title
+      if url
+        @nytime = Nytime.find_or_create_by(title: title, url: url)
+        @nytime.save
+        puts 'Next Web entry created!'
+      end
+    rescue NoMethodError
+     puts "no method error rescued"
+    end
+    end #end a.each
+end # end nytimes
 #dont need an end
