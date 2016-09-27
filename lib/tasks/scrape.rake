@@ -58,19 +58,20 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-#  movies   #run movies scraper
-#  medium   #run medium scraper
-#  awwwards #run awwwards scraper
-#  deals_pt1
+  # movies   #run movies scraper
+  # medium   #run medium scraper
+  # awwwards #run awwwards scraper
+  # deals_pt1
   #deals_pt2
   #deals_pt3
   #deals_pt4
-#  economists
-#  vimeo
-#  twitter
-  next_web
-  #google
-#  nytimes
+  # economists
+  # vimeo
+  # twitter
+  # next_web
+  # google
+  # nytimes
+  imgur
   puts 'Scraper successfully executed.'
 end
 
@@ -219,6 +220,7 @@ end
     b.goto 'http://www.economist.com/'
     doc = Nokogiri::HTML(b.html)
     # def one
+      begin
       a = doc.css('.hero-item-1')
       b = doc.css('.hero-item-1 a')[1]['href']
       url = 'http://www.theeconomist.com' + b.to_s
@@ -278,6 +280,9 @@ end
       @economist.save
       puts 'Economist entry created!'
     # end
+    rescue NoMethodError
+      puts "No method error"
+    end
     # homepage center
     f = doc.css('#homepage-center-inner article')
     puts 'number of articles'
@@ -287,6 +292,7 @@ end
     puts 'number of z'
     puts z
     z.each do |i|
+      begin
       a = doc.css('#homepage-center-inner .news-package')[i]
       b = doc.css('#homepage-center-inner article a')[0]['href']
       url = 'http://www.theeconomist.com' + b.to_s
@@ -302,6 +308,9 @@ end
       @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
       @economist.save
       puts 'Economist entry created!'
+      rescue NoMethodError
+        puts "No method error"
+      end
     end
   end # end of economists
 
@@ -406,5 +415,32 @@ end
      puts "no method error rescued"
     end
     end #end a.each
-end # end nytimes
+  end # end nytimes
+
+  def imgur
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://imgur.com/'
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.cards .post')
+  #   puts a
+     a.each do |article|
+       begin
+         a_url = article.css('a')[0]['href']
+        #  puts a_url
+         url = 'http://www.imgur.com' + a_url
+      #   puts url
+         image_a = article.css('img')[0]['src']
+         image_a[0..1] = ""
+         image = 'http://' + image_a
+         puts image
+       if url
+          @imgur = Imgur.find_or_create_by(image: image, url: url)
+          @imgur.save
+          puts 'Next Web entry created!'
+        end
+      rescue NoMethodError
+       puts "no method error rescued"
+      end
+    end #end a.each
+  end # end nytimes
 #dont need an end

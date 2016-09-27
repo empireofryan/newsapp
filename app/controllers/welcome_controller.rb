@@ -10,5 +10,6 @@ class WelcomeController < ApplicationController
     @nytimes = Nytime.all
     @googles = Google.all
     @nextwebs = Thenextweb.all
+    @imgurs = Imgur.all
   end
 end

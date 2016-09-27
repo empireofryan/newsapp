@@ -88,7 +88,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       <p class="site">
         <img src='http://www.eqtr.com/media/557763/awwwards2.png'
         style='width:140px; margin-top:0px'><br>
-        Awwward of Day</p>
+        Site of the Day</p>
       <p style="font-size:.9em; text-align:center">
         <% @awwwards.each do |a| %>
         <a href='<%=a.url%>' style="color:#FFCE00">  <%= a.title %></a> |
@@ -150,7 +150,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       <p class="site">
         <img src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/220px-Twitter_bird_logo_2012.svg.png'
         style='width:75px; margin-top:0px'><br>
-        Trending Tweets</p>
+        Trending</p>
       <p style="font-size:.9em; text-align:center">
         <% @twitters.each do |a| %>
         <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
@@ -193,6 +193,19 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <p style="font-size:.9em; text-align:center">
       <% @nextwebs.each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site" style="margin-bottom:10px">
+      <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Imgur_logo.svg/2000px-Imgur_logo.svg.png'
+      style='width:195px; margin-top:0px; margin-bottom:10px'><br>
+      Most Viral</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @imgurs[0..19].each do |a| %>
+      <a href='<%=a.url%>'>  <img src='<%= a.image %>'> </a>
       <% end %>
     </p>
   </div>

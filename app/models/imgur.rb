@@ -1,0 +1,2 @@
+class Imgur < ApplicationRecord
+end
