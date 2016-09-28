@@ -386,10 +386,10 @@ end
        @google = Google.find_or_create_by(title: title, url: url)
        @google.save
       puts 'Google trending entry created!'
+      end
     rescue Net::ReadTimeout
       puts 'rescued net readtimeout'
-    end
-    end #end a.each
+    end#end a.each
   end # end google
 
   def nytimes
