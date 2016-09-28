@@ -371,6 +371,7 @@ end
   end # end next_web
 
   def google
+    begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://www.google.com/trends/hottrends'
     doc = Nokogiri::HTML(b.html)
@@ -385,6 +386,8 @@ end
        @google = Google.find_or_create_by(title: title, url: url)
        @google.save
       puts 'Google trending entry created!'
+    rescue Net::ReadTimeout
+    end
     end #end a.each
   end # end google
 
