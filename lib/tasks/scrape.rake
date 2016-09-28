@@ -387,8 +387,8 @@ end
        @google.save
       puts 'Google trending entry created!'
       end
-    rescue Net::ReadTimeout
-      puts 'rescued net readtimeout'
+    rescue
+      puts 'rescued '
     end#end a.each
   end # end google
 
