@@ -152,7 +152,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:75px; margin-top:0px'><br>
         Trending</p>
       <p style="font-size:.9em; text-align:center">
-        <% @twitters.each do |a| %>
+        <% @twitters.last(40).each do |a| %>
         <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
         <% end %>
       </p>
@@ -165,7 +165,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       style='width:335px; margin-top:0px'><br>
       Latest News</p>
     <p style="font-size:.9em; text-align:center">
-      <% @nytimes.each do |a| %>
+      <% @nytimes.past_day.each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> </a> |
       <% end %>
     </p>
@@ -178,7 +178,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       style='width:195px; margin-top:0px'><br>
       Trending Searches</p>
     <p style="font-size:.9em; text-align:center">
-      <% @googles.each do |a| %>
+      <% @googles[0..19].each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> </a> |
       <% end %>
     </p>

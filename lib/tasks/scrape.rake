@@ -58,16 +58,16 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  movies   #run movies scraper
-  medium   #run medium scraper
-  awwwards #run awwwards scraper
-  deals_pt1
-   economists
-   vimeo
-   twitter
-   next_web
-   google
-   nytimes
+  # movies   #run movies scraper
+  # medium   #run medium scraper
+  # awwwards #run awwwards scraper
+  # deals_pt1
+  #  economists
+  #  vimeo
+  #  twitter
+  #  next_web
+  #  google
+  #  nytimes
   imgur
   puts 'Scraper successfully executed.'
 end
@@ -371,10 +371,11 @@ end
   end # end next_web
 
   def google
-    begin
+
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://www.google.com/trends/hottrends'
     doc = Nokogiri::HTML(b.html)
+      begin
     a = doc.css('.hottrends-trends-list-trend-container')
     # puts a
      a.each do |article|
@@ -387,7 +388,7 @@ end
        @google.save
       puts 'Google trending entry created!'
       end
-    rescue
+    rescue Net::ReadTimeout
       puts 'rescued '
     end#end a.each
   end # end google
@@ -443,5 +444,5 @@ end
        puts "no method error rescued"
       end
     end #end a.each
-  end # end nytimes
+  end # end imgur
 #dont need an end
