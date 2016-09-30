@@ -58,17 +58,17 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  movies   #run movies scraper
-  medium   #run medium scraper
-  awwwards #run awwwards scraper
-  deals_pt1
-   economists
-   vimeo
-   twitter
-  #  next_web
-  #  google
-  #  nytimes
-  #imgur
+  # movies   #run movies scraper
+  # medium   #run medium scraper
+  # awwwards #run awwwards scraper
+  # deals_pt1
+  #  economists
+  #  vimeo
+  #  twitter
+    next_web
+    google
+    nytimes
+  imgur
   puts 'Scraper successfully executed.'
 end
 
