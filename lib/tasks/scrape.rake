@@ -65,10 +65,10 @@ namespace :scrape do
   #  economists
   #  vimeo
   #  twitter
-  #  next_web
+    next_web
   #  google
-  #  nytimes
-  imgur
+    nytimes
+  #imgur
   puts 'Scraper successfully executed.'
 end
 
