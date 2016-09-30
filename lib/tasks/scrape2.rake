@@ -1,4 +1,4 @@
-namespace :scrape do
+namespace :scrape2 do
   task :moneymaker => [ :environment ] do
   desc '$$$ making paper $$$'
   require 'phantomjs'
