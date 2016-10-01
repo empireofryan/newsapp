@@ -10,26 +10,6 @@ namespace :scrape2 do
   require 'active_support/all'
   require 'timeout'
   TIMEOUT = 10 # seconds
-# begin
-#   Timeout::timeout(TIMEOUT) do
-#     # your http call
-#   end
-# rescue Timeout::Error
-#   # handle http call timed out
-# end
-
-
-  # def init_scrape_monitor
-  #   @props_found = 0
-  #   @props_created = 0
-  #   @props_updated = 0
-  #   @started_at = Time.now.in_time_zone
-  # end
-
-  # def notify_scrape_monitor(name)
-  #   ScrapeMonitor.create!(name: name, ran_at: @started_at,
-  #   props_found: @props_found, props_created: @props_created, props_updated: @props_updated)
-  # end
 
   puts '!WWWWWeeu..   ..ueeWWWWW! '
   puts ' "$$(    R$$e$$R    )$$" '
@@ -358,16 +338,16 @@ end
     b.goto 'http://thenextweb.com/'
     doc = Nokogiri::HTML(b.html)
     a = doc.css('.section-popular-trigger')
-    # puts a
+     puts a
      a.each do |article|
        title = article
        puts title
-#       url = article['href']
-#       puts url
-      # @next_web = Nextweb.find_or_create_by(title: title, url: url)
-      # @next_web.save
-      puts 'Next Web entry created!'
-    end #end a.each
+       url = article['href']
+       puts url
+       @next_web = Thenextweb.find_or_create_by(title: title, url: url)
+       @next_web.save
+       puts 'Next Web entry created!'
+     end #end a.each
   end # end next_web
 
   def google
