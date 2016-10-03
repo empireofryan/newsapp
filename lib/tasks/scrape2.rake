@@ -148,7 +148,7 @@ end
       puts 'title'
       puts title
       puts 'discount'
-      d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text
+      d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text unless nil
   #   d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
       discount_a = d.strip
       discount_a[0] = ''
@@ -337,16 +337,20 @@ end
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://thenextweb.com/'
     doc = Nokogiri::HTML(b.html)
-    a = doc.css('.section-popular-trigger')
+    a = doc.css('.story-title')
      puts a
-     a.each do |article|
-       title = article
-       puts title
-       url = article['href']
-       puts url
-       @next_web = Thenextweb.find_or_create_by(title: title, url: url)
-       @next_web.save
-       puts 'Next Web entry created!'
+     a.each_with_index do |article, index|
+       begin
+         title = article.text
+         puts title
+         url = article.css('a')[0]['href']
+         puts url
+         @next_web = Thenextweb.find_or_create_by(title: title, url: url)
+         @next_web.save
+         puts 'Next Web entry created!'
+       rescue
+        'new web rescued'
+       end
      end #end a.each
   end # end next_web
 

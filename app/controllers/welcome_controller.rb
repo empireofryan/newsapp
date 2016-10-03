@@ -11,5 +11,6 @@ class WelcomeController < ApplicationController
     @googles = Google.all
     @nextwebs = Thenextweb.all
     @imgurs = Imgur.all
+  #  Movie.first_three
   end
 end

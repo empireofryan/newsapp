@@ -1,4 +1,19 @@
 <link href="https://fonts.googleapis.com/css?family=Arvo|Cabin" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
+<script>
+// init controller
+var controller = new ScrollMagic.Controller();
+
+// create a scene
+new ScrollMagic.Scene({
+        duration: 100,  // the scene should last for a scroll distance of 100px
+        offset: 50      // start this scene after scrolling for 50px
+    })
+    .setPin("#my-sticky-element") // pins the element for the the scene's duration
+    .setClassToggle("#medium", "myclass");
+    .addTo(controller); // assign the scene to the controller
+</script>
 <style>
 .site {
 text-align:center; margin-bottom:0px; font-size:1.2em
@@ -21,6 +36,13 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 .style3 a {
   color:#FFCE00;
 }
+.linkii {
+  color:white; text-decoration:none;
+}
+.linkii:hover {
+  width:100%;
+  background-color:pink;
+}
 </style>
 <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
@@ -33,7 +55,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 <div class="col-md-3" style="position:relative;">
   <div class="fade-in one" id='#sidebar' style="position:fixed;
     z-index:1;
-    background-color:#FFCE00;
+    background-color:#C0B283;
     width:25%;
     top:0;
     left:0;
@@ -53,6 +75,11 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;">
     Updated Daily
   </p>
+  <p style="background-color: #6D7993; width:100%;"><br></p>
+    <p><a href="#" class="linkii" style="color:white; text-decoration:none">Media</a></p>
+    <p class="linkii"><a href="#"  style="color:white; text-decoration:none">Tech</a></p>
+    <p><a href="#" class="linkii" style="">News</a></p>
+    </p>
 </div>
 </div>
   <div class="col-md-9">
@@ -64,20 +91,20 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         Top Rated Movies
       </p>
       <p style="font-size:.9em; text-align:center;">
-        <% @movies.each do |m| %>
+        <% @movies.last(20).each do |m| %>
       <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
         <% end %>
       </p>
     </div>
   </div>
-  <div class="row style2 fade-in three" style="">
+  <div id="medium" class="row style2 fade-in three" style="">
     <div class="col-md-12">
       <p class="site">
         <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
         style='width:90px; margin-top:0px'><br>
         Medium Most Read</p>
       <p style="font-size:.9em; text-align:center">
-        <% @mediums.each do |m| %>
+        <% @mediums.past_day.each do |m| %>
         <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
         <% end %>
       </p>
@@ -90,7 +117,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:140px; margin-top:0px'><br>
         Site of the Day</p>
       <p style="font-size:.9em; text-align:center">
-        <% @awwwards.each do |a| %>
+        <% @awwwards.past_day.each do |a| %>
         <a href='<%=a.url%>' style="color:#FFCE00">  <%= a.title %></a> |
         <% end %>
       </p>
@@ -103,7 +130,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:140px; margin-top:0px'><br>
         Deals of Day</p>
       <p style="font-size:.9em; text-align:center">
-        <% @deals[0..5].each do |d| %>
+        <% @deals.last(6).each do |d| %>
         <div class="col-md-2">
           <a href='<%=d.url%>'>  <%= d.title %></a><br><%= d.price_a %><br> <%= d.discount_a %>
             </div>
@@ -119,7 +146,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:155px; margin-top:0px'><br>
         Latest Economist</p>
       <p style="font-size:.9em; text-align:center">
-        <% @economists.each do |a| %>
+        <% @economists.past_day.each do |a| %>
         <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
         <% end %>
       </p>
@@ -132,7 +159,25 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:135px; margin-top:0px'><br>
         Best of Vimeo</p>
       <p style="font-size:.7em; text-align:center">
-        <% @vimeos[0..11].each do |a| %>
+        <div class="row">
+        <% @vimeos.last(12).each_with_index do |a, index| %>
+
+              <% if index >= 0 && index < 6 %>
+              <div class="col-md-2">
+
+              <a href='<%=a.url%>'>
+                <img src='<%= a.picture %>'><br>
+                <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
+                  <span style="font-size:.8em"><%= a.title %></span>
+                </div>
+              </a>
+            </div>
+              <% end %>
+        <% end %>
+          </div>
+          <div class="row">
+            <% @vimeos.last(12).each_with_index do |a, index| %>
+                <% if index > 5 && index < 12 %>
         <div class="col-md-2">
           <a href='<%=a.url%>'>
             <img src='<%= a.picture %>'><br>
@@ -141,10 +186,13 @@ text-align:center; margin-bottom:0px; font-size:1.2em
             </div>
           </a>
         </div>
+
         <% end %>
-      </p>
+    <% end %>
+    </p>
+      </div>
     </div>
-  </div>
+  </div> 
   <div class="row style1">
     <div class="col-md-12">
       <p class="site">
@@ -178,7 +226,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       style='width:195px; margin-top:0px'><br>
       Trending Searches</p>
     <p style="font-size:.9em; text-align:center">
-      <% @googles[0..19].each do |a| %>
+      <% @googles.last(20).each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> </a> |
       <% end %>
     </p>
@@ -191,7 +239,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
       Latest Stories</p>
     <p style="font-size:.9em; text-align:center">
-      <% @nextwebs.each do |a| %>
+      <% @nextwebs.last(20).each do |a| %>
       <a href='<%=a.url%>'>  <%= a.title %> </a> |
       <% end %>
     </p>
@@ -204,7 +252,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       style='width:195px; margin-top:0px; margin-bottom:10px'><br>
       Most Viral</p>
     <p style="font-size:.9em; text-align:center">
-      <% @imgurs[0..19].each do |a| %>
+      <% @imgurs.last(20).each do |a| %>
       <a href='<%=a.url%>'>  <img src='<%= a.image %>'> </a>
       <% end %>
     </p>
