@@ -9,6 +9,7 @@ namespace :scrape do
   require 'chronic'
   require 'active_support/all'
   require 'timeout'
+  require 'pry'
   TIMEOUT = 10 # seconds
 # begin
 #   Timeout::timeout(TIMEOUT) do
@@ -58,13 +59,14 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  movies   #run movies scraper
-  medium   #run medium scraper
-  awwwards #run awwwards scraper
-  deals_pt1
-   economists
-   vimeo
-   twitter
+  movie
+  # movies   #run movies scraper
+  # medium   #run medium scraper
+  # awwwards #run awwwards scraper
+  # deals_pt1
+  #  economists
+  #  vimeo
+  #  twitter
   #  next_web
   #  google
   #  nytimes
@@ -72,25 +74,55 @@ namespace :scrape do
   puts 'Scraper successfully executed.'
 end
 
+def movie
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'https://www.rottentomatoes.com/top/'
+  doc = Nokogiri::HTML(b.html)
+  a = doc.css('.movie_list')[8]
+  g = a.css('tr td a')
+#  puts g
+  # b.goto 'http://www.google.com/'
+  # doc = Nokogiri::HTML(b.html)
+  # puts doc
+  z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  z.each do |i|
+    link = g[i]['href']
+    puts link
+    url = 'http://www.rottentomatoes.com' + link
+    title = g[i].text
+    puts title
+    b.goto url
+    movie_page = Nokogiri::HTML(b.html)
+    poster = movie_page.css('.posterImage')[0]['src']
+    puts poster
+    @movie = Movie.find_or_create_by(title: title, url: url, poster: poster)
+    @movie.save
+    puts 'Movie created!'
+    puts " "
+  end
+end
+
   def movies
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://www.rottentomatoes.com/top/'
-
     doc = Nokogiri::HTML(b.html)
-
+    puts doc
     a = doc.css('.movie_list')[8]
-    b = a.css('tr td a')
+    g = a.css('tr td a')
     c = a.css('tr td').first.attr('href')
     d = a.css('tr td').first.attr('value')
     e = a.css('tr td').first.attr(['href'])
     f = a.css('tr td').first.attr(['value'])
     z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
     z.each do |i|
-      link = b[i]['href']
+      link = g[i]['href']
       puts link
       url = 'http://www.rottentomatoes.com' + link
-      title = b[i].text
+      title = g[i].text
       puts title
+        b.goto url
+        movie_page = Nokogiri::HTML(b.html)
+        puts movie_page
       @movie = Movie.find_or_create_by(title: title, url: url)
       @movie.save
       puts 'Movie created!'
@@ -150,7 +182,6 @@ end
 
   def deals_pt1
     url = 'https://www.amazon.com/gp/goldbox/ref=gbps_ftr_s-3_3422_wht_1040660?gb_f_GB-SUPPLE=sortOrder:BY_DISCOUNT_DESCENDING,enforcedCategories:7192394011%252C7147440011%252C2619525011%252C2102313011%252C2858778011%252C2617941011%252C15684181%252C165796011%252C7147444011%252C3760911%252C283155%252C7147443011%252C502394%252C2335752011%252C4991425011%252C541966%252C7586165011%252C1233514011%252C228013%252C2625373011%252C172282%252C1063306%252C7147442011%252C16310101%252C3760901%252C1055398%252C16310091%252C133140011%252C284507%252C9479199011%252C679255011%252C6358539011%252C1040658%252C7147441011%252C11091801%252C1064954%252C2972638011%252C2619533011%252C3375251%252C165793011%252C679337011%252C6358543011%252C1040660&pf_rd_p=2609053422&pf_rd_s=slot-3&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=F76CPB8VFZY5TYSDDWJB&nocache=1474582112196'
-
     b = Watir::Browser.new(:phantomjs)
     b.goto url
     doc = Nokogiri::HTML(b.html)
@@ -159,12 +190,12 @@ end
       begin
         # a = doc.css('.dealContainer')[i]
         # puts a
-        b = doc.css('.dealContainer .priceBlock span')[i-1]
+        b = doc.css('.dealContainer .priceBlock span')[i]
         price_a = b.text
         puts price_a
         #c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
     #   works refactor for iterator  #c = doc.css('.dealContainer .a-spacing-mini .hiddenCss').text
-        c = doc.css('.dealContainer .a-spacing-mini .hiddenCss')[i].text
+        c = doc.css('.dealContainer .a-spacing-mini span #dealtitle')[i].text
         title = c.strip
         puts 'title'
         puts title

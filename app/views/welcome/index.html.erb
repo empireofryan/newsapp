@@ -43,6 +43,15 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   width:100%;
   background-color:pink;
 }
+.list-1 {
+  font-size:3em !important;
+}
+.list-2 {
+  font-size:2em !important;
+}
+.list-3 {
+  font-size:1.5em !important;
+}
 </style>
 <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
@@ -91,8 +100,8 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         Top Rated Movies
       </p>
       <p style="font-size:.9em; text-align:center;">
-        <% @movies.last(20).each do |m| %>
-      <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
+        <% @movies.last(20).each_with_index do |m, index| %>
+      <a href='<%=m.url%>' style="color:#FFCE00" class="list-<%=index+1%>">  <img src="<%=m.poster %>">
         <% end %>
       </p>
     </div>
@@ -101,8 +110,9 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     <div class="col-md-12">
       <p class="site">
         <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
-        style='width:90px; margin-top:0px'><br>
-        Medium Most Read</p>
+        style='width:90px; margin-top:0px'>
+        Medium Most Read
+      </p>
       <p style="font-size:.9em; text-align:center">
         <% @mediums.past_day.each do |m| %>
         <a href='<%=m.url%>' style="color:#FFCE00">  <%= m.title %></a> |
@@ -161,14 +171,12 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       <p style="font-size:.7em; text-align:center">
         <div class="row">
         <% @vimeos.last(12).each_with_index do |a, index| %>
-
               <% if index >= 0 && index < 6 %>
               <div class="col-md-2">
-
               <a href='<%=a.url%>'>
                 <img src='<%= a.picture %>'><br>
                 <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
-                  <span style="font-size:.8em"><%= a.title %></span>
+                <span style="font-size:.8em"><%= a.title %></span>
                 </div>
               </a>
             </div>
@@ -192,7 +200,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </p>
       </div>
     </div>
-  </div> 
+  </div>
   <div class="row style1">
     <div class="col-md-12">
       <p class="site">
