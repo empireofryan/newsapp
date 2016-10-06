@@ -71,7 +71,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     bottom:0;
     border-right:2px solid black;">
   <span style="text-align:center; margin-top:-50px"><br><br>
-    <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif; margin-bottom:25px">BOEGROVE</p>
+    <p style="font-size:2.2em; text-align:center; font-family: 'Arvo', serif; margin-bottom:25px">Dailyees</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
     <span style="text-align:center">
       <p style="text-align:center; margin-top:-20px"><img style="width:200px;" src="http://s13.postimg.org/t9fropdxz/owllogo.png">
@@ -101,7 +101,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
       <p style="font-size:.9em; text-align:center;">
         <% @movies.last(20).each_with_index do |m, index| %>
-      <a href='<%=m.url%>' style="color:#FFCE00" class="list-<%=index+1%>">  <img src="<%=m.poster %>">
+      <a href='<%=m.url%>' style="color:#FFCE00" class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
         <% end %>
       </p>
     </div>
@@ -127,12 +127,34 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:140px; margin-top:0px'><br>
         Site of the Day</p>
       <p style="font-size:.9em; text-align:center">
-        <% @awwwards.past_day.each do |a| %>
-        <a href='<%=a.url%>' style="color:#FFCE00">  <%= a.title %></a> |
+<style>
+.awwward{
+  opacity: 1;
+  transition: 1s;
+  text-decoration: none;
+  text-align:center;
+}
+.awwward:hover {
+  opacity: .7;
+  transition: 1s;
+}
+.awwward a {
+  text-decoration:none;
+}
+.awwward a:hover {
+  /*background-color:blue;  doesn't work  */
+}
+</style>
+        <% @awwwards.past_day.each_with_index do |a, index| %>
+        <div class="col-md-3 awwward">
+        <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a></div>
         <% end %>
       </p>
     </div>
   </div>
+  <script>
+    $( ".awwward:nth-child(7)" ).addClass( "col-md-9" );
+  </script>
   <div class="row style1 fade-in four">
     <div class="col-md-12">
       <p class="site">
@@ -172,7 +194,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         <div class="row">
         <% @vimeos.last(12).each_with_index do |a, index| %>
               <% if index >= 0 && index < 6 %>
-              <div class="col-md-2">
+              <div class="col-md-4">
               <a href='<%=a.url%>'>
                 <img src='<%= a.picture %>'><br>
                 <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">

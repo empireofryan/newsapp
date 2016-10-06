@@ -59,10 +59,10 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  movie
+  # movie
   # movies   #run movies scraper
   # medium   #run medium scraper
-  # awwwards #run awwwards scraper
+  awwward #run awwwards scraper
   # deals_pt1
   #  economists
   #  vimeo
@@ -102,34 +102,34 @@ def movie
   end
 end
 
-  def movies
-    b = Watir::Browser.new(:phantomjs)
-    b.goto 'https://www.rottentomatoes.com/top/'
-    doc = Nokogiri::HTML(b.html)
-    puts doc
-    a = doc.css('.movie_list')[8]
-    g = a.css('tr td a')
-    c = a.css('tr td').first.attr('href')
-    d = a.css('tr td').first.attr('value')
-    e = a.css('tr td').first.attr(['href'])
-    f = a.css('tr td').first.attr(['value'])
-    z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-    z.each do |i|
-      link = g[i]['href']
-      puts link
-      url = 'http://www.rottentomatoes.com' + link
-      title = g[i].text
-      puts title
-        b.goto url
-        movie_page = Nokogiri::HTML(b.html)
-        puts movie_page
-      @movie = Movie.find_or_create_by(title: title, url: url)
-      @movie.save
-      puts 'Movie created!'
-      puts " "
-    end
-    end
-  end # end movies
+  # def movies
+  #   b = Watir::Browser.new(:phantomjs)
+  #   b.goto 'https://www.rottentomatoes.com/top/'
+  #   doc = Nokogiri::HTML(b.html)
+  #   puts doc
+  #   a = doc.css('.movie_list')[8]
+  #   g = a.css('tr td a')
+  #   c = a.css('tr td').first.attr('href')
+  #   d = a.css('tr td').first.attr('value')
+  #   e = a.css('tr td').first.attr(['href'])
+  #   f = a.css('tr td').first.attr(['value'])
+  #   z = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  #   z.each do |i|
+  #     link = g[i]['href']
+  #     puts link
+  #     url = 'http://www.rottentomatoes.com' + link
+  #     title = g[i].text
+  #     puts title
+  #       b.goto url
+  #       movie_page = Nokogiri::HTML(b.html)
+  #       puts movie_page
+  #     @movie = Movie.find_or_create_by(title: title, url: url)
+  #     @movie.save
+  #     puts 'Movie created!'
+  #     puts " "
+  #   end
+  #   end
+  # end # end movies
 
   def medium
     b = Watir::Browser.new(:phantomjs)
@@ -155,6 +155,34 @@ end
      end
   end # end of medium
 
+  def awwward
+    b = Watir::Browser.new(:phantomjs)
+    b.goto 'http://www.awwwards.com/awards-of-the-day/'
+
+    doc = Nokogiri::HTML(b.html)
+    a = doc.css('.inner .rollover')
+    b = doc.css('.inner .rollover a[2]')
+    c = doc.css('.inner .rollover img')
+  #  puts a
+    z = (0..11).to_a
+    puts z
+     z.each do |i|
+       url = b[i]['href']
+       puts url
+       screenshot = c[i]['src']
+       puts screenshot
+
+       rough_title = c[i]['alt']
+       title_refactor = rough_title.slice(0..(rough_title.index('|')))
+       title = title_refactor[0..-3]
+       puts title
+       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+       @awward.save
+       puts 'Awwward entry created!'
+       puts " "
+     end
+  end #end of awwwards
+
   def awwwards
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://www.awwwards.com/awards-of-the-day/'
@@ -163,17 +191,20 @@ end
     a = doc.css('.inner .rollover')
     b = doc.css('.inner .rollover a[2]')
     c = doc.css('.inner .rollover img')
-    puts a
+  #  puts a
     z = (0..11).to_a
     puts z
      z.each do |i|
        url = b[i]['href']
-       puts url
+       #puts url
+       screenshot = c[i]['src']
+       puts screenshot
+       binding.pry
        rough_title = c[i]['alt']
        title_refactor = rough_title.slice(0..(rough_title.index('|')))
        title = title_refactor[0..-3]
-       puts title
-       @awward = Awwward.find_or_create_by(title: title, url: url)
+      # puts title
+       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
        @awward.save
        puts 'Awwward entry created!'
        puts " "
@@ -480,4 +511,5 @@ end
       end
     end #end a.each
   end # end imgur
+end
 #dont need an end
