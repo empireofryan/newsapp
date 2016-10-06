@@ -59,10 +59,10 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-  # movie
-  # movies   #run movies scraper
-  # medium   #run medium scraper
-  awwward #run awwwards scraper
+#  movie
+#  movies   #run movies scraper
+  mediu   #run medium scraper
+#  awwward #run awwwards scraper
   # deals_pt1
   #  economists
   #  vimeo
@@ -131,13 +131,15 @@ end
   #   end
   # end # end movies
 
-  def medium
+  def mediu
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://medium.com/browse/top'
 
     doc = Nokogiri::HTML(b.html)
     a = doc.css('.postArticle-content a h3')
     b = doc.css('.postArticle-content a')
+    d = doc.css('.postArticle-content img')
+    puts d
     c = a.count.to_i
     c = c - 1
     z = (0..c).to_a
@@ -148,7 +150,13 @@ end
        url = link
        title = a[i.to_i].text
        puts title
-       @medium = Medium.find_or_create_by(title: title, url: url)
+       begin
+       picture = d[i]['src']
+       puts picture
+       rescue
+         'nilclass rescue'
+       end
+       @medium = Medium.find_or_create_by(title: title, url: url, picture: picture)
        @medium.save
        puts 'Medium article created!'
        puts " "
