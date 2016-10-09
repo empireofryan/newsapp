@@ -2,6 +2,22 @@
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
+<script src="https://cdn.rawgit.com/mightyCrow/dont-go/master/lib/dont-go.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+
+<script>
+dontGo({
+    title: 'Miss you!',
+    faviconSrc: 'path/to/Alternative/favicon.ico',
+    timeout: 5000 //5 seconds
+});
+</script>
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+</script>
 <script>
 // init controller
 var controller = new ScrollMagic.Controller();
@@ -57,6 +73,29 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 .list-3 {
   font-size:1.5em !important;
 }
+.sidebar {
+  position:fixed;
+    z-index:1;
+    background-color:#C0B283;
+    width:25%;
+    top:0;
+    left:0;
+    bottom:0;
+    border-right:2px solid black;
+}
+.widebar {
+  position:fixed;
+    z-index:1;
+    background-color:#C0B283;
+    width:55% !important;
+    top:0;
+    left:0;
+    bottom:0;
+    border-right:2px solid black;
+}
+.sec {
+  transition: 1s;
+}
 </style>
 <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
@@ -66,23 +105,42 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <div class='col-md-12' style="width:100%">
 </div>
 
+
+
 <!-- <div class="row"> -->
-<div class="col-md-3" style="position:relative;">
-  <div class="fade-in one" id='#sidebar' style="position:fixed;
-    z-index:1;
-    background-color:#C0B283;
-    width:25%;
-    top:0;
-    left:0;
-    bottom:0;
-    border-right:2px solid black;">
+<div class="col-md-3 sec" style="position:relative;">
+  <div class="fade-in one sidebar" style="  position:fixed;
+      z-index:1;
+      background-color:#C0B283;
+      transition:1s;
+      top:0;
+      left:0;
+      bottom:0;
+      border-right:2px solid black;">
   <span style="text-align:center; margin-top:-50px"><br><br>
-    <p style="font-size:4.2em; text-align:center; font-family: 'Mrs Saint Delafield', cursive; margin-bottom:25px">Bodaili</p>
+    <p style="font-size:4.2em; text-align:center; font-family: 'Mrs Saint Delafield', cursive; margin-bottom:25px" class='title1'>Bodaili</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
     <span style="text-align:center">
       <p style="text-align:center; margin-top:-20px"><img style="width:200px;" src="http://s13.postimg.org/t9fropdxz/owllogo.png">
     </span></p>
   </span>
+  <script>
+  $(function(){
+    $( "body" ).click(function() {
+       $('.sidebar').toggleClass( "widebar" );
+       $('.col-md-3').toggleClass('col-md-6 sec');
+       if ($('#main').hasClass('col-md-9')){
+         setTimeout(
+           function() {
+           $('#main').delay(2000).removeClass('col-md-9').addClass('col-md-6 sec');
+         }, 1000);
+       }
+        else {
+       $('#main').removeClass('col-md-6').addClass('col-md-9 sec');
+       }
+    });
+  });
+  </script>
   <p style="text-align:center; font-family: 'Arvo', serif; margin-top:0px">
     Today is
     <%= Time.now.strftime("%m/%d/%Y") %>
@@ -99,7 +157,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </p>
 </div>
 </div>
-  <div class="col-md-9">
+  <div id="main" class="col-md-9 sec">
     <div class="row style1 fade-in two" style='margin-top:0px'>
     <div class="col-md-12">
       <p class="site">
@@ -126,20 +184,18 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </div>
   <div class="grid">
           <% @mediums.past_day.each do |m| %>
-
           <!-- <div class="grid-item"> -->
-            <a href='<%=m.url%>' style="color:#FFCE00" class="grid-item"><%#= m.title %>
+            <a href='<%=m.url%>' style="color:#FFCE00" class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
             <% if m.picture.present? %>
             <!-- <div class="grid">
           <div class="grid-item"> -->
               <img src='<%= m.picture %>' style="width:200px">
             <!-- </div> -->
-
             <% end %>
             </a>
         <% end %>
           </div>
-  <!-- </div> -->
+        <!-- </div> -->
       <!-- </p> -->
     </div>
 
@@ -202,7 +258,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:155px; margin-top:0px'><br>
         Latest Economist</p>
       <p style="font-size:.9em; text-align:center">
-        <% @economists.past_day.each do |a| %>
+        <% @economists.each do |a| %>
         <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
         <% end %>
       </p>

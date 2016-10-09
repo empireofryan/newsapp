@@ -41,10 +41,10 @@ namespace :scrape2 do
   # movies   #run movies scraper
   # medium   #run medium scraper
   # awwwards #run awwwards scraper
-  # deals_pt1
-  #  economists
-  #  vimeo
-  #  twitter
+   deals_pt1
+    economists
+    vimeo
+    twitter
     next_web
     google
     nytimes

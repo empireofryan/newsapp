@@ -62,7 +62,7 @@ namespace :scrape do
 #  movie
 #  movies   #run movies scraper
   mediu   #run medium scraper
-#  awwward #run awwwards scraper
+  awwward #run awwwards scraper
   # deals_pt1
   #  economists
   #  vimeo
@@ -166,7 +166,6 @@ end
   def awwward
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://www.awwwards.com/awards-of-the-day/'
-
     doc = Nokogiri::HTML(b.html)
     a = doc.css('.inner .rollover')
     b = doc.css('.inner .rollover a[2]')
@@ -179,7 +178,6 @@ end
        puts url
        screenshot = c[i]['src']
        puts screenshot
-
        rough_title = c[i]['alt']
        title_refactor = rough_title.slice(0..(rough_title.index('|')))
        title = title_refactor[0..-3]
