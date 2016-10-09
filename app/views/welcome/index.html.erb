@@ -108,7 +108,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 
 
 <!-- <div class="row"> -->
-<div class="col-md-3 sec" style="position:relative;">
+<div id="col1" class="col-md-3 sec" style="position:relative;">
   <div class="fade-in one sidebar" style="  position:fixed;
       z-index:1;
       background-color:#C0B283;
@@ -125,21 +125,28 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </span></p>
   </span>
   <script>
-  $(function(){
     $( "body" ).click(function() {
        $('.sidebar').toggleClass( "widebar" );
-       $('.col-md-3').toggleClass('col-md-6 sec');
-       if ($('#main').hasClass('col-md-9')){
-         setTimeout(
-           function() {
-           $('#main').delay(2000).removeClass('col-md-9').addClass('col-md-6 sec');
-         }, 1000);
-       }
-        else {
-       $('#main').removeClass('col-md-6').addClass('col-md-9 sec');
-       }
-    });
+       $('#col1').toggleClass('col-md-3 col-md-6');
+       $('#col2').toggleClass('col-md-9 col-md-6');
   });
+  </script>
+  <script>
+  // $(function(){
+  //   $( "body" ).click(function() {
+  //      $('.sidebar').toggleClass( "widebar" );
+  //      $('.col-md-3').toggleClass('col-md-6 sec');
+  //      if ($('#main').hasClass('col-md-9')){
+  //        setTimeout(
+  //          function() {
+  //          $('#main').delay(2000).removeClass('col-md-9').addClass('col-md-6 sec');
+  //        }, 1000);
+  //      }
+  //       else {
+  //      $('#main').removeClass('col-md-6').addClass('col-md-9 sec');
+  //      }
+  //   });
+  // });
   </script>
   <p style="text-align:center; font-family: 'Arvo', serif; margin-top:0px">
     Today is
@@ -157,7 +164,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
     </p>
 </div>
 </div>
-  <div id="main" class="col-md-9 sec">
+  <div id="col2" class="col-md-9 sec">
     <div class="row style1 fade-in two" style='margin-top:0px'>
     <div class="col-md-12">
       <p class="site">
