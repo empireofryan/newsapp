@@ -59,7 +59,7 @@ namespace :scrape do
   t1 = Time.now
   puts 'time begun ' + t1.to_s
 
-#  movie
+  movie
 #  movies   #run movies scraper
   mediu   #run medium scraper
   awwward #run awwwards scraper
