@@ -148,11 +148,13 @@ end
       puts 'title'
       puts title
       puts 'discount'
-      d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text unless nil
+      d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text rescue nil
   #   d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')
+      if !d.nil?
       discount_a = d.strip
       discount_a[0] = ''
       discount_a[-1] = ''
+      end
 
       puts discount_a
       puts 'url'
@@ -272,7 +274,7 @@ end
       begin
       a = doc.css('#homepage-center-inner .news-package')[i]
       b = doc.css('#homepage-center-inner article a')[0]['href']
-      url = 'http://www.theeconomist.com' + b.to_s
+      url = 'http://www.economist.com' + b.to_s
       puts url
       c = doc.css('#homepage-center-inner article .headline')[i]
       title = c.text
@@ -300,7 +302,8 @@ end
       a = doc.css('#gallery ol li')
     #  puts a
       a.each do |video|
-        url = video.css('a')[0]['href']
+        url_suffix = video.css('a')[0]['href']
+        url = 'http://vimeo.com' + url_suffix
         puts url
         title = video.css('a')[0]['title']
         puts title

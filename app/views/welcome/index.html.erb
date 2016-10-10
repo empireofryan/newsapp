@@ -1,9 +1,10 @@
 <link href="https://fonts.googleapis.com/css?family=Arvo|Cabin" rel="stylesheet">
-<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
+
 <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.js"></script>
 <script src="https://cdn.rawgit.com/mightyCrow/dont-go/master/lib/dont-go.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
+<script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
 
 <script>
 dontGo({
@@ -96,6 +97,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 .sec {
   transition: 1s;
 }
+a:hover {
+  text-doecoration: none !important;
+  
+}
 </style>
 <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
@@ -104,9 +109,6 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 <div class="row">
   <div class='col-md-12' style="width:100%">
 </div>
-
-
-
 <!-- <div class="row"> -->
 <div id="col1" class="col-md-3 sec" style="position:relative;">
   <div class="fade-in one sidebar" style="  position:fixed;
@@ -174,7 +176,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
       </p>
       <p style="font-size:.9em; text-align:center;">
         <% @movies.last(20).each_with_index do |m, index| %>
-      <a href='<%=m.url%>' style="color:#FFCE00" class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
+      <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
         <% end %>
       </p>
     </div>
@@ -192,7 +194,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <div class="grid">
           <% @mediums.past_day.each do |m| %>
           <!-- <div class="grid-item"> -->
-            <a href='<%=m.url%>' style="color:#FFCE00" class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
+            <a href='<%=m.url%>'  class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
             <% if m.picture.present? %>
             <!-- <div class="grid">
           <div class="grid-item"> -->
@@ -232,7 +234,7 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   /*background-color:blue;  doesn't work  */
 }
 </style>
-        <% @awwwards.past_day.each_with_index do |a, index| %>
+        <% @awwwards.each_with_index do |a, index| %>
         <div class="col-md-3 awwward">
         <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a></div>
         <% end %>
@@ -242,6 +244,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
   <script>
     $( ".awwward:nth-child(7)" ).addClass( "col-md-9" );
   </script>
+
+
+  <!--
+COMMENT OUT AMAZON DEAL OF DAY
   <div class="row style1 fade-in four">
     <div class="col-md-12">
       <p class="site">
@@ -257,7 +263,10 @@ text-align:center; margin-bottom:0px; font-size:1.2em
 
       </p>
     </div>
-  </div>
+  </div> -->
+
+
+
   <div class="row style2">
     <div class="col-md-12">
       <p class="site">
@@ -278,11 +287,6 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         style='width:135px; margin-top:0px'><br>
         Best of Vimeo</p>
       <p style="font-size:.7em; text-align:center"></p>
-        <div class="grid">
-          <div class="grid-item">...</div>
-          <div class="grid-item grid-item--width2">...</div>
-          <div class="grid-item">...</div>
-        </div>
       <script>
         $('.grid').masonry({
         // options
@@ -290,14 +294,19 @@ text-align:center; margin-bottom:0px; font-size:1.2em
         columnWidth: 200
       });
       </script>
-        <div class="row">
+
+
+
+        <div class="grid">
         <% @vimeos.last(12).each_with_index do |a, index| %>
-              <a href='<%=a.url%>'>
-                <img src='<%= a.picture %>'><br>
-                <!-- <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
-                <span style="font-size:.8em"><%#= a.title %></span>
-                </div> -->
-              </a>
+
+                <a href='<%=a.url%>' class="grid-item">
+                  <img src='<%= a.picture %>' style="width:200px">
+                  <!-- <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
+                  <span style="font-size:.8em"><%#= a.title %></span>
+                  </div> -->
+                </a>
+
         <% end %>
         </div>
 

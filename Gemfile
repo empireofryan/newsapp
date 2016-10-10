@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'rails_real_favicon'
 gem 'phantomjs'
 gem 'watir'
 gem 'chronic'
