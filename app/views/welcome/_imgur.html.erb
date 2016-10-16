@@ -1,0 +1,23 @@
+<style>
+.imgur img {
+  width:195px;
+  transition: 1s;
+}
+.imgur img:hover {
+  width:250px;
+  transition: 1s;
+}
+</style>
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site" style="margin-bottom:10px">
+      <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Imgur_logo.svg/2000px-Imgur_logo.svg.png'
+      style='width:195px; margin-top:0px; margin-bottom:10px'><br>
+      Most Viral</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @imgurs.last(20).each do |a| %>
+      <a href='<%=a.url%>' class="imgur">  <img src='<%= a.image %>'> </a>
+      <% end %>
+    </p>
+  </div>
+</div>

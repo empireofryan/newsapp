@@ -143,10 +143,12 @@ end
       puts price_a
       #c = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13 .dealContainer .a-section .dealTile .priceBlock span').text
   #   works refactor for iterator  #c = doc.css('.dealContainer .a-spacing-mini .hiddenCss').text
-      c = doc.css('.dealContainer .a-spacing-mini .hiddenCss')[i].text
-      title = c.strip
-      puts 'title'
-      puts title
+      c = doc.css('.dealContainer .a-spacing-mini .hiddenCss')[i].text rescue nil
+      if c.present?
+        title = c.strip
+        puts 'title'
+        puts title
+      end
       puts 'discount'
       d = doc.css('.dealContainer .a-spacing-mini .a-spacing-top-mini span[3]')[i].text rescue nil
   #   d = doc.css('.widgetContainer .a-fixed-left-grid-inner .rightCol .padCenterContainer .padCenter #widgetContent #100_dealView_13')

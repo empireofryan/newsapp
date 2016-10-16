@@ -5,104 +5,14 @@
 <script src="https://cdn.rawgit.com/mightyCrow/dont-go/master/lib/dont-go.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 <script src="https://unpkg.com/masonry-layout@4.1/dist/masonry.pkgd.js"></script>
-
+<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
+</script>
 <script>
 dontGo({
     title: 'Miss you!',
     faviconSrc: 'path/to/Alternative/favicon.ico',
     timeout: 5000 //5 seconds
 });
-</script>
-
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-});
-</script>
-<script>
-// init controller
-var controller = new ScrollMagic.Controller();
-
-// create a scene
-new ScrollMagic.Scene({
-        duration: 100,  // the scene should last for a scroll distance of 100px
-        offset: 50      // start this scene after scrolling for 50px
-    })
-    .setPin("#my-sticky-element") // pins the element for the the scene's duration
-    .setClassToggle("#medium", "myclass");
-    .addTo(controller); // assign the scene to the controller
-</script>
-<style>
-.site {
-text-align:center; margin-bottom:0px; font-size:1.2em
-}
-.style1 {
-  background:#0375B4; color:white; font-family: "Cabin"; padding:20px;
-}
-.style1 a {
-  color:#FFCE00;
-}
-.style2 {
-  background:#007849; color:white; font-family: 'Cabin'; padding:20px;
-}
-.style2 a {
-  color:#FFCE00;
-}
-.style3 {
-  background:#262228; color:white; font-family: 'Cabin'; padding:20px;
-}
-.style3 a {
-  color:#FFCE00;
-}
-.linkii {
-  color:white;
-  text-decoration:none;
-  transform:1s;
-}
-.linkii:hover {
-  width:100%;
-  background-color: #6D7993;
-  font-weight:bold;
-  transform:1s;
-}
-.list-1 {
-  font-size:3em !important;
-}
-.list-2 {
-  font-size:2em !important;
-}
-.list-3 {
-  font-size:1.5em !important;
-}
-.sidebar {
-  position:fixed;
-    z-index:1;
-    background-color:#C0B283;
-    width:25%;
-    top:0;
-    left:0;
-    bottom:0;
-    border-right:2px solid black;
-}
-.widebar {
-  position:fixed;
-    z-index:1;
-    background-color:#C0B283;
-    width:55% !important;
-    top:0;
-    left:0;
-    bottom:0;
-    border-right:2px solid black;
-}
-.sec {
-  transition: 1s;
-}
-a:hover {
-  text-doecoration: none !important;
-  
-}
-</style>
-<script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
 <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield" rel="stylesheet">
 <div class="container-fluid">
@@ -111,43 +21,19 @@ a:hover {
 </div>
 <!-- <div class="row"> -->
 <div id="col1" class="col-md-3 sec" style="position:relative;">
-  <div class="fade-in one sidebar" style="  position:fixed;
-      z-index:1;
-      background-color:#C0B283;
-      transition:1s;
-      top:0;
-      left:0;
-      bottom:0;
-      border-right:2px solid black;">
+  <div class="fade-in one sidebar" style="  position:fixed;z-index:1;background-color:#C0B283;transition:1s;top:0;left:0;bottom:0;border-right:2px solid black;">
   <span style="text-align:center; margin-top:-50px"><br><br>
-    <p style="font-size:4.2em; text-align:center; font-family: 'Mrs Saint Delafield', cursive; margin-bottom:25px" class='title1'>Bodaili</p>
+    <p style="font-size:4.2em; text-align:center; font-family: 'Mrs Saint Delafield', cursive; margin-bottom:25px" class='title1'>Snapdaze</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
     <span style="text-align:center">
       <p style="text-align:center; margin-top:-20px"><img style="width:200px;" src="http://s13.postimg.org/t9fropdxz/owllogo.png">
     </span></p>
   </span>
   <script>
-    $( "body" ).click(function() {
-       $('.sidebar').toggleClass( "widebar" );
-       $('#col1').toggleClass('col-md-3 col-md-6');
-       $('#col2').toggleClass('col-md-9 col-md-6');
-  });
-  </script>
-  <script>
-  // $(function(){
   //   $( "body" ).click(function() {
   //      $('.sidebar').toggleClass( "widebar" );
-  //      $('.col-md-3').toggleClass('col-md-6 sec');
-  //      if ($('#main').hasClass('col-md-9')){
-  //        setTimeout(
-  //          function() {
-  //          $('#main').delay(2000).removeClass('col-md-9').addClass('col-md-6 sec');
-  //        }, 1000);
-  //      }
-  //       else {
-  //      $('#main').removeClass('col-md-6').addClass('col-md-9 sec');
-  //      }
-  //   });
+  //      $('#col1').toggleClass('col-md-3 col-md-6');
+  //      $('#col2').toggleClass('col-md-9 col-md-6');
   // });
   </script>
   <p style="text-align:center; font-family: 'Arvo', serif; margin-top:0px">
@@ -167,226 +53,31 @@ a:hover {
 </div>
 </div>
   <div id="col2" class="col-md-9 sec">
-    <div class="row style1 fade-in two" style='margin-top:0px'>
-    <div class="col-md-12">
-      <p class="site">
-        <img src='https://d2a5cgar23scu2.cloudfront.net/static/images/icons/cf-lg.png'
-        style='width:90px; margin-top:0px'><br>
-        Top Rated Movies
-      </p>
-      <p style="font-size:.9em; text-align:center;">
-        <% @movies.last(20).each_with_index do |m, index| %>
-      <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
-        <% end %>
-      </p>
-    </div>
-  </div>
-  <div id="medium" class="row style2 fade-in three" style="">
-    <!-- <div class="col-md-12"> -->
-      <p class="site">
-        <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
-        style='width:90px; margin-top:0px'>
-        Medium Most Read
-      </p>
-      <!-- <p style="font-size:.9em; text-align:center"> -->
-    <div class="row">
-    </div>
-  <div class="grid">
-          <% @mediums.past_day.each do |m| %>
-          <!-- <div class="grid-item"> -->
-            <a href='<%=m.url%>'  class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
-            <% if m.picture.present? %>
-            <!-- <div class="grid">
-          <div class="grid-item"> -->
-              <img src='<%= m.picture %>' style="width:200px">
-            <!-- </div> -->
-            <% end %>
-            </a>
-        <% end %>
-          </div>
-        <!-- </div> -->
-      <!-- </p> -->
-    </div>
+    <!-- OVERVIEW -->
+  <%= render 'snapshot' %>
+    <!-- MEDIA -->
+  <%= render 'movies' %>
+  <%= render 'vimeo' %>
+    <!-- TECH -->
+  <%= render 'medium' %>
+  <%= render 'awwward' %>
+  <%= render 'nextweb' %>
+    <!-- TRENDING -->
+  <%= render 'google' %>
+  <%= render 'twitter' %>
+  <%= render 'imgur' %>
+    <!-- NEWS -->
+  <%= render 'nytimes' %>
+  <%= render 'economist' %>
 
 
-  <div class="row style3 fade-in four" style="">
-    <div class="col-md-12">
-      <p class="site">
-        <img src='http://www.eqtr.com/media/557763/awwwards2.png'
-        style='width:140px; margin-top:0px'><br>
-        Site of the Day</p>
-      <p style="font-size:.9em; text-align:center">
-<style>
-.awwward{
-  opacity: 1;
-  transition: 1s;
-  text-decoration: none;
-  text-align:center;
-}
-.awwward:hover {
-  opacity: .7;
-  transition: 1s;
-}
-.awwward a {
-  text-decoration:none;
-}
-.awwward a:hover {
-  /*background-color:blue;  doesn't work  */
-}
-</style>
-        <% @awwwards.each_with_index do |a, index| %>
-        <div class="col-md-3 awwward">
-        <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a></div>
-        <% end %>
-      </p>
-    </div>
-  </div>
-  <script>
-    $( ".awwward:nth-child(7)" ).addClass( "col-md-9" );
-  </script>
-
-
-  <!--
-COMMENT OUT AMAZON DEAL OF DAY
-  <div class="row style1 fade-in four">
-    <div class="col-md-12">
-      <p class="site">
-        <img src='http://logonoid.com/images/amazon-logo.png'
-        style='width:140px; margin-top:0px'><br>
-        Deals of Day</p>
-      <p style="font-size:.9em; text-align:center">
-        <% @deals.last(6).each do |d| %>
-        <div class="col-md-2">
-          <a href='<%=d.url%>'>  <%= d.title %></a><br><%= d.price_a %><br> <%= d.discount_a %>
-            </div>
-        <% end %>
-
-      </p>
-    </div>
-  </div> -->
+  <%#= render 'amazon' %>
 
 
 
-  <div class="row style2">
-    <div class="col-md-12">
-      <p class="site">
-        <img src='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif'
-        style='width:155px; margin-top:0px'><br>
-        Latest Economist</p>
-      <p style="font-size:.9em; text-align:center">
-        <% @economists.each do |a| %>
-        <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
-        <% end %>
-      </p>
-    </div>
-  </div>
-  <div class="row style3">
-    <div class="col-md-12">
-      <p class="site">
-        <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_Logo.svg/2000px-Vimeo_Logo.svg.png'
-        style='width:135px; margin-top:0px'><br>
-        Best of Vimeo</p>
-      <p style="font-size:.7em; text-align:center"></p>
-      <script>
-        $('.grid').masonry({
-        // options
-        itemSelector: '.grid-item',
-        columnWidth: 200
-      });
-      </script>
 
 
 
-        <div class="grid">
-        <% @vimeos.last(12).each_with_index do |a, index| %>
-
-                <a href='<%=a.url%>' class="grid-item">
-                  <img src='<%= a.picture %>' style="width:200px">
-                  <!-- <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
-                  <span style="font-size:.8em"><%#= a.title %></span>
-                  </div> -->
-                </a>
-
-        <% end %>
-        </div>
-
-    </div>
-  </div>
-  <div class="row style1">
-    <div class="col-md-12">
-      <p class="site">
-        <img src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/220px-Twitter_bird_logo_2012.svg.png'
-        style='width:75px; margin-top:0px'><br>
-        Trending</p>
-      <p style="font-size:.9em; text-align:center">
-        <% @twitters.last(40).each do |a| %>
-        <a href='<%=a.url%>'>  <%= a.hashtag %> </a> |
-        <% end %>
-      </p>
-    </div>
-  </div>
-<div class="row style2">
-  <div class="col-md-12">
-    <p class="site">
-      <img src='https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png'
-      style='width:335px; margin-top:0px'><br>
-      Latest News</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @nytimes.past_day.each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %> </a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row style3">
-  <div class="col-md-12">
-    <p class="site">
-      <img src='https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png'
-      style='width:195px; margin-top:0px'><br>
-      Trending Searches</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @googles.last(20).each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %> </a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<div class="row style1">
-  <div class="col-md-12">
-    <p class="site">
-      <img src='https://lh5.ggpht.com/64N-cwJ14nR3t-0wJ5nRbz2VTo9UC0jj7GKiUnHxOjCzxduSs3_FO2S0CT3gv2RFZChg92XYpw=w300'
-      style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
-      Latest Stories</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @nextwebs.last(20).each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %> </a> |
-      <% end %>
-    </p>
-  </div>
-</div>
-<style>
-.imgur img {
-  width:195px;
-  transition: 1s;
-}
-.imgur img:hover {
-  width:250px;
-  transition: 1s;
-}
-</style>
-<div class="row style2">
-  <div class="col-md-12">
-    <p class="site" style="margin-bottom:10px">
-      <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Imgur_logo.svg/2000px-Imgur_logo.svg.png'
-      style='width:195px; margin-top:0px; margin-bottom:10px'><br>
-      Most Viral</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @imgurs.last(20).each do |a| %>
-      <a href='<%=a.url%>' class="imgur">  <img src='<%= a.image %>'> </a>
-      <% end %>
-    </p>
-  </div>
-</div>
 </div> <!-- end div col-md-9 -->
 <br><br>
 </div> <!-- end container-fluid -->

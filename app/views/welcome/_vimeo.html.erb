@@ -1,0 +1,19 @@
+<div class="row style3">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_Logo.svg/2000px-Vimeo_Logo.svg.png'
+      style='width:135px; margin-top:0px'><br>
+      Best of Vimeo</p>
+    <p style="font-size:.7em; text-align:center"></p>
+      <div class="grid">
+      <% @vimeos.last(12).each_with_index do |a, index| %>
+              <a href='<%=a.url%>' >
+                <img src='<%= a.picture %>' style="width:200px">
+                <!-- <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
+                <span style="font-size:.8em"><%#= a.title %></span>
+                </div> -->
+              </a>
+      <% end %>
+      </div>
+  </div>
+</div>

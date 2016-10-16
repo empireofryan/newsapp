@@ -1,0 +1,35 @@
+<div class="row style3 fade-in four" style="">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='http://www.eqtr.com/media/557763/awwwards2.png'
+      style='width:140px; margin-top:0px'><br>
+      Site of the Day</p>
+    <p style="font-size:.9em; text-align:center">
+<style>
+.awwward{
+opacity: 1;
+transition: 1s;
+text-decoration: none;
+text-align:center;
+}
+.awwward:hover {
+opacity: .7;
+transition: 1s;
+}
+.awwward a {
+text-decoration:none;
+}
+.awwward a:hover {
+/*background-color:blue;  doesn't work  */
+}
+</style>
+      <% @awwwards.each_with_index do |a, index| %>
+      <div class="col-md-3 awwward">
+      <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a></div>
+      <% end %>
+    </p>
+  </div>
+</div>
+<script>
+  $( ".awwward:nth-child(7)" ).addClass( "col-md-9" );
+</script>

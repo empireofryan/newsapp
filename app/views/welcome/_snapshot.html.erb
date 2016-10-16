@@ -1,0 +1,21 @@
+<div class="row style1 fade-in two" style='margin-top:-20px'>
+
+  <p class="site" style="    width: 100%;
+margin: 0 auto;
+text-align: center;
+background-color: rgb(185, 32, 50);
+padding-top: 1%;
+padding-bottom: .1%;
+font-family: 'Arvo', serif;">
+    <!-- <img src='https://d2a5cgar23scu2.cloudfront.net/static/images/icons/cf-lg.png'
+    style='width:90px; margin-top:0px'> -->
+    OVERVIEW
+  </p><br>
+  <div class="col-md-12">
+  <p style="font-size:.9em; text-align:center;">
+    <% @movies.last do |m| %>
+  <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
+    <% end %>
+  </p>
+</div>
+</div>

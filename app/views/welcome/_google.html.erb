@@ -1,0 +1,13 @@
+<div class="row style3">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png'
+      style='width:195px; margin-top:0px'><br>
+      Trending Searches</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @googles.last(20).each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>

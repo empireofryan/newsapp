@@ -57,3 +57,76 @@ float: left;
 border: 1px solid #333;
 background: #999;
 }
+
+
+.site {
+text-align:center; margin-bottom:0px; font-size:2.9em; font-family: 'Mrs Saint Delafield', cursive;
+}
+.style1 {
+  background:#0375B4; color:white; font-family: "Cabin"; padding-bottom:20px; padding-top:20px;
+}
+.style1 a {
+  color:#FFCE00;
+}
+.style2 {
+  background:#007849;
+  color:white;
+  font-family: 'Cabin';
+  padding-bottom:20px; padding-top:20px;
+}
+.style2 a {
+  color:#FFCE00;
+}
+.style3 {
+  background:#262228; color:white; font-family: 'Cabin'; padding-bottom:20px; padding-top:20px;
+}
+.style3 a {
+  color:#FFCE00;
+}
+.linkii {
+  color:white;
+  text-decoration:none;
+  transform:1s;
+}
+.linkii:hover {
+  width:100%;
+  background-color: #6D7993;
+  font-weight:bold;
+  transform:1s;
+}
+.list-1 {
+  font-size:3em !important;
+}
+.list-2 {
+  font-size:2em !important;
+}
+.list-3 {
+  font-size:1.5em !important;
+}
+.sidebar {
+  position:fixed;
+    z-index:1;
+    background-color:#C0B283;
+    width:25%;
+    top:0;
+    left:0;
+    bottom:0;
+    border-right:2px solid black;
+}
+.widebar {
+  position:fixed;
+    z-index:1;
+    background-color:#C0B283;
+    width:55% !important;
+    top:0;
+    left:0;
+    bottom:0;
+    border-right:2px solid black;
+}
+.sec {
+  transition: 1s;
+}
+a:hover {
+  text-doecoration: none !important;
+
+}

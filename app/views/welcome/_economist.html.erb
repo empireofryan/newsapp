@@ -1,0 +1,13 @@
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif'
+      style='width:155px; margin-top:0px'><br>
+      Latest Economist</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @economists.last(30).each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> - <%= a.subtitle %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>

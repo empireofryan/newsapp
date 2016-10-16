@@ -1,0 +1,13 @@
+<div class="row style1">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://lh5.ggpht.com/64N-cwJ14nR3t-0wJ5nRbz2VTo9UC0jj7GKiUnHxOjCzxduSs3_FO2S0CT3gv2RFZChg92XYpw=w300'
+      style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
+      Latest Stories</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @nextwebs.last(20).each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>

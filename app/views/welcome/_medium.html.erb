@@ -1,0 +1,26 @@
+<div id="medium" class="row style2 fade-in three" style="">
+  <!-- <div class="col-md-12"> -->
+    <p class="site">
+      <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
+      style='width:90px; margin-top:0px'>
+      Medium Most Read
+    </p>
+    <!-- <p style="font-size:.9em; text-align:center"> -->
+  <div class="row">
+  </div>
+<div class="grid">
+        <% @mediums.past_day.each do |m| %>
+        <!-- <div class="grid-item"> -->
+          <a href='<%=m.url%>'  class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
+          <% if m.picture.present? %>
+          <!-- <div class="grid">
+        <div class="grid-item"> -->
+            <img src='<%= m.picture %>' style="width:200px">
+          <!-- </div> -->
+          <% end %>
+          </a>
+      <% end %>
+        </div>
+      <!-- </div> -->
+    <!-- </p> -->
+  </div>
