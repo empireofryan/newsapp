@@ -8,20 +8,54 @@
       .foobar {
         font-size:2em;
       }
+      .tone {
+        font-size:2em;
+      }
+      .ttwo {
+        font-size:1.8em;
+      }
+      .tthree {
+        font-size:1.6em;
+      }
+      .tfour {
+        font-size:1.4em;
+      }
+      .tfive {
+        font-size:1.4em;
+      }
+      .tsix {
+        font-size:1.2em;
+      }
       </style>
     <p style="font-size:.9em; text-align:center">
-      <% @twitters.last(20).each do |a| %>
+      <% @twitters.last(20).each_slice(10) do |b| %>
       <%# a.each(5) %>
-        <div class="col-md-3 twitter">
-      <a href='<%=a.url%>' style="color:yellow">  <%= a.hashtag %> </a>
+        <%# a.each(10) do %>
+          <div class="col-md-6 twitter">
+            <% b.each do |a| %>
 
-        </div>
+          <a href='<%=a.url%>' style="color:yellow">
+            <%= a.hashtag %> </a>
+            <% end %>
+          </div>
 
+        <%# end %>
       <% end %>
     </p>
     <script>
       // $( ".twitter:nth-child(2) a" ).css( 'font-size', "4em" );
-      $( ".twitter:nth-of-type(10n + 1)" ).addClass( "foobar" )
+      $( ".twitter a:nth-of-type(1)" ).addClass( "tone" )
+      $( ".twitter a:nth-of-type(10n + 1)" ).addClass( "tone" )
+      $( ".twitter a:nth-of-type(2)" ).addClass( "ttwo" )
+      $( ".twitter a:nth-of-type(10n + 2)" ).addClass( "ttwo" )
+      $( ".twitter:nth-of-type(3)" ).addClass( "tthree" )
+      $( ".twitter:nth-of-type(10n + 3)" ).addClass( "tthree" )
+      $( ".twitter:nth-of-type(4)" ).addClass( "tfour" )
+      $( ".twitter:nth-of-type(10n + 4)" ).addClass( "tfour" )
+      $( ".twitter:nth-of-type(5)" ).addClass( "tfive" )
+      $( ".twitter:nth-of-type(10n + 5)" ).addClass( "tfive" )
+      $( ".twitter:nth-of-type(6)" ).addClass( "tsix" )
+      $( ".twitter:nth-of-type(10n + 6)" ).addClass( "tsix" )
     </script>
   </div>
 </div>

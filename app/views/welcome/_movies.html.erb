@@ -1,5 +1,13 @@
+<style>
+.tomato {
+  transition:.5s;
+}
+.tomato:hover {
+  transition:.5s;
+  opacity:.3;
+}
+</style>
 <div class="row style1 fade-in two" style='margin-top:-20px'>
-
   <p class="site" style="    width: 100%;
 margin: 0 auto;
 text-align: center;
@@ -13,7 +21,7 @@ padding-bottom: .1%;">
   <div class="col-md-12">
   <p style="font-size:.9em; text-align:center;">
     <% @movies.last(20).each_with_index do |m, index| %>
-  <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" style="width:150px">
+  <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" class="tomato" style="width:150px">
     <% end %>
   </p>
 </div>

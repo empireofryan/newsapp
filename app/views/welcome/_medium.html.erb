@@ -1,26 +1,40 @@
+<style>
+.med {
+  padding-top:15px;
+}
+.opa {
+  transition:.5s;
+}
+.opa:hover {
+  opacity:.3;
+  transition:.5s;
+}
+</style>
 <div id="medium" class="row style2 fade-in three" style="">
   <!-- <div class="col-md-12"> -->
     <p class="site">
       <img src='http://www.digitalartsonline.co.uk/cmsdata/features/3626921/medium-m-color-688.png'
-      style='width:90px; margin-top:0px'>
+      style='width:90px; margin-top:0px' >
       Medium Most Read
     </p>
     <!-- <p style="font-size:.9em; text-align:center"> -->
   <div class="row">
   </div>
-<div class="grid">
         <% @mediums.past_day.each do |m| %>
+        <div class="col-md-3 medmed" style="text-align:center; word-break: break-word;">
         <!-- <div class="grid-item"> -->
-          <a href='<%=m.url%>'  class="grid-item"  data-toggle="tooltip" data-placement="top" title="Hooray!"><%#= m.title %>
           <% if m.picture.present? %>
+          <a href='<%=m.url%>' style="text-align:center; overflow: hidden; text-overflow:ellipsis;">
+            <div style="
+    width: 215px; height:75px; vertical-align:bottom;" class="med">  <%= m.title %></div>
           <!-- <div class="grid">
         <div class="grid-item"> -->
-            <img src='<%= m.picture %>' style="width:200px">
+            <img src='<%= m.picture %>' class="img-circle opa" style="width:200px; height:200px">
           <!-- </div> -->
           <% end %>
           </a>
+          </div>
       <% end %>
-        </div>
       <!-- </div> -->
     <!-- </p> -->
   </div>

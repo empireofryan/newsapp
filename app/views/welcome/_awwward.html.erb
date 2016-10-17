@@ -25,7 +25,8 @@ text-decoration:none;
 </style>
       <% @awwwards.each_with_index do |a, index| %>
       <div class="col-md-3 awwward">
-      <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a></div>
+      <a href='<%=a.url%>' style="color:#FFCE00"> <img src="<%=a.screenshot%>" style="width:100%"> <br><%= a.title %></a>
+      </div>
       <% end %>
     </p>
   </div>
