@@ -69,6 +69,7 @@ GEM
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    fusioncharts-rails (0.0.2)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     http-cookie (1.0.2)
@@ -221,6 +222,7 @@ DEPENDENCIES
   chronic
   coffee-rails (~> 4.1.0)
   crack
+  fusioncharts-rails
   ipaddress
   jbuilder (~> 2.0)
   jquery-rails
