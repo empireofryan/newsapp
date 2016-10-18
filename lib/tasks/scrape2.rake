@@ -372,6 +372,7 @@ end
        puts title
        a_url = article.css('.hottrends-single-trend-title-container a')[1]['href']
        url = 'http://www.google.com' + a_url
+       searches = article.css('.hottrends-single-trend-info-line-number').text
        puts url
        @google = Google.find_or_create_by(title: title, url: url)
        @google.save
