@@ -101,31 +101,90 @@ ul li:before {
     font-weight: bold;
     font-family:"Montserrat", sans-serif;
 }
+body{
+
+  height: 100%;
+}
+
+#container{
+  margin: 0 auto;
+  padding-top: 2%;
+}
 </style>
+<script src="http://code.highcharts.com/highcharts.js"></script>
 <script>
-setTimeout(function start() {
-
-    $('.bar').each(function (i) {
-        var $bar = $(this);
-        $(this).append('<span class="count"></span>')
-        setTimeout(function () {
-            $bar.css('width', $bar.attr('data-percent'));
-        }, i * 1);
-    });
-
-    $('.count').each(function () {
-        $(this).prop('Counter', 0).animate({
-            Counter: $(this).parent('.bar').attr('data-percent')
-        }, {
-            duration: 2000,
-            easing: 'swing',
-            step: function (now) {
-                $(this).text(Math.ceil(now) + ' thousand');
+$(function () {
+  Highcharts.setOptions({
+    colors: ['#67BCE6'],
+    chart: {
+        style: {
+            fontFamily: 'sans-serif',
+            color: '#fff'
+        }
+    }
+});
+  $('#container').highcharts({
+        chart: {
+            type: 'column',
+            backgroundColor: '#262228'
+        },
+        title: {
+            text: '',
+            style: {
+              color: '#fff'
             }
-        });
+        },
+        xAxis: {
+            tickWidth: 0,
+            labels: {
+              style: {
+                  color: '#fff',
+                 }
+              },
+            categories: ['<%= @googles.past_day.order("id DESC").offset(19).first.title %>', '<%= @googles.past_day.order("id DESC").offset(18).first.title %>', '<%= @googles.past_day.order("id DESC").offset(17).first.title %>', '<%= @googles.past_day.order("id DESC").offset(16).first.title %>', '<%= @googles.past_day.order("id DESC").offset(15).first.title %>', '<%= @googles.past_day.order("id DESC").offset(14).first.title %>', '<%= @googles.past_day.order("id DESC").offset(13).first.title %>', '<%= @googles.past_day.order("id DESC").offset(12).first.title %>', '<%= @googles.past_day.order("id DESC").offset(11).first.title %>', '<%= @googles.past_day.order("id DESC").offset(10).first.title %>', '<%= @googles.past_day.order("id DESC").offset(9).first.title %>', '<%= @googles.order("id DESC").offset(8).first.title %>', '<%= @googles.order("id DESC").offset(7).first.title %>', '<%= @googles.order("id DESC").offset(6).first.title %>', '<%= @googles.order("id DESC").offset(5).first.title %>', '<%= @googles.order("id DESC").offset(4).first.title %>', '<%= @googles.order("id DESC").offset(3).first.title %>', '<%= @googles.order("id DESC").offset(2).first.title %>', '<%= @googles.order("id DESC").offset(1).first.title %>', '<%= @googles.order("id DESC").first.title %>']
+        },
+        yAxis: {
+           gridLineWidth: .5,
+		      gridLineDashStyle: 'dash',
+		      gridLineColor: 'black',
+           title: {
+                text: '',
+                style: {
+                  color: '#fff'
+                 }
+            },
+            labels: {
+              formatter: function() {
+                        return ''+Highcharts.numberFormat(this.value, 0, '', ',');
+                    },
+              style: {
+                  color: '#fff',
+                 }
+              }
+            },
+        legend: {
+            enabled: false,
+        },
+        credits: {
+            enabled: false
+        },
+        tooltip: {
+           valuePrefix: ''
+        },
+        plotOptions: {
+		      column: {
+			      borderRadius: 2,
+             pointPadding: 0,
+			      groupPadding: 0.1
+            }
+		    },
+        series: [{
+            name: 'Searches',
+            // data: [<%= @googles.last(9).map { |google| google.search.chop.gsub(/[\s,]/ ,"").to_i} %>]
+            data: [<%= @googles.order("id DESC").offset(19).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(18).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(17).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(16).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(15).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(14).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(13).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(12).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(11).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(10).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(9).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(8).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(7).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(6).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(5).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(4).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(3).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(2).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").offset(1).first.search.chop.gsub(/[\s,]/ ,"") %>, <%= @googles.order("id DESC").first.search.chop.gsub(/[\s,]/ ,"") %>]
+        }]
     });
-
-}, 500)
+});
 </script>
 <div class="row style3">
   <div class="col-md-12">
@@ -133,13 +192,9 @@ setTimeout(function start() {
       <img src='https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_284x96dp.png'
       style='width:195px; margin-top:0px'><br>
       Trending Searches</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @googles.last(20).each do |a| %>
-        <div class="holder">
-          <div class="bar cf" data-percent="55%"><span class="label"><a href='<%=a.url%>'>  <%= a.title %> </a> |</span>
-        </div>
 
-      <% end %>
-    </p>
+<div id="container" style="width:80%; height:400px;"></div>
+
+
   </div>
 </div>

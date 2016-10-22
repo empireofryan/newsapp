@@ -41,14 +41,14 @@ namespace :scrape2 do
   # movies   #run movies scraper
   # medium   #run medium scraper
   # awwwards #run awwwards scraper
-   deals_pt1
-    economists
-    vimeo
-    twitter
-    next_web
+#   deals_pt1
+#    economists
+#    vimeo
+#    twitter
+#    next_web
     google
-    nytimes
-  imgur
+#    nytimes
+#  imgur
   puts 'Scraper successfully executed.'
 end
 
@@ -360,7 +360,6 @@ end
   end # end next_web
 
   def google
-
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://www.google.com/trends/hottrends'
     doc = Nokogiri::HTML(b.html)
@@ -372,9 +371,10 @@ end
        puts title
        a_url = article.css('.hottrends-single-trend-title-container a')[1]['href']
        url = 'http://www.google.com' + a_url
-       searches = article.css('.hottrends-single-trend-info-line-number').text
        puts url
-       @google = Google.find_or_create_by(title: title, url: url)
+       search = article.css('.hottrends-single-trend-info-line-number').text
+       puts search
+       @google = Google.find_or_create_by(title: title, url: url, search: search)
        @google.save
       puts 'Google trending entry created!'
       end
