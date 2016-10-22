@@ -7,22 +7,26 @@
   transition:.5s;
   opacity:.3;
 }
+
 </style>
 <div class="row style3">
   <div class="col-md-12">
-    <p class="site">
+    <p></p>
+    <p class="site" style="   pointer-events: none;
+   cursor: default;">
       <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Vimeo_Logo.svg/2000px-Vimeo_Logo.svg.png'
-      style='width:135px; margin-top:0px'><br>
-      Best of Vimeo</p>
+      style='width:135px; margin-top:0px'>
+      <span style="   pointer-events: none;
+   cursor: default;">Best of Vimeo<span></p>
     <p style="font-size:.7em; text-align:center"></p>
       <% @vimeos.last(12).each_with_index do |a, index| %>
       <div class="col-md-3">
-              <a href='<%=a.url%>' >
-                <img src='<%= a.picture %>' style="width:200px" class="vim">
-                 <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px">
-                <span style="font-size:.8em"><%= a.title %></span>
-                </div>
-              </a>
+        <a href='<%=a.url%>' >
+          <img src='<%= a.picture %>' style="width:200px" class="vim">
+           <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px; height: 1px;">
+          <span style="font-size:.8em"><%= a.title %></span>
+          </div>
+        </a>
       </div>
       <% end %>
 

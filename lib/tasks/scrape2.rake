@@ -41,14 +41,14 @@ namespace :scrape2 do
   # movies   #run movies scraper
   # medium   #run medium scraper
   # awwwards #run awwwards scraper
-#   deals_pt1
-#    economists
-#    vimeo
-#    twitter
-#    next_web
+   deals_pt1
+    economists
+    vimeo
+    twitter
+    next_web
     google
-#    nytimes
-#  imgur
+    nytimes
+  imgur
   puts 'Scraper successfully executed.'
 end
 

@@ -20,7 +20,7 @@ padding-bottom: .1%;">
   </p><br>
   <div class="col-md-12">
   <p style="font-size:.9em; text-align:center;">
-    <% @movies.last(20).each_with_index do |m, index| %>
+    <% @movies.last(12).each_with_index do |m, index| %>
   <a href='<%=m.url%>'  class="list-<%=index+1%>">  <img src="<%=m.poster %>" class="tomato" style="width:150px">
     <% end %>
   </p>
