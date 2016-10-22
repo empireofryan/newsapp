@@ -7,7 +7,9 @@
   transition:.5s;
   opacity:.3;
 }
-
+.vimeoo {
+  padding-bottom:10px;
+}
 </style>
 <div class="row style3">
   <div class="col-md-12">
@@ -20,7 +22,7 @@
    cursor: default;">Best of Vimeo<span></p>
     <p style="font-size:.7em; text-align:center"></p>
       <% @vimeos.last(12).each_with_index do |a, index| %>
-      <div class="col-md-3">
+      <div class="col-md-3 vimeoo">
         <a href='<%=a.url%>' >
           <img src='<%= a.picture %>' style="width:200px" class="vim">
            <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px; height: 1px;">

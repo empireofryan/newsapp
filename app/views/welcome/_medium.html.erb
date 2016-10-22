@@ -20,16 +20,20 @@
     <!-- <p style="font-size:.9em; text-align:center"> -->
   <div class="row">
   </div>
-        <% @mediums.past_day.each do |m| %>
-        <div class="col-md-3 medmed" style="text-align:center; word-break: break-word;">
+        <% @mediums.past_day.first(16).each do |m| %>
+        <div class="col-md-3 medmed" style="text-align:center;">
         <!-- <div class="grid-item"> -->
           <% if m.picture.present? %>
-          <a href='<%=m.url%>' style="text-align:center; overflow: hidden; text-overflow:ellipsis;">
-            <div style="
-    width: 215px; height:75px; vertical-align:bottom;" class="med">  <%= m.title %></div>
+          <a href='<%=m.url%>' style="text-align:center;">
+
           <!-- <div class="grid">
         <div class="grid-item"> -->
-            <img src='<%= m.picture %>' class="img-circle opa" style="width:200px; height:200px">
+            <img src='<%= m.picture %>' class="opa" style="width:200px; height:150px">
+            <!-- <div style="
+    width: 215px; height:1px; vertical-align:bottom;" class="med">  <%= m.title %></div> -->
+          <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px; padding-bottom:40px; height: 1px;">
+         <span style="font-size:.8em"><%= m.title %></span>
+         </div>
           <!-- </div> -->
           <% end %>
           </a>
