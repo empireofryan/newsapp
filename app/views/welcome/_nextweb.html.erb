@@ -6,8 +6,16 @@
       Latest Stories</p>
     <p style="font-size:.9em; text-align:center">
       <% @nextwebs.last(20).each do |a| %>
-      <a href='<%=a.url%>'>  <%= a.title %> </a> |
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
       <% end %>
     </p>
   </div>
 </div>
+<!-- <div class="col-md-3 vimeoo">
+  <a href='<%=a.url%>' >
+    <img src='<%= a.picture %>' style="width:200px" class="vim">
+     <div style="width:100%; text-align:center; line-height:1; margin-bottom:10px; height: 1px;">
+    <span style="font-size:.8em"><%= a.title %></span>
+    </div>
+  </a>
+</div> -->
