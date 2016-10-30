@@ -19,6 +19,15 @@ dontGo({
     timeout: 5000 //5 seconds
 });
 </script>
+<script>
+$(document).ready(function(){
+ $("div").mouseenter(function(){
+   var id = $(this).attr('id');
+   $('a').removeClass('active');
+   $("[href=#"+id+"]").addClass('active');
+ });
+});
+</script>
 <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield" rel="stylesheet">
 <div class="container-fluid">
 <div class="row">

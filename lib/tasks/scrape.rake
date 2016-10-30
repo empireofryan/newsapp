@@ -91,7 +91,7 @@ def movie
     url = 'http://www.rottentomatoes.com' + link
     title = g[i].text
     puts title
-    b.goto url
+    b.goto url rescue Net::ReadTimeout
     movie_page = Nokogiri::HTML(b.html)
     poster = movie_page.css('.posterImage')[0]['src']
     puts poster
