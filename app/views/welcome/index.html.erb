@@ -45,16 +45,29 @@ dontGo({
 });
 </script>
 <script>
-$(function() {
-  $('section').mouseenter(function() {
+$(function(event) {
+  $("a").click(function() {
+      $('html, body').animate({
+          scrollTop: $("#medium").offset().top
+      }, 2000);
+  });
+  $('section').mouseenter(function(event) {
     $('nav a[href="#'+$(this).attr('id')+'"]').addClass('active').siblings('nav a').removeClass('active');
+    event.preventDefault();
+  event.stopImmediatePropagation();
   });
 
-  $('nav a').click(function() {
+  $('nav div').click(function(event) {
+event.preventDefault();
+event.stopImmediatePropagation();
     $(this).addClass('active').siblings('nav a').removeClass('active');
+    event.preventDefault();
+    event.stopImmediatePropagation();
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top + 'px' }, 800, 'linear');
+      event.preventDefault();
+event.stopImmediatePropagation();
   });
-
+return false;
   /* On scroll
   $(document).scroll(function() {
     $('nav a[href="#'+$('section:hover').attr('id')+'"]').addClass('active').siblings('nav a').removeClass('active');
