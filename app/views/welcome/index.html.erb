@@ -53,6 +53,8 @@ $(function() {
   $('nav a').click(function() {
     $(this).addClass('active').siblings('nav a').removeClass('active');
     $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top + 'px' }, 800, 'linear');
+
+
   });
 
   /* On scroll
@@ -94,7 +96,7 @@ $(function() {
     <p><a href="#" class="linkii" style="">Calandar Past Dates</a></p>
     </p>
     <nav>
-      <a href="#menu1">menu 1</a>
+      <a href="#menu1">medium</a>
       <a href="#menu2">menu 2</a>
       <a href="#menu3">menu 3</a>
       <a href="#menu4">menu 4</a>
@@ -102,15 +104,18 @@ $(function() {
 </div>
 </div>
   <div id="col2" class="col-md-9 sec">
-    <section id="menu1"></section>
-<section id="menu2"></section>
+
 <section id="menu3"></section>
 <section id="menu4"></section>
     <!-- OVERVIEW -->
   <%#= render 'snapshot' %>
     <!-- MEDIA -->
+  <section id="menu1">
   <%= render 'movies' %>
+  </section>
+  <section id="menu2">
   <%= render 'vimeo' %>
+  </section>
     <!-- TECH -->
   <%= render 'medium' %>
   <%= render 'awwward' %>
