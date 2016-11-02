@@ -17,8 +17,16 @@
 #   runner "AnotherModel.prune_old_records"
 # end
 
+env :PATH, ENV['PATH']
+
+set :environment, "production"
+set :output, {error: 'log/cron_error_log.log', standard: 'log/cron_log.log'}
+
+
 every 24.hours do
   rake 'scrape:moneymaker'
+  rake 'scrape2:moneymaker'
+
 end
 
 # Learn more: http://github.com/javan/whenever

@@ -13,7 +13,8 @@ body {
 }
 nav {
     position: fixed;
-    margin: 20px;
+    margin: 20px !important;
+    margin-left:20px !important;
 }
 nav a {
     background: #fff;
@@ -28,9 +29,7 @@ nav a {
     transition: all 0.2s linear;
 }
 section {
-    background: #eee;
-    height: 700px;
-    border-bottom: 1px solid #ccc;
+
 }
 .active {
     background: #555;
@@ -82,7 +81,7 @@ return false;
 </div>
 <!-- <div class="row"> -->
 <div id="col1" class="col-md-3 sec" style="position:relative;">
-  <div class="fade-in one sidebar" style="  position:fixed;z-index:1;background-color:#C0B283;transition:1s;top:0;left:0;bottom:0;border-right:2px solid black;">
+  <div class="fade-in one sidebar" style="  position:fixed;z-index:1;background-color:#C0B283;top:0;left:0;bottom:0;border-right:2px solid black;">
   <span style="text-align:center; margin-top:-50px"><br><br>
     <p style="font-size:4.2em; text-align:center; font-family: 'Mrs Saint Delafield', cursive; margin-bottom:25px" class='title1'>Snapdaze</p>
     <!-- <span style="margin-top:10px">Weaving Spiders Come Here</span> -->
@@ -95,29 +94,28 @@ return false;
   <p style="text-align:center; font-family: 'Arvo', serif; margin-top:0px">
     Today is
     <%= Time.now.strftime("%m/%d/%Y") %>
-  </p>
+  </p><br>
   <p style="text-align:center; font-size:.8em; font-family: 'Cabin', sans-serif;">
     Updated Daily
   </p>
   <p style="width:100%;"><br></p>
-    <p class="linkii"><a href="#" style="color:white; text-decoration:none">Media</a></p>
-    <p class="linkii"><a href="#"  style="color:white; text-decoration:none">Tech</a></p>
-    <p class="linkii"><a href="#"  style="color:white; text-decoration:none">News</a></p>
     <br>
-    <p><a href="#" class="linkii" style="">Calandar Past Dates</a></p>
+    <p><a href="#" class="linkii" style="">Calandar Past Dates</a></p><br>
     </p>
     <nav>
-      <a href="#menu1">medium</a>
-      <a href="#menu2">menu 2</a>
-      <a href="#menu3">menu 3</a>
-      <a href="#menu4">menu 4</a>
+      <a href="#menu1">Movies</a>
+      <a href="#menu2">Vimeo</a>
+      <a href="#menu3">Medium</a><br><br>
+      <a href="#menu4">Awwwards</a>
+      <a href="#menu5">Imgur</a>
+      <a href="#menu6">Google</a><br><br>
+      <a href="#menu7">Twitter</a>
+      <a href="#menu8">NYTimes</a>
+      <a href="#menu9">Economist</a>
     </nav>
 </div>
 </div>
   <div id="col2" class="col-md-9 sec">
-
-<section id="menu3"></section>
-<section id="menu4"></section>
     <!-- OVERVIEW -->
   <%#= render 'snapshot' %>
     <!-- MEDIA -->
@@ -128,17 +126,30 @@ return false;
   <%= render 'vimeo' %>
   </section>
     <!-- TECH -->
+  <section id="menu3">
   <%= render 'medium' %>
+  </section>
+  <section id="menu4">
   <%= render 'awwward' %>
+  </section>
   <%#= render 'nextweb' %>
     <!-- TRENDING -->
+  <section id="menu5">
   <%= render 'imgur' %>
+  </section>
+  <section id="menu6">
   <%= render 'google' %>
+  </section>
+  <section id="menu7">
   <%= render 'twitter' %>
-
+  </section>
     <!-- NEWS -->
+  <section id="menu8">
   <%= render 'nytimes' %>
+  </section>
+  <section id="menu9">
   <%= render 'economist' %>
+  </section>
   <!-- hacker news would be cool
   product hunt cool -->
   <%#= render 'amazon' %>
