@@ -9,7 +9,12 @@ namespace :scrape2 do
   require 'chronic'
   require 'active_support/all'
   require 'timeout'
-  TIMEOUT = 10 # seconds
+  require 'rspec/retry'
+
+  TIMEOUT = 300 # set some value in seconds, f.ex. 300
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.timeout = TIMEOUT # seconds – default is 60
+  #browser = Watir::Browser.new :firefox, :http_client => client
 
   puts '!WWWWWeeu..   ..ueeWWWWW! '
   puts ' "$$(    R$$e$$R    )$$" '
@@ -41,7 +46,7 @@ namespace :scrape2 do
   # movies   #run movies scraper
   # medium   #run medium scraper
   # awwwards #run awwwards scraper
-   deals_pt1
+  # deals_pt1
     economists
     vimeo
     twitter
@@ -53,7 +58,7 @@ namespace :scrape2 do
 end
 
   def movies
-    b = Watir::Browser.new(:phantomjs)
+    b = Watir::Browser.new(:phantomjs, :http_client => client)
     b.goto 'https://www.rottentomatoes.com/top/'
 
     doc = Nokogiri::HTML(b.html)
@@ -198,6 +203,7 @@ end
 
   def economists
     b = Watir::Browser.new(:phantomjs)
+  begin
     b.goto 'http://www.economist.com/'
     doc = Nokogiri::HTML(b.html)
     # def one
@@ -261,7 +267,7 @@ end
       @economist.save
       puts 'Economist entry created!'
     # end
-    rescue NoMethodError
+    rescue
       puts "No method error"
     end
     # homepage center
@@ -289,13 +295,17 @@ end
       @economist = Economist.find_or_create_by(title: title, subtitle: subtitle, url: url)
       @economist.save
       puts 'Economist entry created!'
-      rescue NoMethodError
+      rescue
         puts "No method error"
       end
     end
+  rescue
+    retry
+  end
   end # end of economists
 
   def vimeo
+  begin
     b = Watir::Browser.new(:phantomjs)
     z = (1..3).to_a
     z.each do |i|
@@ -316,9 +326,13 @@ end
         puts 'Vimeo entry created!'
       end
     end
+  rescue
+    retry
+  end
   end# end vimeo
 
   def twitter
+  begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://trends24.in/united-states/'
     doc = Nokogiri::HTML(b.html)
@@ -336,9 +350,13 @@ end
       @twitter.save
       puts 'Twitter entry created!'
     end #end a.each
+  rescue
+    retry
+  end
   end # end twitter
 
   def next_web
+  begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://thenextweb.com/'
     doc = Nokogiri::HTML(b.html)
@@ -357,9 +375,13 @@ end
         'new web rescued'
        end
      end #end a.each
+   rescue
+     retry
+   end
   end # end next_web
 
   def google
+  begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'https://www.google.com/trends/hottrends'
     doc = Nokogiri::HTML(b.html)
@@ -381,9 +403,13 @@ end
     rescue Net::ReadTimeout
       puts 'rescued '
     end#end a.each
+  rescue
+    retry
+  end
   end # end google
 
   def nytimes
+  begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://mobile.nytimes.com/'
     doc = Nokogiri::HTML(b.html)
@@ -407,9 +433,13 @@ end
      puts "no method error rescued"
     end
     end #end a.each
+  rescue
+    retry
+  end
   end # end nytimes
 
   def imgur
+  begin
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://imgur.com/'
     doc = Nokogiri::HTML(b.html)
@@ -434,5 +464,8 @@ end
        puts "no method error rescued"
       end
     end #end a.each
+  rescue
+    retry
+  end
   end # end imgur
 #dont need an end

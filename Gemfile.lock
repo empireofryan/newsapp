@@ -157,6 +157,11 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rspec-core (3.5.4)
+      rspec-support (~> 3.5.0)
+    rspec-retry (0.5.2)
+      rspec-core (> 3.3, < 3.6)
+    rspec-support (3.5.0)
     rubyzip (1.2.0)
     safe_yaml (1.0.4)
     sass (3.4.22)
@@ -233,6 +238,7 @@ DEPENDENCIES
   rails (= 5.0.0.1)
   rails_real_favicon
   rest-client
+  rspec-retry
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selenium-webdriver
