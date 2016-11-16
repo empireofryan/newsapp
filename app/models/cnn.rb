@@ -1,0 +1,2 @@
+class Cnn < ApplicationRecord
+end

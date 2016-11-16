@@ -26,17 +26,27 @@ task :sources => [ :environment ] do
   end
 end
 
-task :nw => [ :environment ] do
+task :cnn => [ :environment ] do
 
-  url = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  url = 'https://newsapi.org/v1/articles?source=cnn&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
-  @tags = response2 = JSON.parse(response)['articles']
-  #puts response2['sources']['id']
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  # #puts response2['sources']['id']
+  #  @tags.each do |item|
+  #    puts item["title"]
+  #  end
   @tags.each do |item|
     puts item["title"]
+    title = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @cnn = Cnn.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created cnn entry'
   end
-
 end
 
 
