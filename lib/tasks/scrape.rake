@@ -1,5 +1,4 @@
 namespace :scrape do
-  task :moneymaker => [ :environment ] do
   desc '$$$ making paper $$$'
   require 'phantomjs'
   require 'watir'
@@ -11,6 +10,37 @@ namespace :scrape do
   require 'timeout'
   require 'pry'
   require 'rspec/retry'
+#  require 'httparty'
+  require 'net/http'
+  require 'json'
+
+task :sources => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/sources'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  @tags = response2 = JSON.parse(response)['sources']
+  #puts response2['sources']['id']
+  @tags.each do |item|
+    puts item["id"]
+  end
+end
+
+task :nw => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/articles?source=the-next-web&sortBy=latest&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  @tags = response2 = JSON.parse(response)['articles']
+  #puts response2['sources']['id']
+  @tags.each do |item|
+    puts item["title"]
+  end
+
+end
+
+
+task :moneymaker => [ :environment ] do
 
 RSpec.configure do |config|
   # show retry status in spec process
@@ -475,7 +505,7 @@ end
     end#end a.each
   end # end google
 
-  def nytimes
+  def nytimes1
     b = Watir::Browser.new(:phantomjs)
     b.goto 'http://mobile.nytimes.com/'
     doc = Nokogiri::HTML(b.html)
