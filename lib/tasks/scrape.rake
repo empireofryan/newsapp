@@ -39,7 +39,8 @@ task :cnn => [ :environment ] do
   #  end
   @tags.each do |item|
     puts item["title"]
-    title = item['author']
+    title = item["title"]
+    author = item['author']
     description = item['description']
     url = item['url']
     image = item['urlToImage']

@@ -3,9 +3,8 @@
   <div class="row style3 fade-in four" id="cnn" style="">
     <div class="col-md-12">
       <p class="site">
-        <img src='http://www.eqtr.com/media/557763/awwwards2.png'
-        style='width:140px; margin-top:0px'><br>
-        Site of the Day</p>
+        <h2='width:140px; margin-top:0px'><br>
+        CNN Top Stories</h2>
       <p style="font-size:.9em; text-align:center">
   <style>
   .awwward{
@@ -31,7 +30,7 @@
         <a href='<%=a.url%>' style="color:#FFCE00">
           <img src="<%=a.image rescue nil%>" style="width:100%">
           <br><p style="margin-top:10px; height:50px">
-          <%=a.title.truncate_words(4, omission: '...') rescue nil%>
+          <%=a.title.truncate_words(12, omission: '...') rescue nil%>
           </p></a>
         </div>
         <% end %>
