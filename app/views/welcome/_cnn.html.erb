@@ -1,11 +1,6 @@
 
 
-  <div class="row style3 fade-in four" id="cnn" style="">
-    <div class="col-md-12">
-      <p class="site">
-        <h2='width:140px; margin-top:0px'><br>
-        CNN Top Stories</h2>
-      <p style="font-size:.9em; text-align:center">
+
   <style>
   .awwward{
   opacity: 1;
@@ -27,8 +22,13 @@
     top:200px; position:absolute; left:0; width:100%;
   }
   </style>
-        <% @cnns.limit(9).order("id DESC").each_with_index do |a, index| %>
-        <%# @awwwards.each_with_index do |a, index| %>
+    <div class="row style3 four" id="cnn" style="">
+      <div class="col-md-12">
+        <p class="site">
+          <h2='width:140px; margin-top:0px'><br>
+          CNN Top Stories</h2>
+        <p style="font-size:.9em; text-align:center">
+        <% @cnns.all.limit(9).order("id DESC").each_with_index do |a, index| %>
         <div class="col-md-3 cnn">
         <a href='<%=a.url%>' style="color:#FFCE00">
           <div class="image">
@@ -48,7 +48,6 @@
         </div>
         <% end %>
 
-      <% @googles.order("id DESC").offset(7).first.search.chop.gsub(/[\s,]/ ,"") %>
       </p>
     </div>
   </div>

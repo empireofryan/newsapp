@@ -12,6 +12,7 @@ class WelcomeController < ApplicationController
     @nextwebs = Thenextweb.all
     @imgurs = Imgur.all
     @cnns = Cnn.all
+    @reddits = Reddit.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",

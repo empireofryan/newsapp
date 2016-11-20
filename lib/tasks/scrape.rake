@@ -50,6 +50,37 @@ task :cnn => [ :environment ] do
   end
 end
 
+task :reddit => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  # #puts response2['sources']['id']
+  #  @tags.each do |item|
+  #    puts item["title"]
+  #  end
+  @tags.each do |item|
+    puts item["title"]
+    title = item["title"]
+    author = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @reddit = Reddit.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created cnn entry'
+  end
+end
+
+task :sources => [ :environment ] do
+url = 'https://newsapi.org/v1/sources'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+@tags = JSON.parse(response)['sources']
+end
+
 
 task :moneymaker => [ :environment ] do
 
