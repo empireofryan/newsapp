@@ -1,0 +1,2 @@
+class Wsj < ApplicationRecord
+end

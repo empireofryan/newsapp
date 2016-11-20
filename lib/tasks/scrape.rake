@@ -117,6 +117,27 @@ task :hackernews  => [ :environment ] do
   end
 end
 
+task :wsj  => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  @tags.each do |item|
+    puts item["title"]
+    title = item["title"]
+    author = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @wsjs = Wsj.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created WSJ entry'
+  end
+
+end
+
 task :moneymaker => [ :environment ] do
 
 RSpec.configure do |config|
