@@ -13,6 +13,8 @@ class WelcomeController < ApplicationController
     @imgurs = Imgur.all
     @cnns = Cnn.all
     @reddits = Reddit.all
+    @economists2 = Economist2.all
+    @hackernews = Hackernew.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",

@@ -57,10 +57,6 @@ task :reddit => [ :environment ] do
   response = Net::HTTP.get(uri)
   # puts response
   @tags = JSON.parse(response)['articles']
-  # #puts response2['sources']['id']
-  #  @tags.each do |item|
-  #    puts item["title"]
-  #  end
   @tags.each do |item|
     puts item["title"]
     title = item["title"]
@@ -81,6 +77,45 @@ response = Net::HTTP.get(uri)
 @tags = JSON.parse(response)['sources']
 end
 
+task :economist2  => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/articles?source=the-economist&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  @tags.each do |item|
+    puts item["title"]
+    title = item["title"]
+    author = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @economist = Economist2.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created economist entry'
+  end
+end
+
+task :hackernews  => [ :environment ] do
+
+  url = 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  @tags.each do |item|
+    puts item["title"]
+    title = item["title"]
+    author = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @hackernews = Hackernew.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created hacker news entry'
+  end
+end
 
 task :moneymaker => [ :environment ] do
 
