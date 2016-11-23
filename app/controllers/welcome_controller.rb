@@ -16,6 +16,8 @@ class WelcomeController < ApplicationController
     @economists2 = Economist2.all
     @hackernews = Hackernew.all
     @wsjs = Wsj.all
+    @times = Time2.all
+    @usatodays = Usatoday.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",
