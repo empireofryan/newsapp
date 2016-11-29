@@ -1,0 +1,2 @@
+class Huffpost < ApplicationRecord
+end

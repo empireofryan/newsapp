@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161121043311) do
+ActiveRecord::Schema.define(version: 20161129042153) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,16 @@ ActiveRecord::Schema.define(version: 20161121043311) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "huffposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "imgurs", force: :cascade do |t|
     t.string   "url"
     t.string   "image"
@@ -105,6 +115,16 @@ ActiveRecord::Schema.define(version: 20161121043311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "poster"
+  end
+
+  create_table "newsweeks", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "nextwebs", force: :cascade do |t|

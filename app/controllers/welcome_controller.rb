@@ -18,6 +18,8 @@ class WelcomeController < ApplicationController
     @wsjs = Wsj.all
     @times = Time2.all
     @usatodays = Usatoday.all
+    @newsweeks = Newsweek.all
+    @huffposts = Huffpost.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",

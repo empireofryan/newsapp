@@ -157,7 +157,7 @@ task :time  => [ :environment ] do
 end
 
 task :usatoday  => [ :environment ] do
-  url = 'https://newsapi.org/v1/articles?source=usa-today&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  url = 'https://newsapi.org/v1/articles?source=usa-today&sortBy=latest&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
   # puts response
@@ -174,6 +174,153 @@ task :usatoday  => [ :environment ] do
     puts 'created Usa Today entry'
   end
 end
+
+task :newsweek  => [ :environment ] do
+  url = 'https://newsapi.org/v1/articles?source=newsweek&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  # puts response
+  @tags = JSON.parse(response)['articles']
+  @tags.each do |item|
+    puts item["title"]
+    title = item["title"]
+    author = item['author']
+    description = item['description']
+    url = item['url']
+    image = item['urlToImage']
+    published = item['publishedAt']
+    @newsweeks = Newsweek.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    puts 'created Usa Today entry'
+  end
+end
+
+task :newsweek1  => [ :environment ] do
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'https://twitter.com/Newsweek'
+  doc = Nokogiri::HTML(b.html)
+  array = []
+  # title = a[i.to_i].text
+   tweet = doc.css('.TweetTextSize')
+  # num_tweet = tweet.count.to_i
+  # num_tweet = num_tweet - 1
+  # z = (0..num_tweet).to_a
+  # puts z
+  # z.each do |i|
+  #   title = tweet[i.to_i].text
+  # end
+  tweet.each do |entry|
+    puts entry.text
+  end
+
+
+
+
+end
+
+task :newsweek2 => [ :environment ] do
+  BASE_NEWSWEEK_URL = 'http://newsweek.com'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'http://newsweek.com'
+  doc = Nokogiri::HTML(b.html)
+#  array = []
+  # title = a[i.to_i].text
+#   tweet = doc.css('.TweetTextSize')
+
+  #rows[1..-2].each do |row|
+
+  hrefs = doc.css("a").map{ |a|
+    a['href'] if a['href'] =~ /^\/2016\//
+  }.compact.uniq
+
+  hrefs.each do |href|
+    remote_url = BASE_NEWSWEEK_URL + href
+    puts remote_url
+  end # done: hrefs.each
+end
+
+task :newsweek3 => [ :environment ] do
+  BASE_NEWSWEEK_URL = 'http://newsweek.com/2016/12/02/issue.html'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_NEWSWEEK_URL
+  doc = Nokogiri::HTML(b.html)
+#  array = []
+  # title = a[i.to_i].text
+#   tweet = doc.css('.TweetTextSize')
+
+  #rows[1..-2].each do |row|
+
+  hrefs = doc.css("a").map{ |a|
+    a['href'] if a['href'] =~ /^\/2016\//
+  }.compact.uniq
+
+  hrefs.each do |href|
+    remote_url = 'http://www.newsweek.com' + href
+    puts remote_url
+  end # done: hrefs.each
+end
+
+task :nytimes3 => [ :environment ] do
+  BASE_NEWSWEEK_URL = 'http://www.nytimes.com/pages/todayspaper/index.html?action=Click&module=HPMiniNav&region=TopBar&WT.nav=page&contentCollection=TodaysPaper&pgtype=Homepage'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_NEWSWEEK_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+  puts 'now only special links'
+  puts hrefs.count
+  @counter = 0
+  hrefs.each do |href|
+    link = href['href'] rescue nil
+    title = href.text rescue nil
+    begin
+      if (link.include?('2016')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
+      @counter +=1
+      @remote_url = link
+      @new_title = title
+      puts @new_title
+      puts @remote_url
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  @nytime = Nytime.find_or_create_by(title: @new_title, url: @remote_url)
+  @nytime.save
+  puts 'entries saved to nytime model'
+end #end task nytimes3 do
+
+task :huffpost => [ :environment ] do
+  BASE_URL = 'http://www.huffingtonpost.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if (link.include?('entry'))
+      @counter +=1
+      @remote_url = link
+        if (!title.include?('/n'))
+        @new_title = title
+      puts @new_title
+      end
+      puts @remote_url
+      end
+    rescue
+    end
+    @huffpost = Huffpost.find_or_create_by(title: @new_title, url: @remote_url)
+    @huffpost.save
+  end # done: hrefs.each
+  puts @counter
+
+  puts 'entries saved to huffpost model'
+end #end task nytimes3 do
 
 task :moneymaker => [ :environment ] do
 
