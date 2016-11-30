@@ -20,6 +20,7 @@ class WelcomeController < ApplicationController
     @usatodays = Usatoday.all
     @newsweeks = Newsweek.all
     @huffposts = Huffpost.all
+    @espns = Espn.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",

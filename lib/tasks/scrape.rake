@@ -282,10 +282,10 @@ task :nytimes3 => [ :environment ] do
       end
     rescue
     end
+    @nytime = Nytime.find_or_create_by!(url: @remote_url, title: @new_title)
   end # done: hrefs.each
   puts @counter
-  @nytime = Nytime.find_or_create_by(title: @new_title, url: @remote_url)
-  @nytime.save
+
   puts 'entries saved to nytime model'
 end #end task nytimes3 do
 
@@ -304,23 +304,99 @@ task :huffpost => [ :environment ] do
      title = href.text rescue nil
     begin
       if (link.include?('entry'))
-      @counter +=1
-      @remote_url = link
+        @counter +=1
+        @remote_url = link
         if (!title.include?('/n'))
-        @new_title = title
-      puts @new_title
-      end
-      puts @remote_url
+          @new_title = title
+          puts @new_title
+        end
+        puts @remote_url
       end
     rescue
     end
-    @huffpost = Huffpost.find_or_create_by(title: @new_title, url: @remote_url)
-    @huffpost.save
+    @huffpost = Huffpost.find_or_create_by!(url: @remote_url, title: @new_title)
   end # done: hrefs.each
   puts @counter
 
   puts 'entries saved to huffpost model'
-end #end task nytimes3 do
+end #end task huffpost do
+
+task :cnn_3 => [ :environment ] do
+  BASE_URL = 'http://www.cnn.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('2016')) && (!title.nil?))
+        @counter +=1
+        if (link.include?('cnn')) && (!link.include?('videos'))
+          @remote_url = link
+        elsif (link.include?('videos'))
+          @remote_url = 'http://cnn.com' + link
+        else
+          @remote_url = 'http://cnn.com' + link
+        end
+        if (!title.include?('alt'))
+          @new_title = title
+          puts @new_title
+        end
+        puts @remote_url
+        @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to cnn model'
+end #end task cnn do
+
+task :espn_3 => [ :environment ] do
+  BASE_URL = 'http://www.espn.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('story')) && (!title.nil?))
+
+         if ((link.include?('http')))
+           @remote_url = link
+         else
+           @remote_url = 'http://espn.com' + link
+         end
+        # if (!title.include?('alt'))
+          @new_title = title
+          puts @new_title
+        # end
+
+      #  if !Espn.where(url: @remote_url).present?
+          @counter +=1
+          puts @remote_url
+          @espn = Espn.find_or_create_by!(url: @remote_url, title: @new_title)
+      #  end
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to espn model'
+end #end task cnn do
+
 
 task :moneymaker => [ :environment ] do
 

@@ -1,0 +1,13 @@
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='http://images.performgroup.com/di/library/sporting_news/57/9/espn-102215-ftrjpg_1x2ff5wf7ybvx1sg82exlvzoga.jpg?t=-1871569416'
+      style='width:235px; margin-top:100px'><br>
+      Latest News</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @espns.past_day.each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a>
+      <% end %>
+    </p>
+  </div>
+</div>
