@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161130005931) do
+ActiveRecord::Schema.define(version: 20161130160119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,16 @@ ActiveRecord::Schema.define(version: 20161130005931) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "screenshot"
+  end
+
+  create_table "buzzfeeds", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "cnns", force: :cascade do |t|
@@ -66,6 +76,16 @@ ActiveRecord::Schema.define(version: 20161130005931) do
   end
 
   create_table "espns", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "foxnews", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "image"
@@ -202,6 +222,16 @@ ActiveRecord::Schema.define(version: 20161130005931) do
     t.string   "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "washingtonposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "wsjs", force: :cascade do |t|

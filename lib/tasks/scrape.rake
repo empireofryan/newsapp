@@ -397,6 +397,107 @@ task :espn_3 => [ :environment ] do
   puts 'entries saved to espn model'
 end #end task cnn do
 
+task :foxnews_3 => [ :environment ] do
+  BASE_URL = 'http://www.foxnews.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('2016')) && (!title.nil?))
+
+         if ((link.include?('http')) || (link.include?('www')))
+           @remote_url = link
+         else
+           @remote_url = 'http://foxnews.com' + link
+         end
+          @new_title = title
+          puts @new_title
+          @counter +=1
+          puts @remote_url
+          @espn = Foxnew.find_or_create_by!(url: @remote_url, title: @new_title)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to foxnews model'
+end #end task do
+
+task :buzzfeed_3 => [ :environment ] do
+  BASE_URL = 'http://www.buzzfeed.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('buzzfeed')) && (!title.nil?))
+
+         if ((link.include?('http')) || (link.include?('www')))
+           @remote_url = link
+         else
+           @remote_url = 'http://buzzfeed.com' + link
+         end
+          @new_title = title
+          puts @new_title
+          @counter +=1
+          puts @remote_url
+          @espn = Buzzfeed.find_or_create_by!(url: @remote_url, title: @new_title)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to buzzfeed model'
+end #end task do
+
+task :washingtonpost_3 => [ :environment ] do
+  BASE_URL = 'http://www.washingtonpost.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto BASE_URL
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('2016')) && (!title.nil?))
+
+         if ((link.include?('http')) || (link.include?('www')))
+           @remote_url = link
+         else
+           @remote_url = 'http://buzzfeed.com' + link
+         end
+          @new_title = title
+          puts @new_title
+          @counter +=1
+          puts @remote_url
+          @espn = Washingtonpost.find_or_create_by!(url: @remote_url, title: @new_title)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to washington post model'
+end #end task do
 
 task :moneymaker => [ :environment ] do
 

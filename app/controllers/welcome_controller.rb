@@ -21,6 +21,9 @@ class WelcomeController < ApplicationController
     @newsweeks = Newsweek.all
     @huffposts = Huffpost.all
     @espns = Espn.all
+    @foxnews = Foxnew.all
+    @buzzfeeds = Buzzfeed.all
+    @washingtonposts = Washingtonpost.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",
