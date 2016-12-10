@@ -23,7 +23,7 @@ dontGo({
 
 <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield" rel="stylesheet">
 <div class="container-fluid">
-  <nav class="navbar navbar-default navbar-fixed-top">
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color:black;">
   <div class="container">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -43,15 +43,9 @@ dontGo({
       <li><a href="#">Arts</a></li>
       <li><a href="#">Travel</a></li>
     </ul>
-    <form class="navbar-form navbar-right">
-      <div class="form-group">
-        <span>News Junkie?</span>
-        <input type="text" class="form-control" placeholder="Email">
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#">Link</a></li>
+      <li><a href="#">Log In</a></li>
+      <li><a href="#">Sign Up</a></li>
     </ul>
   </div>
   </div>
@@ -64,6 +58,7 @@ dontGo({
   <div id="col2" class="col-md-12 sec">
 
     <!-- OVERVIEW -->
+  <%= render 'abovefold' %>
   <%#= render 'snapshot' %>
     <!-- MEDIA -->
   <section id="#">
@@ -88,28 +83,31 @@ dontGo({
     <%#= render 'usatoday' %>
   </section>
   <section id="#">
-    <%#= render 'newsweek' %>
+    <%= render 'newsweek' %>
   </section>
   <section id="#">
-    <%#= render 'nytimes2' %>
+    <%= render 'nytimes2' %>
   </section>
   <section id="#">
-    <%#= render 'huffpost' %>
+    <%= render 'huffpost' %>
   </section>
   <section id="#">
-    <%#= render 'cnn2' %>
+    <%= render 'cnn2' %>
   </section>
   <section id="#">
-    <%#= render 'espn' %>
+    <%= render 'espn' %>
   </section>
   <section id="#">
-    <%#= render 'foxnews' %>
+    <%= render 'foxnews' %>
   </section>
   <section id="#">
-    <%#= render 'buzzfeed' %>
+    <%= render 'buzzfeed' %>
   </section>
   <section id="#">
     <%= render 'washingtonpost' %>
+  </section>
+  <section id="#">
+    <%= render 'drudge' %>
   </section>
   <section id="menu1">
   <%#= render 'movies' %>

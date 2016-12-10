@@ -14,6 +14,18 @@ namespace :scrape do
   require 'net/http'
   require 'json'
 
+task :run_new  => [ :environment ] do
+  Rake::Task['scrape:newsweek3'].invoke
+  Rake::Task['nytimes3'].invoke
+  Rake::Task['huffpost'].invoke
+  Rake::Task['cnn_3'].invoke
+  Rake::Task['espn_3'].invoke
+  Rake::Task['foxnews_3'].invoke
+  Rake::Task['buzzfeed_3'].invoke
+  Rake::Task['washingtonpost_3'].invoke
+  Rake::Task['drudge_3'].invoke
+end
+
 task :sources => [ :environment ] do
 
   url = 'https://newsapi.org/v1/sources'
@@ -190,7 +202,7 @@ task :newsweek  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @newsweeks = Newsweek.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
-    puts 'created Usa Today entry'
+    puts 'created newsweek entry'
   end
 end
 
@@ -243,26 +255,40 @@ task :newsweek3 => [ :environment ] do
   b = Watir::Browser.new(:phantomjs)
   b.goto BASE_NEWSWEEK_URL
   doc = Nokogiri::HTML(b.html)
-#  array = []
-  # title = a[i.to_i].text
-#   tweet = doc.css('.TweetTextSize')
-
-  #rows[1..-2].each do |row|
-
-  hrefs = doc.css("a").map{ |a|
-    a['href'] if a['href'] =~ /^\/2016\//
-  }.compact.uniq
-
+  #  array = []
+  hrefs = doc.css("a")
+  puts hrefs
+  puts 'now only special links'
+  puts hrefs.count
+  @counter = 0
   hrefs.each do |href|
-    remote_url = 'http://www.newsweek.com' + href
-    puts remote_url
+    link = href['href'] rescue nil
+    title = href.text rescue nil
+    begin
+      if (link.include?('2016')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
+      @counter +=1
+      @remote_url = link
+      @new_title = title
+      puts @new_title
+      puts @remote_url
+      end
+    rescue
+    end
+    @newsweek = Newsweek.find_or_create_by!(url: @remote_url, title: @new_title, image: @image)
   end # done: hrefs.each
 end
 
+
+puts @counter
+
+puts 'entries saved to newsweek model'
+end #end task newsweek3 do
+
+
 task :nytimes3 => [ :environment ] do
-  BASE_NEWSWEEK_URL = 'http://www.nytimes.com/pages/todayspaper/index.html?action=Click&module=HPMiniNav&region=TopBar&WT.nav=page&contentCollection=TodaysPaper&pgtype=Homepage'
+  BASE_NYTIMES_URL = 'http://www.nytimes.com/pages/todayspaper/index.html?action=Click&module=HPMiniNav&region=TopBar&WT.nav=page&contentCollection=TodaysPaper&pgtype=Homepage'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_NEWSWEEK_URL
+  b.goto BASE_NYTIMES_URL
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -290,9 +316,9 @@ task :nytimes3 => [ :environment ] do
 end #end task nytimes3 do
 
 task :huffpost => [ :environment ] do
-  BASE_URL = 'http://www.huffingtonpost.com/'
+  base_url = 'http://www.huffingtonpost.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -322,9 +348,9 @@ task :huffpost => [ :environment ] do
 end #end task huffpost do
 
 task :cnn_3 => [ :environment ] do
-  BASE_URL = 'http://www.cnn.com/'
+  base_url = 'http://www.cnn.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -359,9 +385,9 @@ task :cnn_3 => [ :environment ] do
 end #end task cnn do
 
 task :espn_3 => [ :environment ] do
-  BASE_URL = 'http://www.espn.com/'
+  base_url = 'http://www.espn.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -398,9 +424,9 @@ task :espn_3 => [ :environment ] do
 end #end task cnn do
 
 task :foxnews_3 => [ :environment ] do
-  BASE_URL = 'http://www.foxnews.com/'
+  base_url = 'http://www.foxnews.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -432,9 +458,9 @@ task :foxnews_3 => [ :environment ] do
 end #end task do
 
 task :buzzfeed_3 => [ :environment ] do
-  BASE_URL = 'http://www.buzzfeed.com/'
+  base_url = 'http://www.buzzfeed.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -466,9 +492,9 @@ task :buzzfeed_3 => [ :environment ] do
 end #end task do
 
 task :washingtonpost_3 => [ :environment ] do
-  BASE_URL = 'http://www.washingtonpost.com/'
+  base_url = 'http://www.washingtonpost.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_URL
+  b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css("a")
   puts hrefs
@@ -490,13 +516,79 @@ task :washingtonpost_3 => [ :environment ] do
           puts @new_title
           @counter +=1
           puts @remote_url
-          @espn = Washingtonpost.find_or_create_by!(url: @remote_url, title: @new_title)
+          @washingtonpost = Washingtonpost.find_or_create_by!(url: @remote_url, title: @new_title)
       end
     rescue
     end
   end # done: hrefs.each
   puts @counter
   puts 'entries saved to washington post model'
+end #end task do
+
+task :hackernews_3 => [ :environment ] do
+  base_url = 'http://www.hackernews.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto base_url
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+    #  if ((link.include?('2016')) && (!title.nil?))
+         if ((link.include?('http')) || (link.include?('www')))
+           @remote_url = link
+         else
+           @remote_url = 'http://hackernews.com' + link
+         end
+          @new_title = title
+          puts @new_title
+          @counter +=1
+          puts @remote_url
+          @hackernews = Hackernew.find_or_create_by!(url: @remote_url, title: @new_title)
+    #  end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to hackernews model'
+end #end task do
+
+task :drudge_3 => [ :environment ] do
+  base_url = 'http://www.drudgereport.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto base_url
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if !title.nil?
+        #  if ((link.include?('http')) || (link.include?('www')))
+            @remote_url = link
+        #  else
+        #    @remote_url = 'http://hackernews.com' + link
+        #  end
+          @new_title = title
+          puts @new_title
+          @counter +=1
+          puts @remote_url
+          @drudges = Drudge.find_or_create_by!(url: @remote_url, title: @new_title)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to drudge model'
 end #end task do
 
 task :moneymaker => [ :environment ] do
@@ -1016,5 +1108,5 @@ end
       end
     end #end a.each
   end # end imgur
-end
+
 #dont need an end
