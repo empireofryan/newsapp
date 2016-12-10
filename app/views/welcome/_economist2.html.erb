@@ -1,0 +1,88 @@
+
+   <style>
+   .economist{
+   opacity: 1;
+   transition: 1s;
+   text-decoration: none;
+   }
+   .economist:hover {
+   opacity: .7;
+   transition: 1s;
+   }
+   .economist a {
+   text-decoration:none;
+   }
+   .economist a:hover {
+   /*background-color:blue;  doesn't work  */
+   }
+   .headline_text {
+     top:200px; position:absolute; left:0; width:100%;
+   }
+   </style>
+     <div class="row style3 four" id="economist" style="">
+       <div class="col-md-12">
+         <p class="site">
+           <h2='width:140px; margin-top:0px'><br>
+           Economist Top Stories</h2>
+         <p style="font-size:.9em; text-align:center">
+         <% @economists2.all.limit(9).each_with_index do |a, index| %>
+         <% if !a.image.nil? %>
+         <div class="col-md-3 economist">
+         <a href='<%=a.url%>' style="color:#FFCE00">
+           <div class="image">
+           <img src="<%=a.image rescue nil%>" style="width:100%; position:relative">
+           <h2 class="headline_text">
+             <span style="color: #FFCE00;
+                            text-align:center;
+                            letter-spacing: -1px;
+                            background: rgb(0, 0, 0); /* fallback color */
+                            background: rgba(0, 0, 0, 0.7);">
+               <%=a.title.truncate_words(12, omission: '...') rescue nil%>
+             </span>
+           </h2>
+         </div>
+           <br><p style="margin-top:0px; height:0px">
+           </p></a>
+         </div>
+         <% end %>
+         <% end %>
+
+       </p>
+     </div>
+   </div>
+   <script>
+
+   </script>
+   <script>
+   $( ".economist:nth-of-type(1) h2" ).wrapInner("<span style='top:195px !important; font-size:60px; position:absolute'>")
+   $( ".economist:nth-of-type(2) h2" ).wrapInner("<span style='top:20px !important; font-size:30px; position:absolute'>")
+   $( ".economist:nth-of-type(3) h2" ).wrapInner("<span style='top:20px !important; font-size:30px; position:absolute'>")
+   $( ".economist:nth-of-type(4) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(5) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(6) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(7) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(8) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(9) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+   $( ".economist:nth-of-type(1)" ).addClass( "col-md-12" ).removeClass('col-md-3');
+
+   $( ".economist:nth-of-type(2)" ).addClass( "col-md-6" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(3)" ).addClass( "col-md-6" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(4)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(5)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(6)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(7)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(8)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".economist:nth-of-type(9)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+
+   $( ".economist:nth-child(2)" ).addClass( "col-md-6" );
+   </script>
+   <!-- $(function() {
+
+     $("h2")
+         .wrapInner("<span>")
+
+     $("h2 br")
+         .before("<span class='spacer'>")
+         .after("<span class='spacer'>");
+
+ }); -->

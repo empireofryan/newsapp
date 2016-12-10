@@ -1,0 +1,107 @@
+
+   <style>
+   .newsweek{
+   opacity: 1;
+   transition: 1s;
+   text-decoration: none;
+   }
+   .newsweek:hover {
+   opacity: .7;
+   transition: 1s;
+   }
+   .newsweek a {
+   text-decoration:none;
+   }
+   .newsweek a:hover {
+   /*background-color:blue;  doesn't work  */
+   }
+   .headline_text {
+     top:200px; position:absolute; left:0; width:100%;
+   }
+   </style>
+     <div class="row style3 four" id="newsweek" style="">
+       <div class="col-md-12">
+         <p class="site">
+           <h2='width:140px; margin-top:0px'><br>
+           Newsweek Top Stories</h2>
+         <p style="font-size:.9em; text-align:center">
+         <% @newsweeks.all.limit(13).each_with_index do |a, index| %>
+         <% if !a.image.nil? %>
+         <div class="col-md-3 newsweek">
+         <a href='<%=a.url%>' style="color:#FFCE00">
+           <div class="image">
+           <img src="<%=a.image rescue nil%>" style="width:100%; position:relative;     clip: rect(20px,100px,60px,0px);
+">
+           <h2 class="headline_text">
+             <span style="color: #FFCE00;
+                            text-align:center;
+                            letter-spacing: -1px;
+                            background: rgb(0, 0, 0); /* fallback color */
+                            background: rgba(0, 0, 0, 0.7);">
+               <%=a.title.truncate_words(12, omission: '...') rescue nil%>
+             </span>
+           </h2>
+         </div>
+           <br><p style="margin-top:0px; height:0px">
+           </p></a>
+         </div>
+         <% end %>
+         <% end %>
+
+       </p>
+     </div>
+   </div>
+   <script>
+
+   </script>
+   <script>
+   $( ".newsweek:nth-of-type(1) h2" ).wrapInner("<span style='top:195px !important; font-size:60px; position:absolute'>")
+   $( ".newsweek:nth-of-type(2) h2" ).wrapInner("<span style='top:20px !important; font-size:30px; position:absolute'>")
+   $( ".newsweek:nth-of-type(3) h2" ).wrapInner("<span style='top:20px !important; font-size:30px; position:absolute'>")
+   $( ".newsweek:nth-of-type(4) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+      $( ".newsweek:nth-of-type(4) img" ).wrapInner("<span style='max-height:260px'>");
+   $( ".newsweek:nth-of-type(5) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+     $( ".newsweek:nth-of-type(5) img" ).css("max-height", "260px");
+   $( ".newsweek:nth-of-type(6) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+     $( ".newsweek:nth-of-type(6) img" ).wrapInner("<span style='max-height:260px'>");
+   $( ".newsweek:nth-of-type(7) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+     $( ".newsweek:nth-of-type(7) img" ).wrapInner("<span style='max-height:260px'>");
+   $( ".newsweek:nth-of-type(8) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+     $( ".newsweek:nth-of-type(8) img" ).wrapInner("<span style='max-height:260px'>");
+   $( ".newsweek:nth-of-type(9) h2" ).wrapInner("<span style='top:-70px !important; font-size:25px; position:absolute'>")
+     $( ".newsweek:nth-of-type(9) img" ).wrapInner("<span style='max-height:260px'>");
+
+   $( ".newsweek:nth-of-type(1)" ).addClass( "col-md-12" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(2)" ).addClass( "col-md-6" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(2) img" ).css("max-height", "400px");
+   $( ".newsweek:nth-of-type(3)" ).addClass( "col-md-6" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(3) img" ).css("max-height", "400px");
+   $( ".newsweek:nth-of-type(4)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(5)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(6)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(7)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(8)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(9)" ).addClass( "col-md-4" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(10)" ).addClass( "col-md-3" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(10) img" ).css("display", "none");
+   $( ".newsweek:nth-of-type(10) h2" ).css("font-size", "14px");
+   $( ".newsweek:nth-of-type(11)" ).addClass( "col-md-3" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(11) img" ).css("display", "none");
+   $( ".newsweek:nth-of-type(11) h2" ).css("font-size", "24px");
+   $( ".newsweek:nth-of-type(12)" ).addClass( "col-md-3" ).removeClass('col-md-3');
+   $( ".newsweek:nth-of-type(12) img" ).css("display", "none");
+   $( ".newsweek:nth-of-type(12) h2" ).css("font-size", "24px");
+
+
+   $( ".newsweek:nth-child(2)" ).addClass( "col-md-6" );
+   </script>
+   <!-- $(function() {
+
+     $("h2")
+         .wrapInner("<span>")
+
+     $("h2 br")
+         .before("<span class='spacer'>")
+         .after("<span class='spacer'>");
+
+ }); -->

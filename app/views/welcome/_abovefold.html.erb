@@ -1,0 +1,44 @@
+<div class="row style1">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://lh5.ggpht.com/64N-cwJ14nR3t-0wJ5nRbz2VTo9UC0jj7GKiUnHxOjCzxduSs3_FO2S0CT3gv2RFZChg92XYpw=w300'
+      style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
+      Above the fold</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @nytimes.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
+      <% end %>
+      <% @mediums.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
+      <% end %>
+      <% @newsweeks.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>
+        <div class="image" style=' width: 800px;
+    height: 350px;
+    overflow: hidden;'>
+         <img src="<%=a.image rescue nil%>" style="   width: 800px;
+    height: 550px;
+    margin: -75px 0px 0px 00px;">
+         <h2 class="headline_text" style="width: 400px">
+           <span style="color: #FFCE00;
+                          text-align:center;
+                          letter-spacing: -1px;
+                          background: rgb(0, 0, 0); /* fallback color */
+                          background: rgba(0, 0, 0, 0.7);">
+             <%=a.title.truncate_words(20, omission: '...') rescue nil%>
+           </span>
+         </h2>
+       </div> </a> |
+      <% end %>
+      <% @buzzfeeds.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
+      <% end %>
+      <% @economists.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
+      <% end %>
+      <% @imgurs.past_day.last(1).each do |a| %>
+      <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
+      <% end %>
+    </p>
+  </div>
+</div>

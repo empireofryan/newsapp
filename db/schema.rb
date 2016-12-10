@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017043158) do
+ActiveRecord::Schema.define(version: 20161204221105) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,47 @@ ActiveRecord::Schema.define(version: 20161017043158) do
     t.string   "screenshot"
   end
 
+  create_table "buzzfeeds", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "cnns", force: :cascade do |t|
+    t.string   "author"
+    t.string   "title"
+    t.text     "description"
+    t.string   "url"
+    t.string   "image"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "drudges", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "economist2s", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "economists", force: :cascade do |t|
     t.string   "title"
     t.string   "subtitle"
@@ -44,12 +85,52 @@ ActiveRecord::Schema.define(version: 20161017043158) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "espns", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "foxnews", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "googles", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "search"
+  end
+
+  create_table "hackernews", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "huffposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "imgurs", force: :cascade do |t|
@@ -76,6 +157,16 @@ ActiveRecord::Schema.define(version: 20161017043158) do
     t.string   "poster"
   end
 
+  create_table "newsweeks", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "nextwebs", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
@@ -90,12 +181,32 @@ ActiveRecord::Schema.define(version: 20161017043158) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reddits", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "thenextwebs", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.string   "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "time2s", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "twitters", force: :cascade do |t|
@@ -105,12 +216,42 @@ ActiveRecord::Schema.define(version: 20161017043158) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "usatodays", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "vimeos", force: :cascade do |t|
     t.string   "title"
     t.string   "url"
     t.string   "picture"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "washingtonposts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "wsjs", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "image"
+    t.string   "url"
+    t.string   "published"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

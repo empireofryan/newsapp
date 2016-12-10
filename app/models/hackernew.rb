@@ -1,0 +1,2 @@
+class Hackernew < ApplicationRecord
+end

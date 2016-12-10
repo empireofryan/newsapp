@@ -11,6 +11,20 @@ class WelcomeController < ApplicationController
     @googles = Google.all
     @nextwebs = Thenextweb.all
     @imgurs = Imgur.all
+    @cnns = Cnn.all
+    @reddits = Reddit.all
+    @economists2 = Economist2.all
+    @hackernews = Hackernew.all
+    @wsjs = Wsj.all
+    @times = Time2.all
+    @usatodays = Usatoday.all
+    @newsweeks = Newsweek.all
+    @huffposts = Huffpost.all
+    @espns = Espn.all
+    @foxnews = Foxnew.all
+    @buzzfeeds = Buzzfeed.all
+    @washingtonposts = Washingtonpost.all
+    @drudges = Drudge.all
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",

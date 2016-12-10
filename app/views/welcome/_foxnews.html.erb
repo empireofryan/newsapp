@@ -1,0 +1,13 @@
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='http://commonwealthmagazine.org/wp-content/uploads/sites/2/2015/12/fox-news-logo.png'
+      style='width:235px; margin-top:100px'><br>
+      Latest News</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @foxnews.past_day.each do |a| %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a>
+      <% end %>
+    </p>
+  </div>
+</div>

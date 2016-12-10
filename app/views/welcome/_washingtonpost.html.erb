@@ -1,0 +1,15 @@
+<div class="row style2">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/The_Logo_of_The_Washington_Post_Newspaper.svg/1280px-The_Logo_of_The_Washington_Post_Newspaper.svg.png'
+      style='width:455px; margin-top:100px'><br>
+      Latest News</p>
+    <p style="font-size:.9em; text-align:center">
+      <% @washingtonposts.past_day.each do |a| %>
+      <% if a.title.split.size > 3 %>
+      <a href='<%=a.url%>'>  <%= a.title %> </a>
+      <% end %>
+      <% end %>
+    </p>
+  </div>
+</div>
