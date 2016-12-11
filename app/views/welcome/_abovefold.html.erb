@@ -1,9 +1,70 @@
+<style>
+.TickerNews {
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+}
+
+.ti_wrapper {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 50px;
+}
+
+.ti_slide {
+  width: 30000px;
+  position: relative;
+  left: 0;
+  top: 0;
+}
+
+.ti_content {
+  width: 8000px;
+  position: relative;
+  float: left;
+}
+
+.ti_news { float: left; }
+
+.marquee {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background: #ccc;
+}
+.marquee a {
+  color:black;
+}
+</style>
+
+
+<script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
+
+
+
 <div class="row style1">
   <div class="col-md-12">
     <p class="site">
       <img src='https://lh5.ggpht.com/64N-cwJ14nR3t-0wJ5nRbz2VTo9UC0jj7GKiUnHxOjCzxduSs3_FO2S0CT3gv2RFZChg92XYpw=w300'
       style='width:195px; margin-top:-30px; margin-bottom:-30px'><br>
       Above the fold</p>
+
+
+    <div class="marquee">
+      <%@newsweeks.past_day.all.each do |a|%>
+      <a href='<%=a.url%>'><%=a.title.truncate_words(20, omission: '...') rescue nil%></a> |
+      <%end%>
+    </div>
+
+    <script>
+    $('.marquee').marquee({
+      //speed in milliseconds of the marquee
+  duration: 15000,
+  startVisible: true,
+  pauseOnHover: false
+    });
+    </script>
 
       <% @newsweeks.past_day.first(1).each do |a| %>
       <div class='col-md-8'>
