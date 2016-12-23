@@ -4,11 +4,30 @@
       <img src='https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png'
       style='width:335px; margin-top:100px'><br>
       Latest News</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @nytimes.past_day.each do |a| %>
+    </div>
 
-      <a href='<%=a.url%>'>  <%= a.title %> </a>
-      <% end %>
-    </p>
-  </div>
+    <div class="col-md-4">
+      <p style="font-size:1em; text-align:center">
+          <% @nytimes.past_day[0..Nytime.third_count].each do |a|  %>
+          <%# @nytimes.past_day.each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %> </a>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <p style="font-size:1em; text-align:center">
+          <% @nytimes.past_day[Nytime.third_count..Nytime.third_count_2].each do |a|  %>
+          <%# @nytimes.past_day.each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %> </a>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-md-4">
+      <p style="font-size:1em; text-align:center">
+          <% @nytimes.past_day[Nytime.third_count_2..Nytime.third_count_3].each do |a|  %>
+          <%# @nytimes.past_day.each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %> </a>
+        <% end %>
+      </p>
+    </div>
 </div>

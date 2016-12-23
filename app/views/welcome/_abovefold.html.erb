@@ -75,7 +75,7 @@ li {
     </p>
 
     <div class="marquee">
-      <%@newsweeks.past_day.all.each do |a|%>
+      <%@nytimes.past_day.all.each do |a|%>
       <a href='<%=a.url%>'><%=a.title.upcase.truncate_words(20, omission: '...') rescue nil%>
       </a>
       <%end%>

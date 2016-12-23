@@ -10,24 +10,49 @@ namespace :scrape do
   require 'timeout'
   require 'pry'
   require 'rspec/retry'
+  require 'capybara'
+  require 'capybara/dsl'
+  require 'capybara/rails'
+  require 'capybara/poltergeist'
+  require 'open-uri'
+  require 'phantomjs'
+#  require 'wait_for_ajax'
 #  require 'httparty'
   require 'net/http'
   require 'json'
+  require "watir-webdriver/wait"
+
+  def configure_capybara
+    include Capybara::DSL
+#    include WaitForAjax
+
+    Capybara.configure do |c|
+      c.javascript_driver = :poltergeist
+      c.default_driver = :poltergeist
+      c.current_driver = :poltergeist
+      c.app_host = "http://localhost:3000"
+    end
+
+    Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app, { js_errors: false, timeout: 5.minutes, phantomjs_options: ['--load-images=no', '--ignore-ssl-errors=yes']})
+    end
+  end
+
 
 task :run_new  => [ :environment ] do
+  array = ['nytimes3', 'newsweek', 'huffpost', 'cnn_3', 'espn_3', 'foxnews_3', 'buzzfeed_3', 'washingtonpost_3', 'drudge_3']
   Rake::Task['scrape:newsweek3'].invoke
-  Rake::Task['nytimes3'].invoke
-  Rake::Task['huffpost'].invoke
-  Rake::Task['cnn_3'].invoke
-  Rake::Task['espn_3'].invoke
-  Rake::Task['foxnews_3'].invoke
-  Rake::Task['buzzfeed_3'].invoke
-  Rake::Task['washingtonpost_3'].invoke
-  Rake::Task['drudge_3'].invoke
+  array.each do |source|
+    begin
+      Rake::Task["scrape:#{source}"].invoke
+    rescue
+      Rake::Task["#{source}"].reenable
+      Rake::Task["#{source}"].invoke
+    end
+  end
 end
 
 task :sources => [ :environment ] do
-
   url = 'https://newsapi.org/v1/sources'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -38,8 +63,61 @@ task :sources => [ :environment ] do
   end
 end
 
-task :cnn => [ :environment ] do
+task :nyt_pics => [ :environment ] do
+  nytimes_urls = Nytime.past_day.all
+  nytimes_urls.each do |u|
+    link = "#{u.url}"
+    puts link
+    puts 'visiting ' + link
+    uri = URI(link)
+    response = Net::HTTP.get(uri)
+    puts response
+    @tags = JSON.parse(response)['articles']
+#    @tags = JSON.parse(response)
+  #  puts @tags
+    # link2 = URI.parse(link)
+    # response = Net::HTTP.get(link2)
+    # puts response
+    # visit link
+    # puts response2
+    debugger
+  end
+end
 
+task :nyt_pics2 => [:environment] do
+  nytimes_title = Nytime.first.title
+  puts nytimes_title
+  b = Watir::Browser.new(:phantomjs)
+  # b.goto 'http://www.bing.com'
+  # b.goto 'http://www.bing.com/images/search?q=' + 'foo+bar'
+  new_title = nytimes_title.gsub(' ', '+')
+  puts new_title
+  b.goto 'http://www.bing.com/images/search?q=' + "#{new_title}"
+  doc = Nokogiri::HTML(b.html)
+  # puts doc
+  #  array = []
+  hrefs = doc.css(".dg_u")
+  puts hrefs
+end
+
+task :nyt_pics3 => [:environment] do
+  nytimes_title = Nytime.first.title
+  puts nytimes_title
+  BingSearch.account_key = ENV["bing_key"]
+  results = BingSearch.image("#{nytimes_title}").first
+  puts results.url
+end
+
+task :nyt_pics4 => [:environment] do
+  nytimes_title = Nytime.all.each do |n|
+    puts n.title
+    BingSearch.account_key = ENV["bing_key"]
+    results = BingSearch.image("#{n.title}").first
+    puts results.url
+  end
+end
+
+task :cnn => [ :environment ] do
   url = 'https://newsapi.org/v1/articles?source=cnn&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -62,8 +140,9 @@ task :cnn => [ :environment ] do
   end
 end
 
-task :reddit => [ :environment ] do
 
+
+task :reddit => [ :environment ] do
   url = 'https://newsapi.org/v1/articles?source=reddit-r-all&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -83,14 +162,13 @@ task :reddit => [ :environment ] do
 end
 
 task :sources => [ :environment ] do
-url = 'https://newsapi.org/v1/sources'
-uri = URI(url)
-response = Net::HTTP.get(uri)
-@tags = JSON.parse(response)['sources']
+  url = 'https://newsapi.org/v1/sources'
+  uri = URI(url)
+  response = Net::HTTP.get(uri)
+  @tags = JSON.parse(response)['sources']
 end
 
 task :economist2  => [ :environment ] do
-
   url = 'https://newsapi.org/v1/articles?source=the-economist&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -110,7 +188,6 @@ task :economist2  => [ :environment ] do
 end
 
 task :hackernews  => [ :environment ] do
-
   url = 'https://newsapi.org/v1/articles?source=hacker-news&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -130,7 +207,6 @@ task :hackernews  => [ :environment ] do
 end
 
 task :wsj  => [ :environment ] do
-
   url = 'https://newsapi.org/v1/articles?source=the-wall-street-journal&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
   response = Net::HTTP.get(uri)
@@ -279,11 +355,28 @@ task :newsweek3 => [ :environment ] do
 end
 
 
-puts @counter
+# puts @counter
+#
+# puts 'entries saved to newsweek model'
+# end #end task newsweek3 do
 
-puts 'entries saved to newsweek model'
-end #end task newsweek3 do
-
+task :foxnews_pics => [ :environment ] do
+  article_url = 'http://www.foxnews.com/politics/2016/12/13/media-types-hit-panic-button-over-cia-russia-assessment.html?refresh=true'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto article_url
+  doc = Nokogiri::HTML(b.html)
+  sleep(5)
+  puts doc
+  Watir::Waiter.wait_until(15) { doc.div(:class => "overlay-media").visible? }
+#  image = doc.css(".overlay-media").wait_until_present
+  image = doc.css(".overlay-media")
+  puts image
+#  image_img = doc.css(".overlay-media")['img']
+  puts image_text
+  # browser.text_field(:id => 'username').when_present.set("name")
+  image_text = doc.css(".overlay-media").text
+  debugger
+end
 
 task :nytimes3 => [ :environment ] do
   BASE_NYTIMES_URL = 'http://www.nytimes.com/pages/todayspaper/index.html?action=Click&module=HPMiniNav&region=TopBar&WT.nav=page&contentCollection=TodaysPaper&pgtype=Homepage'
@@ -1108,5 +1201,5 @@ end
       end
     end #end a.each
   end # end imgur
-
+end
 #dont need an end
