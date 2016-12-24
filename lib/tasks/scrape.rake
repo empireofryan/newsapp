@@ -117,6 +117,17 @@ task :nyt_pics4 => [:environment] do
   end
 end
 
+#test, works awesome
+# task :nyt_pics5 => [:environment] do
+#   nytimes_title = "MEDICAL EMERGENCYReport: Star Wars' Carrie Fisher suffers heart attack"
+#   puts nytimes_title
+#   BingSearch.account_key = ENV["bing_key"]
+#   results = BingSearch.image("#{nytimes_title}").first
+#   puts results.url
+# end
+
+
+
 task :cnn => [ :environment ] do
   url = 'https://newsapi.org/v1/articles?source=cnn&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
   uri = URI(url)
@@ -541,7 +552,10 @@ task :foxnews_3 => [ :environment ] do
           puts @new_title
           @counter +=1
           puts @remote_url
-          @espn = Foxnew.find_or_create_by!(url: @remote_url, title: @new_title)
+          ##get rid of advertising bs
+          if ((!link.title.include?('%refinery29%')) || (!link.title.include?('%kbb%')) || (!link.title.include?('%nextadvisor%')))
+            @foxnew = Foxnew.find_or_create_by!(url: @remote_url, title: @new_title)
+          end
       end
     rescue
     end
