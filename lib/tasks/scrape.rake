@@ -441,10 +441,26 @@ task :huffpost => [ :environment ] do
           puts @new_title
         end
         puts @remote_url
+
+        puts @new_title
+        BingSearch.account_key = ENV["bing_key"]
+        results = BingSearch.image("#{@new_title}").first
+        puts results.url
+        @bing_image = results.url
       end
     rescue
     end
-    @huffpost = Huffpost.find_or_create_by!(url: @remote_url, title: @new_title)
+    ##get rid of advertising bs
+    if ((!@new_title.include?('%AP%')) || (!@new_title.include?('%Getty%')) || (!@new_title.include?('%Reuters%')) rescue nil)
+      @huffpost = Huffpost.find_or_create_by!(url: @remote_url) do |a|
+        a.title = @new_title
+        a.image = @bing_image
+      end
+      puts 'created' + @new_title
+    end
+
+    #  .find_or_create_by!(title: @new_title, image: @bing_image)
+    #end
   end # done: hrefs.each
   puts @counter
 
@@ -552,9 +568,17 @@ task :foxnews_3 => [ :environment ] do
           puts @new_title
           @counter +=1
           puts @remote_url
+
+          bing_title = @new_title
+          puts @new_title
+          BingSearch.account_key = ENV["bing_key"]
+          results = BingSearch.image("#{@new_title}").first
+          puts results.url
+          @bing_image = results.url
+
           ##get rid of advertising bs
-          if ((!link.title.include?('%refinery29%')) || (!link.title.include?('%kbb%')) || (!link.title.include?('%nextadvisor%')))
-            @foxnew = Foxnew.find_or_create_by!(url: @remote_url, title: @new_title)
+          if ((!@new_title.include?('%refinery29%')) || (!@new_title.include?('%kbb%')) || (!@new_title.include?('%nextadvisor%')))
+            @foxnew = Foxnew.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
           end
       end
     rescue

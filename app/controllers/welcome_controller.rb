@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
     @times = Time2.all
     @usatodays = Usatoday.all
     @newsweeks = Newsweek.all
-    @huffposts = Huffpost.all
+    @huffpost = Huffpost.all
     @espns = Espn.all
     @foxnews = Foxnew.all
     @buzzfeeds = Buzzfeed.all

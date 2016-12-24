@@ -4,11 +4,43 @@
       <img src='http://s.m.huffpost.com/assets/Logo_HuffingtonPost-18ccffb20526ed0670da5409a95ed913.svg'
       style='width:335px; margin-top:100px'><br>
       Latest News</p>
-    <p style="font-size:.9em; text-align:center">
-      <% @huffposts.past_day.each do |a| %>
+      <h1>  <a href='<%=@huffpost.past_day[1].url%>'>
+        <%= @huffpost.past_day[1].title%>
+        <img src='<%= @huffpost.past_day[1].image%>'></h1>
+      <div class="col-md-4">
+        <h3><a href='<%=@huffpost.past_day[2].url%>'><%= @huffpost.past_day[2].title%>
+        <img src='<%= @huffpost.past_day[2].image%>' style="width:100%"></h3>
+        <p style="font-size:1em;">
+          <% @huffpost.past_day[10..20].each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %> <br>
+          <% end %>
+        </p>
+        <h3><a href='<%=@huffpost.past_day[5].url%>'><%= @huffpost.past_day[5].title%>
+        <img src='<%= @huffpost.past_day[5].image%>' style="width:100%"></h3>
+        <p style="font-size:1em;">
+          <% @huffpost.past_day[41..50].each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %></a><br>
+          <% end %>
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h3><a href='<%=@huffpost.past_day[4].url%>'><%= @huffpost.past_day[4].title%></h3>
+        <p style="font-size:1em;">
+          <% @huffpost.past_day[21..30].each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %> </a><br>
+          <% end %>
+        </p>
+        <h3><a href='<%=@huffpost.past_day[6].url%>'><%= @huffpost.past_day[6].title%>
+        <img src='<%= @huffpost.past_day[6].image%>' style='width:100%'></h3>
+      </div>
+      <div class="col-md-4">
+        <h3><a href='<%=@huffpost.past_day[3].url%>'><%= @huffpost.past_day[3].title%></h3>
+        <p style="font-size:1em;">
+          <% @huffpost.past_day[51..150].each do |a| %>
+          <a href='<%=a.url%>'>  <%= a.title %></a><br>
+          <% end %>
+        </p>
+        <h3><a href='<%=@huffpost.past_day[7].url%>'><%= @huffpost.past_day[7].title%></h3>
+      </div>
 
-      <a href='<%=a.url%>'>  <%= a.title %> </a>
-      <% end %>
-    </p>
-  </div>
 </div>
