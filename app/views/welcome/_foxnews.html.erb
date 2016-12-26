@@ -1,3 +1,9 @@
+    <script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
+    <script>
+    // JavaScript
+    window.sr = ScrollReveal();
+
+    </script>
 <div class="row style2">
   <div class="col-md-12">
     <p class="site">
@@ -5,7 +11,7 @@
       style='width:235px; margin-top:100px'><br>
       Latest News</p>
       <h1>  <a href='<%=@foxnews.past_day[0].url%>'><%= @foxnews.past_day[0].title%></h1>
-      <div class="col-md-4">
+      <div class="col-md-4 fooReveal">
         <h3><a href='<%=@foxnews.past_day[1].url%>'><%= @foxnews.past_day[1].title%></h3>
         <p style="font-size:1em;">
           <% @foxnews.past_day[10..20].each do |a| %>
@@ -34,3 +40,7 @@
       </div>
   </div>
 </div>
+
+<script>
+  sr.reveal('.fooReveal');
+</script>

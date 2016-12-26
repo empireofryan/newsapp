@@ -69,10 +69,18 @@ li {
       <br>
       New Articles: 1,281
     </p>
-    <p class="col-md-4 site text-left" style ='font-family: "Catamaran"'>
-      <br>
-      Email
-    </p>
+    <div class="col-md-1 site text-left" style ='font-family: "Catamaran";
+    '>
+<br>
+        <span>Email</span>
+      </div>
+      <div class="col-md-3 site text-left"><br>
+        <input type="text" name="email" style="background-color: white;
+        height: 35px;
+        color: black;
+        width:100%;">
+
+    </div>
 
     <div class="marquee">
       <%@nytimes.past_day.all.each do |a|%>

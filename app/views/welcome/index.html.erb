@@ -3,6 +3,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js"></script>
 <script src="https://cdn.rawgit.com/leafo/sticky-kit/v1.1.2/jquery.sticky-kit.min.js">
 </script>
+<script src="https://unpkg.com/scrollreveal@3.3.2/dist/scrollreveal.min.js"></script>
 <style>
 body {
     font-family: Verdana;
@@ -20,6 +21,7 @@ dontGo({
     timeout: 5000 //5 seconds
 });
 </script>
+
 
 <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield" rel="stylesheet">
 <div class="container-fluid">
@@ -61,6 +63,7 @@ dontGo({
     <!-- OVERVIEW -->
   <%= render 'abovefold' %>
   <%= render 'belowfold' %>
+  <%= render 'test' %>
   <%#= render 'snapshot' %>
   <section id="#">
     <%= render 'foxnews' %>
@@ -150,6 +153,8 @@ dontGo({
 <br><br>
 </div> <!-- end container-fluid -->
 
-
+<!-- <script>
+  sr.reveal('.fooReveal');
+</script> -->
 
 </div>
