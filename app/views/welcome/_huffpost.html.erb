@@ -4,12 +4,12 @@
       <img src='http://s.m.huffpost.com/assets/Logo_HuffingtonPost-18ccffb20526ed0670da5409a95ed913.svg'
       style='width:335px; margin-top:100px'><br>
       Latest News</p>
-      <h1>  <a href='<%=@huffpost.past_day[1].url%>'>
-        <%= @huffpost.past_day[1].title%>
-        <img src='<%= @huffpost.past_day[1].image%>'></h1>
+      <h1>  <a href='<%=@huffpost.past_day[2].url%>'>
+        <%= @huffpost.past_day[2].title%>
+        <img src='<%= @huffpost.past_day[2].image%>'></h1>
       <div class="col-md-4">
-        <h3><a href='<%=@huffpost.past_day[2].url%>'><%= @huffpost.past_day[2].title%>
-        <img src='<%= @huffpost.past_day[2].image%>' style="width:100%"></h3>
+        <h3><a href='<%=@huffpost.past_day[8].url%>'><%= @huffpost.past_day[8].title%>
+        <img src='<%= @huffpost.past_day[8].image%>' style="width:100%"></h3>
         <p style="font-size:1em;">
           <% @huffpost.past_day[10..20].each do |a| %>
           <a href='<%=a.url%>'>  <%= a.title %> <br>
@@ -23,15 +23,46 @@
           <% end %>
         </p>
       </div>
+
       <div class="col-md-4">
         <h3><a href='<%=@huffpost.past_day[4].url%>'><%= @huffpost.past_day[4].title%></h3>
         <p style="font-size:1em;">
-          <% @huffpost.past_day[21..30].each do |a| %>
-          <a href='<%=a.url%>'>  <%= a.title %> </a><br>
+          <% @huffpost.past_day[21..30].select.each_with_index do |a, i| %>
+            <% if i.even?  %>
+              <div class="col-md-6">
+                <a href='<%=a.url%>'> <img src='<%= a.image%>' id='pic_<%=i%>' style="width:100%;">
+              </div>
+              <div class="col-md-6 text_<%=i%>" style="vertical-align:middle">
+                  <%= a.title %>
+                </a><br>
+              </div>
+              <script>
+              var img = document.getElementById('pic_<%=i%>');
+              //or however you get a handle to the IMG
+              var width = img.clientWidth;
+              var height = img.clientHeight;
+              console.log(height);
+              $('.text_<%=i%>').css("height",height);
+
+              </script>
+            <% end %>
+            <% if i.odd?  %>
+              <div style="float:right">
+                <div class="col-md-6">
+                  <a href='<%=a.url%>'> <%= a.title %>
+                </div>
+                <div class="col-md-6">
+                    <img src='<%= a.image%>' style="width:100%">
+                </div>
+                  </a>
+              </div><br>
+            <% end %>
           <% end %>
         </p>
+      <div class="col-md-12">
         <h3><a href='<%=@huffpost.past_day[6].url%>'><%= @huffpost.past_day[6].title%>
         <img src='<%= @huffpost.past_day[6].image%>' style='width:100%'></h3>
+      </div>
       </div>
       <div class="col-md-4">
         <h3><a href='<%=@huffpost.past_day[3].url%>'><%= @huffpost.past_day[3].title%></h3>
