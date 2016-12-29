@@ -7,6 +7,7 @@
 <style>
 body {
     font-family: Verdana;
+    /*display:none;*/
 }
 
 .active {
@@ -382,6 +383,7 @@ dontGo({
 
     <!-- OVERVIEW -->
   <%= render 'abovefold' %>
+  <%= render 'compact_news' %>
   <button>Toggle 'em</button>
   <div class='boo'>Hiya</div>
   <div class='boo'>Such intersting boo.</div>
@@ -483,8 +485,8 @@ dontGo({
     $(this).toggleClass('button-active');
   });
   </script>
-  <%= render 'belowfold' %>
-  <%= render 'test' %>
+  <%#= render 'belowfold' %>
+  <%#= render 'test' %>
   <%#= render 'snapshot' %>
   <section id="#">
     <%#= render 'foxnews' %>
@@ -521,10 +523,10 @@ dontGo({
     <%#= render 'huffpost' %>
   </section>
   <section id="#">
-    <%= render 'cnn2' %>
+    <%#= render 'cnn2' %>
   </section>
   <section id="#">
-    <%#= render 'espn' %>
+    <%= render 'espn' %>
   </section>
   <section id="#">
     <%#= render 'buzzfeed' %>
@@ -588,10 +590,16 @@ $( "button" ).click(function() {
 $( "button" ).click(function() {
   $( "#cnn" ).toggle( "fast" );
 });
-// 
+//
 // $(window).on('load', function() { // makes sure the whole site is loaded
 //   $('#status').fadeOut(); // will first fade out the loading animation
 //   $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
 //   $('body').delay(350).css({'overflow':'visible'});
 // })
+
+
+// $(window).load(function() {
+//   // When the page has loaded
+//   $("body").fadeIn(200);
+// });
 </script>

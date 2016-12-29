@@ -1,0 +1,1020 @@
+
+		<link rel="shortcut icon" href="../favicon.ico" type="image/x-icon"/>
+
+    <script>
+    /*
+     * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+     *
+     * Uses the built in easing capabilities added In jQuery 1.1
+     * to offer multiple easing options
+     *
+     * TERMS OF USE - jQuery Easing
+     *
+     * Open source under the BSD License.
+     *
+     * Copyright © 2008 George McGinley Smith
+     * All rights reserved.
+     *
+     * Redistribution and use in source and binary forms, with or without modification,
+     * are permitted provided that the following conditions are met:
+     *
+     * Redistributions of source code must retain the above copyright notice, this list of
+     * conditions and the following disclaimer.
+     * Redistributions in binary form must reproduce the above copyright notice, this list
+     * of conditions and the following disclaimer in the documentation and/or other materials
+     * provided with the distribution.
+     *
+     * Neither the name of the author nor the names of contributors may be used to endorse
+     * or promote products derived from this software without specific prior written permission.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+     * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+     * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+     *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+     *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+     * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     * OF THE POSSIBILITY OF SUCH DAMAGE.
+     *
+    */
+
+    // t: current time, b: begInnIng value, c: change In value, d: duration
+    jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+    jQuery.extend( jQuery.easing,
+    {
+      def: 'easeOutQuad',
+      swing: function (x, t, b, c, d) {
+        //alert(jQuery.easing.default);
+        return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+      },
+      easeInQuad: function (x, t, b, c, d) {
+        return c*(t/=d)*t + b;
+      },
+      easeOutQuad: function (x, t, b, c, d) {
+        return -c *(t/=d)*(t-2) + b;
+      },
+      easeInOutQuad: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t + b;
+        return -c/2 * ((--t)*(t-2) - 1) + b;
+      },
+      easeInCubic: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t + b;
+      },
+      easeOutCubic: function (x, t, b, c, d) {
+        return c*((t=t/d-1)*t*t + 1) + b;
+      },
+      easeInOutCubic: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t + b;
+        return c/2*((t-=2)*t*t + 2) + b;
+      },
+      easeInQuart: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t + b;
+      },
+      easeOutQuart: function (x, t, b, c, d) {
+        return -c * ((t=t/d-1)*t*t*t - 1) + b;
+      },
+      easeInOutQuart: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+        return -c/2 * ((t-=2)*t*t*t - 2) + b;
+      },
+      easeInQuint: function (x, t, b, c, d) {
+        return c*(t/=d)*t*t*t*t + b;
+      },
+      easeOutQuint: function (x, t, b, c, d) {
+        return c*((t=t/d-1)*t*t*t*t + 1) + b;
+      },
+      easeInOutQuint: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+        return c/2*((t-=2)*t*t*t*t + 2) + b;
+      },
+      easeInSine: function (x, t, b, c, d) {
+        return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+      },
+      easeOutSine: function (x, t, b, c, d) {
+        return c * Math.sin(t/d * (Math.PI/2)) + b;
+      },
+      easeInOutSine: function (x, t, b, c, d) {
+        return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+      },
+      easeInExpo: function (x, t, b, c, d) {
+        return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+      },
+      easeOutExpo: function (x, t, b, c, d) {
+        return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+      },
+      easeInOutExpo: function (x, t, b, c, d) {
+        if (t==0) return b;
+        if (t==d) return b+c;
+        if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+      },
+      easeInCirc: function (x, t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+      },
+      easeOutCirc: function (x, t, b, c, d) {
+        return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+      },
+      easeInOutCirc: function (x, t, b, c, d) {
+        if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+        return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+      },
+      easeInElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+      },
+      easeOutElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+      },
+      easeInOutElastic: function (x, t, b, c, d) {
+        var s=1.70158;var p=0;var a=c;
+        if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+        if (a < Math.abs(c)) { a=c; var s=p/4; }
+        else var s = p/(2*Math.PI) * Math.asin (c/a);
+        if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+        return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+      },
+      easeInBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*(t/=d)*t*((s+1)*t - s) + b;
+      },
+      easeOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+      },
+      easeInOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+        return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+      },
+      easeInBounce: function (x, t, b, c, d) {
+        return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+      },
+      easeOutBounce: function (x, t, b, c, d) {
+        if ((t/=d) < (1/2.75)) {
+          return c*(7.5625*t*t) + b;
+        } else if (t < (2/2.75)) {
+          return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+        } else if (t < (2.5/2.75)) {
+          return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+        } else {
+          return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+        }
+      },
+      easeInOutBounce: function (x, t, b, c, d) {
+        if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+        return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+      }
+    });
+
+    /*
+     *
+     * TERMS OF USE - EASING EQUATIONS
+     *
+     * Open source under the BSD License.
+     *
+     * Copyright © 2001 Robert Penner
+     * All rights reserved.
+     *
+     * Redistribution and use in source and binary forms, with or without modification,
+     * are permitted provided that the following conditions are met:
+     *
+     * Redistributions of source code must retain the above copyright notice, this list of
+     * conditions and the following disclaimer.
+     * Redistributions in binary form must reproduce the above copyright notice, this list
+     * of conditions and the following disclaimer in the documentation and/or other materials
+     * provided with the distribution.
+     *
+     * Neither the name of the author nor the names of contributors may be used to endorse
+     * or promote products derived from this software without specific prior written permission.
+     *
+     * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+     * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+     * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+     *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+     *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+     *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+     * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+     *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+     * OF THE POSSIBILITY OF SUCH DAMAGE.
+     *
+     */
+    </script>
+
+<style>
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#ddd;
+	font-family:"Myriad Pro","Trebuchet MS", sans-serif;
+	font-size:12px;
+}
+.cn_wrapper{
+	margin:90px auto 0px auto;
+	width:500px;
+	height:300px;
+	position:relative;
+	color:#fff;
+	overflow:hidden;
+	padding:5px;
+	text-shadow:1px 1px 1px #000;
+	border:1px solid #111;
+	background-color:#333;
+	-moz-box-shadow:1px 1px 4px #222;
+	-webkit-box-shadow:1px 1px 4px #222;
+	box-shadow:1px 1px 4px #222;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.cn_wrapper h1{
+	font-size:20px;
+	text-transform:uppercase;
+}
+.cn_wrapper h2{
+	font-size:12px;
+	border-bottom:1px solid #000;
+	padding-bottom:4px;
+	text-transform:uppercase;
+}
+.cn_preview, .cn_list{
+	width:250px;
+	height:300px;
+	position:absolute;
+	top:2px;
+	left:6px;
+}
+.cn_preview{
+	left:255px;
+}
+.cn_content{
+	border:1px solid #444;
+	top:310px;/*5*/
+	left:5px;
+	width:219px;
+	padding:10px;
+	position:absolute;
+	background-color:#101010;
+	height:275px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.cn_content img{
+	width:215px;
+	-moz-box-shadow:1px 1px 4px #000;
+	-webkit-box-shadow:1px 1px 4px #000;
+	box-shadow:1px 1px 4px #000;
+}
+.cn_date{
+	position:absolute;
+	bottom:30px;
+	right:8px;
+	font-size:11px;
+}
+.cn_category{
+	position:absolute;
+	bottom:30px;
+	left:8px;
+	font-size:11px;
+	padding:1px 3px;
+	background:#ccc;
+	border:1px solid #ddd;
+	color:#000;
+	text-shadow:-1px 0px 1px #fff;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+}
+.cn_content p{
+	height:57px;
+	margin-top:2px;
+	overflow:hidden;
+}
+a.cn_more{
+	position:absolute;
+	padding: 4px 0px;
+	left:0px;
+	bottom:0px;
+	width:236px;
+	color:#fff;
+	text-align:center;
+	font-size:12px;
+	letter-spacing:1px;
+	text-shadow:1px 1px 1px #011c44;
+	text-transform:uppercase;
+	text-decoration: none;
+	border:1px solid #4c7ecb;
+	outline:none;
+	cursor:pointer;
+	background-color: #1951A5;
+	background-image:
+		-moz-linear-gradient(
+			top,
+			rgba(255,255,255,0.25),
+			rgba(255,255,255,0.05)
+		);
+	background-image:
+		-webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0, rgba(255,255,255,0.25)),
+			color-stop(1, rgba(255,255,255,0.05))
+		);
+	-moz-border-radius: 0px 0px 5px 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-border-bottom-left-radius: 5px;
+	-border-bottom-right-radius: 5px;
+	-moz-box-shadow:1px 1px 3px #111;
+	-webkit-box-shadow:1px 1px 3px #111;
+	box-shadow:1px 1px 3px #111;
+}
+a.cn_more:hover{
+	color: #011c44;
+	text-shadow: 1px 1px 1px #ccdffc;
+}
+.cn_item{
+	border:1px solid #090909;
+	cursor:pointer;
+	position:relative;
+	overflow:hidden;
+	height:49px;
+	color:#fff;
+	padding:5px;
+	margin:6px 5px 0px 0px;
+	text-shadow:1px 1px 1px #000;
+	background:#2b2b2b;
+	background:
+		-webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			from(#171717),
+			to(#2b2b2b)
+		);
+	background:
+		-moz-linear-gradient(
+			top,
+			#171717,
+			#2b2b2b
+		);
+	-moz-box-shadow:1px 1px 3px #111;
+	-webkit-box-shadow:1px 1px 3px #111;
+	box-shadow:1px 1px 3px #111;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+.cn_item:hover, .selected{
+	border-color:#4c7ecb;
+	background-color: #1951A5;
+	background-image:
+		-moz-linear-gradient(
+			top,
+			rgba(255,255,255,0.25),
+			rgba(255,255,255,0.05)
+		);
+	background-image:
+		-webkit-gradient(
+			linear,
+			left top,
+			left bottom,
+			color-stop(0, rgba(255,255,255,0.25)),
+			color-stop(1, rgba(255,255,255,0.05))
+		);
+}
+.cn_item:hover h2,
+.cn_list .selected h2,
+.cn_item:active h2{
+	border-color:#2C5FAC;
+}
+.cn_item:hover p,
+.cn_list .selected p,
+.cn_item:active p{
+	border-color:#527CBB;
+}
+.cn_item:active {
+	color: #011c44;
+	text-shadow: 1px 1px 1px #ccdffc;
+}
+.cn_list p{
+	height:29px;
+	padding-top:2px;
+	overflow:hidden;
+	border-top:1px solid #333;
+}
+.cn_nav{
+	width:55px;
+	height:24px;
+	position:absolute;
+	bottom:0px;
+	left:94px;
+}
+a.cn_next, a.cn_prev{
+	float:left;
+	height:23px;
+	width:23px;
+	background-color:#212121;
+	background-repeat:no-repeat;
+	background-position:center center;
+	cursor:pointer;
+	outline:none;
+	border:1px solid #111;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 1px 1px 3px #000;
+	-webkit-box-shadow: 1px 1px 3px #000;
+	box-shadow: 1px 1px 3px #000;
+}
+a.cn_next{
+	background-image:url(../images/next.png);
+}
+a.cn_prev{
+	margin-right:5px;
+	background-image:url(../images/prev.png);
+}
+.cn_nav a:hover{
+	background-color:#101010;
+}
+.cn_nav a:active{
+	margin-top:1px;
+	background-color:#000;
+}
+.cn_nav a.disabled{
+	opacity:0.5;
+}
+.cn_page{
+	display:none;
+}
+</style>
+<script>
+/*
+ * Copyright (c) 2009 Simo Kinnunen.
+ * Licensed under the MIT license.
+ *
+ * @version 1.09
+ */
+var Cufon=(function(){var m=function(){return m.replace.apply(null,arguments)};var x=m.DOM={ready:(function(){var C=false,E={loaded:1,complete:1};var B=[],D=function(){if(C){return}C=true;for(var F;F=B.shift();F()){}};if(document.addEventListener){document.addEventListener("DOMContentLoaded",D,false);window.addEventListener("pageshow",D,false)}if(!window.opera&&document.readyState){(function(){E[document.readyState]?D():setTimeout(arguments.callee,10)})()}if(document.readyState&&document.createStyleSheet){(function(){try{document.body.doScroll("left");D()}catch(F){setTimeout(arguments.callee,1)}})()}q(window,"load",D);return function(F){if(!arguments.length){D()}else{C?F():B.push(F)}}})(),root:function(){return document.documentElement||document.body}};var n=m.CSS={Size:function(C,B){this.value=parseFloat(C);this.unit=String(C).match(/[a-z%]*$/)[0]||"px";this.convert=function(D){return D/B*this.value};this.convertFrom=function(D){return D/this.value*B};this.toString=function(){return this.value+this.unit}},addClass:function(C,B){var D=C.className;C.className=D+(D&&" ")+B;return C},color:j(function(C){var B={};B.color=C.replace(/^rgba\((.*?),\s*([\d.]+)\)/,function(E,D,F){B.opacity=parseFloat(F);return"rgb("+D+")"});return B}),fontStretch:j(function(B){if(typeof B=="number"){return B}if(/%$/.test(B)){return parseFloat(B)/100}return{"ultra-condensed":0.5,"extra-condensed":0.625,condensed:0.75,"semi-condensed":0.875,"semi-expanded":1.125,expanded:1.25,"extra-expanded":1.5,"ultra-expanded":2}[B]||1}),getStyle:function(C){var B=document.defaultView;if(B&&B.getComputedStyle){return new a(B.getComputedStyle(C,null))}if(C.currentStyle){return new a(C.currentStyle)}return new a(C.style)},gradient:j(function(F){var G={id:F,type:F.match(/^-([a-z]+)-gradient\(/)[1],stops:[]},C=F.substr(F.indexOf("(")).match(/([\d.]+=)?(#[a-f0-9]+|[a-z]+\(.*?\)|[a-z]+)/ig);for(var E=0,B=C.length,D;E<B;++E){D=C[E].split("=",2).reverse();G.stops.push([D[1]||E/(B-1),D[0]])}return G}),quotedList:j(function(E){var D=[],C=/\s*((["'])([\s\S]*?[^\\])\2|[^,]+)\s*/g,B;while(B=C.exec(E)){D.push(B[3]||B[1])}return D}),recognizesMedia:j(function(G){var E=document.createElement("style"),D,C,B;E.type="text/css";E.media=G;try{E.appendChild(document.createTextNode("/**/"))}catch(F){}C=g("head")[0];C.insertBefore(E,C.firstChild);D=(E.sheet||E.styleSheet);B=D&&!D.disabled;C.removeChild(E);return B}),removeClass:function(D,C){var B=RegExp("(?:^|\\s+)"+C+"(?=\\s|$)","g");D.className=D.className.replace(B,"");return D},supports:function(D,C){var B=document.createElement("span").style;if(B[D]===undefined){return false}B[D]=C;return B[D]===C},textAlign:function(E,D,B,C){if(D.get("textAlign")=="right"){if(B>0){E=" "+E}}else{if(B<C-1){E+=" "}}return E},textShadow:j(function(F){if(F=="none"){return null}var E=[],G={},B,C=0;var D=/(#[a-f0-9]+|[a-z]+\(.*?\)|[a-z]+)|(-?[\d.]+[a-z%]*)|,/ig;while(B=D.exec(F)){if(B[0]==","){E.push(G);G={};C=0}else{if(B[1]){G.color=B[1]}else{G[["offX","offY","blur"][C++]]=B[2]}}}E.push(G);return E}),textTransform:(function(){var B={uppercase:function(C){return C.toUpperCase()},lowercase:function(C){return C.toLowerCase()},capitalize:function(C){return C.replace(/\b./g,function(D){return D.toUpperCase()})}};return function(E,D){var C=B[D.get("textTransform")];return C?C(E):E}})(),whiteSpace:(function(){var D={inline:1,"inline-block":1,"run-in":1};var C=/^\s+/,B=/\s+$/;return function(H,F,G,E){if(E){if(E.nodeName.toLowerCase()=="br"){H=H.replace(C,"")}}if(D[F.get("display")]){return H}if(!G.previousSibling){H=H.replace(C,"")}if(!G.nextSibling){H=H.replace(B,"")}return H}})()};n.ready=(function(){var B=!n.recognizesMedia("all"),E=false;var D=[],H=function(){B=true;for(var K;K=D.shift();K()){}};var I=g("link"),J=g("style");function C(K){return K.disabled||G(K.sheet,K.media||"screen")}function G(M,P){if(!n.recognizesMedia(P||"all")){return true}if(!M||M.disabled){return false}try{var Q=M.cssRules,O;if(Q){search:for(var L=0,K=Q.length;O=Q[L],L<K;++L){switch(O.type){case 2:break;case 3:if(!G(O.styleSheet,O.media.mediaText)){return false}break;default:break search}}}}catch(N){}return true}function F(){if(document.createStyleSheet){return true}var L,K;for(K=0;L=I[K];++K){if(L.rel.toLowerCase()=="stylesheet"&&!C(L)){return false}}for(K=0;L=J[K];++K){if(!C(L)){return false}}return true}x.ready(function(){if(!E){E=n.getStyle(document.body).isUsable()}if(B||(E&&F())){H()}else{setTimeout(arguments.callee,10)}});return function(K){if(B){K()}else{D.push(K)}}})();function s(D){var C=this.face=D.face,B={"\u0020":1,"\u00a0":1,"\u3000":1};this.glyphs=D.glyphs;this.w=D.w;this.baseSize=parseInt(C["units-per-em"],10);this.family=C["font-family"].toLowerCase();this.weight=C["font-weight"];this.style=C["font-style"]||"normal";this.viewBox=(function(){var F=C.bbox.split(/\s+/);var E={minX:parseInt(F[0],10),minY:parseInt(F[1],10),maxX:parseInt(F[2],10),maxY:parseInt(F[3],10)};E.width=E.maxX-E.minX;E.height=E.maxY-E.minY;E.toString=function(){return[this.minX,this.minY,this.width,this.height].join(" ")};return E})();this.ascent=-parseInt(C.ascent,10);this.descent=-parseInt(C.descent,10);this.height=-this.ascent+this.descent;this.spacing=function(L,N,E){var O=this.glyphs,M,K,G,P=[],F=0,J=-1,I=-1,H;while(H=L[++J]){M=O[H]||this.missingGlyph;if(!M){continue}if(K){F-=G=K[H]||0;P[I]-=G}F+=P[++I]=~~(M.w||this.w)+N+(B[H]?E:0);K=M.k}P.total=F;return P}}function f(){var C={},B={oblique:"italic",italic:"oblique"};this.add=function(D){(C[D.style]||(C[D.style]={}))[D.weight]=D};this.get=function(H,I){var G=C[H]||C[B[H]]||C.normal||C.italic||C.oblique;if(!G){return null}I={normal:400,bold:700}[I]||parseInt(I,10);if(G[I]){return G[I]}var E={1:1,99:0}[I%100],K=[],F,D;if(E===undefined){E=I>400}if(I==500){I=400}for(var J in G){if(!k(G,J)){continue}J=parseInt(J,10);if(!F||J<F){F=J}if(!D||J>D){D=J}K.push(J)}if(I<F){I=F}if(I>D){I=D}K.sort(function(M,L){return(E?(M>=I&&L>=I)?M<L:M>L:(M<=I&&L<=I)?M>L:M<L)?-1:1});return G[K[0]]}}function r(){function D(F,G){if(F.contains){return F.contains(G)}return F.compareDocumentPosition(G)&16}function B(G){var F=G.relatedTarget;if(!F||D(this,F)){return}C(this,G.type=="mouseover")}function E(F){C(this,F.type=="mouseenter")}function C(F,G){setTimeout(function(){var H=d.get(F).options;m.replace(F,G?h(H,H.hover):H,true)},10)}this.attach=function(F){if(F.onmouseenter===undefined){q(F,"mouseover",B);q(F,"mouseout",B)}else{q(F,"mouseenter",E);q(F,"mouseleave",E)}}}function u(){var C=[],D={};function B(H){var E=[],G;for(var F=0;G=H[F];++F){E[F]=C[D[G]]}return E}this.add=function(F,E){D[F]=C.push(E)-1};this.repeat=function(){var E=arguments.length?B(arguments):C,F;for(var G=0;F=E[G++];){m.replace(F[0],F[1],true)}}}function A(){var D={},B=0;function C(E){return E.cufid||(E.cufid=++B)}this.get=function(E){var F=C(E);return D[F]||(D[F]={})}}function a(B){var D={},C={};this.extend=function(E){for(var F in E){if(k(E,F)){D[F]=E[F]}}return this};this.get=function(E){return D[E]!=undefined?D[E]:B[E]};this.getSize=function(F,E){return C[F]||(C[F]=new n.Size(this.get(F),E))};this.isUsable=function(){return !!B}}function q(C,B,D){if(C.addEventListener){C.addEventListener(B,D,false)}else{if(C.attachEvent){C.attachEvent("on"+B,function(){return D.call(C,window.event)})}}}function v(C,B){var D=d.get(C);if(D.options){return C}if(B.hover&&B.hoverables[C.nodeName.toLowerCase()]){b.attach(C)}D.options=B;return C}function j(B){var C={};return function(D){if(!k(C,D)){C[D]=B.apply(null,arguments)}return C[D]}}function c(F,E){var B=n.quotedList(E.get("fontFamily").toLowerCase()),D;for(var C=0;D=B[C];++C){if(i[D]){return i[D].get(E.get("fontStyle"),E.get("fontWeight"))}}return null}function g(B){return document.getElementsByTagName(B)}function k(C,B){return C.hasOwnProperty(B)}function h(){var C={},B,F;for(var E=0,D=arguments.length;B=arguments[E],E<D;++E){for(F in B){if(k(B,F)){C[F]=B[F]}}}return C}function o(E,M,C,N,F,D){var K=document.createDocumentFragment(),H;if(M===""){return K}var L=N.separate;var I=M.split(p[L]),B=(L=="words");if(B&&t){if(/^\s/.test(M)){I.unshift("")}if(/\s$/.test(M)){I.push("")}}for(var J=0,G=I.length;J<G;++J){H=z[N.engine](E,B?n.textAlign(I[J],C,J,G):I[J],C,N,F,D,J<G-1);if(H){K.appendChild(H)}}return K}function l(D,M){var C=D.nodeName.toLowerCase();if(M.ignore[C]){return}var E=!M.textless[C];var B=n.getStyle(v(D,M)).extend(M);var F=c(D,B),G,K,I,H,L,J;if(!F){return}for(G=D.firstChild;G;G=I){K=G.nodeType;I=G.nextSibling;if(E&&K==3){if(H){H.appendData(G.data);D.removeChild(G)}else{H=G}if(I){continue}}if(H){D.replaceChild(o(F,n.whiteSpace(H.data,B,H,J),B,M,G,D),H);H=null}if(K==1){if(G.firstChild){if(G.nodeName.toLowerCase()=="cufon"){z[M.engine](F,null,B,M,G,D)}else{arguments.callee(G,M)}}J=G}}}var t=" ".split(/\s+/).length==0;var d=new A();var b=new r();var y=new u();var e=false;var z={},i={},w={autoDetect:false,engine:null,forceHitArea:false,hover:false,hoverables:{a:true},ignore:{applet:1,canvas:1,col:1,colgroup:1,head:1,iframe:1,map:1,optgroup:1,option:1,script:1,select:1,style:1,textarea:1,title:1,pre:1},printable:true,selector:(window.Sizzle||(window.jQuery&&function(B){return jQuery(B)})||(window.dojo&&dojo.query)||(window.Ext&&Ext.query)||(window.YAHOO&&YAHOO.util&&YAHOO.util.Selector&&YAHOO.util.Selector.query)||(window.$$&&function(B){return $$(B)})||(window.$&&function(B){return $(B)})||(document.querySelectorAll&&function(B){return document.querySelectorAll(B)})||g),separate:"words",textless:{dl:1,html:1,ol:1,table:1,tbody:1,thead:1,tfoot:1,tr:1,ul:1},textShadow:"none"};var p={words:/\s/.test("\u00a0")?/[^\S\u00a0]+/:/\s+/,characters:"",none:/^/};m.now=function(){x.ready();return m};m.refresh=function(){y.repeat.apply(y,arguments);return m};m.registerEngine=function(C,B){if(!B){return m}z[C]=B;return m.set("engine",C)};m.registerFont=function(D){if(!D){return m}var B=new s(D),C=B.family;if(!i[C]){i[C]=new f()}i[C].add(B);return m.set("fontFamily",'"'+C+'"')};m.replace=function(D,C,B){C=h(w,C);if(!C.engine){return m}if(!e){n.addClass(x.root(),"cufon-active cufon-loading");n.ready(function(){n.addClass(n.removeClass(x.root(),"cufon-loading"),"cufon-ready")});e=true}if(C.hover){C.forceHitArea=true}if(C.autoDetect){delete C.fontFamily}if(typeof C.textShadow=="string"){C.textShadow=n.textShadow(C.textShadow)}if(typeof C.color=="string"&&/^-/.test(C.color)){C.textGradient=n.gradient(C.color)}else{delete C.textGradient}if(!B){y.add(D,arguments)}if(D.nodeType||typeof D=="string"){D=[D]}n.ready(function(){for(var F=0,E=D.length;F<E;++F){var G=D[F];if(typeof G=="string"){m.replace(C.selector(G),C,true)}else{l(G,C)}}});return m};m.set=function(B,C){w[B]=C;return m};return m})();Cufon.registerEngine("canvas",(function(){var b=document.createElement("canvas");if(!b||!b.getContext||!b.getContext.apply){return}b=null;var a=Cufon.CSS.supports("display","inline-block");var e=!a&&(document.compatMode=="BackCompat"||/frameset|transitional/i.test(document.doctype.publicId));var f=document.createElement("style");f.type="text/css";f.appendChild(document.createTextNode(("cufon{text-indent:0;}@media screen,projection{cufon{display:inline;display:inline-block;position:relative;vertical-align:middle;"+(e?"":"font-size:1px;line-height:1px;")+"}cufon cufontext{display:-moz-inline-box;display:inline-block;width:0;height:0;overflow:hidden;text-indent:-10000in;}"+(a?"cufon canvas{position:relative;}":"cufon canvas{position:absolute;}")+"}@media print{cufon{padding:0;}cufon canvas{display:none;}}").replace(/;/g,"!important;")));document.getElementsByTagName("head")[0].appendChild(f);function d(p,h){var n=0,m=0;var g=[],o=/([mrvxe])([^a-z]*)/g,k;generate:for(var j=0;k=o.exec(p);++j){var l=k[2].split(",");switch(k[1]){case"v":g[j]={m:"bezierCurveTo",a:[n+~~l[0],m+~~l[1],n+~~l[2],m+~~l[3],n+=~~l[4],m+=~~l[5]]};break;case"r":g[j]={m:"lineTo",a:[n+=~~l[0],m+=~~l[1]]};break;case"m":g[j]={m:"moveTo",a:[n=~~l[0],m=~~l[1]]};break;case"x":g[j]={m:"closePath"};break;case"e":break generate}h[g[j].m].apply(h,g[j].a)}return g}function c(m,k){for(var j=0,h=m.length;j<h;++j){var g=m[j];k[g.m].apply(k,g.a)}}return function(V,w,P,t,C,W){var k=(w===null);if(k){w=C.getAttribute("alt")}var A=V.viewBox;var m=P.getSize("fontSize",V.baseSize);var B=0,O=0,N=0,u=0;var z=t.textShadow,L=[];if(z){for(var U=z.length;U--;){var F=z[U];var K=m.convertFrom(parseFloat(F.offX));var I=m.convertFrom(parseFloat(F.offY));L[U]=[K,I];if(I<B){B=I}if(K>O){O=K}if(I>N){N=I}if(K<u){u=K}}}var Z=Cufon.CSS.textTransform(w,P).split("");var E=V.spacing(Z,~~m.convertFrom(parseFloat(P.get("letterSpacing"))||0),~~m.convertFrom(parseFloat(P.get("wordSpacing"))||0));if(!E.length){return null}var h=E.total;O+=A.width-E[E.length-1];u+=A.minX;var s,n;if(k){s=C;n=C.firstChild}else{s=document.createElement("cufon");s.className="cufon cufon-canvas";s.setAttribute("alt",w);n=document.createElement("canvas");s.appendChild(n);if(t.printable){var S=document.createElement("cufontext");S.appendChild(document.createTextNode(w));s.appendChild(S)}}var aa=s.style;var H=n.style;var j=m.convert(A.height);var Y=Math.ceil(j);var M=Y/j;var G=M*Cufon.CSS.fontStretch(P.get("fontStretch"));var J=h*G;var Q=Math.ceil(m.convert(J+O-u));var o=Math.ceil(m.convert(A.height-B+N));n.width=Q;n.height=o;H.width=Q+"px";H.height=o+"px";B+=A.minY;H.top=Math.round(m.convert(B-V.ascent))+"px";H.left=Math.round(m.convert(u))+"px";var r=Math.max(Math.ceil(m.convert(J)),0)+"px";if(a){aa.width=r;aa.height=m.convert(V.height)+"px"}else{aa.paddingLeft=r;aa.paddingBottom=(m.convert(V.height)-1)+"px"}var X=n.getContext("2d"),D=j/A.height;X.scale(D,D*M);X.translate(-u,-B);X.save();function T(){var x=V.glyphs,ab,l=-1,g=-1,y;X.scale(G,1);while(y=Z[++l]){var ab=x[Z[l]]||V.missingGlyph;if(!ab){continue}if(ab.d){X.beginPath();if(ab.code){c(ab.code,X)}else{ab.code=d("m"+ab.d,X)}X.fill()}X.translate(E[++g],0)}X.restore()}if(z){for(var U=z.length;U--;){var F=z[U];X.save();X.fillStyle=F.color;X.translate.apply(X,L[U]);T()}}var q=t.textGradient;if(q){var v=q.stops,p=X.createLinearGradient(0,A.minY,0,A.maxY);for(var U=0,R=v.length;U<R;++U){p.addColorStop.apply(p,v[U])}X.fillStyle=p}else{X.fillStyle=P.get("color")}T();return s}})());Cufon.registerEngine("vml",(function(){var e=document.namespaces;if(!e){return}e.add("cvml","urn:schemas-microsoft-com:vml");e=null;var b=document.createElement("cvml:shape");b.style.behavior="url(#default#VML)";if(!b.coordsize){return}b=null;var h=(document.documentMode||0)<8;document.write(('<style type="text/css">cufoncanvas{text-indent:0;}@media screen{cvml\\:shape,cvml\\:rect,cvml\\:fill,cvml\\:shadow{behavior:url(#default#VML);display:block;antialias:true;position:absolute;}cufoncanvas{position:absolute;text-align:left;}cufon{display:inline-block;position:relative;vertical-align:'+(h?"middle":"text-bottom")+";}cufon cufontext{position:absolute;left:-10000in;font-size:1px;}a cufon{cursor:pointer}}@media print{cufon cufoncanvas{display:none;}}</style>").replace(/;/g,"!important;"));function c(i,j){return a(i,/(?:em|ex|%)$|^[a-z-]+$/i.test(j)?"1em":j)}function a(l,m){if(m==="0"){return 0}if(/px$/i.test(m)){return parseFloat(m)}var k=l.style.left,j=l.runtimeStyle.left;l.runtimeStyle.left=l.currentStyle.left;l.style.left=m.replace("%","em");var i=l.style.pixelLeft;l.style.left=k;l.runtimeStyle.left=j;return i}function f(l,k,j,n){var i="computed"+n,m=k[i];if(isNaN(m)){m=k.get(n);k[i]=m=(m=="normal")?0:~~j.convertFrom(a(l,m))}return m}var g={};function d(p){var q=p.id;if(!g[q]){var n=p.stops,o=document.createElement("cvml:fill"),i=[];o.type="gradient";o.angle=180;o.focus="0";o.method="sigma";o.color=n[0][1];for(var m=1,l=n.length-1;m<l;++m){i.push(n[m][0]*100+"% "+n[m][1])}o.colors=i.join(",");o.color2=n[l][1];g[q]=o}return g[q]}return function(ac,G,Y,C,K,ad,W){var n=(G===null);if(n){G=K.alt}var I=ac.viewBox;var p=Y.computedFontSize||(Y.computedFontSize=new Cufon.CSS.Size(c(ad,Y.get("fontSize"))+"px",ac.baseSize));var y,q;if(n){y=K;q=K.firstChild}else{y=document.createElement("cufon");y.className="cufon cufon-vml";y.alt=G;q=document.createElement("cufoncanvas");y.appendChild(q);if(C.printable){var Z=document.createElement("cufontext");Z.appendChild(document.createTextNode(G));y.appendChild(Z)}if(!W){y.appendChild(document.createElement("cvml:shape"))}}var ai=y.style;var R=q.style;var l=p.convert(I.height),af=Math.ceil(l);var V=af/l;var P=V*Cufon.CSS.fontStretch(Y.get("fontStretch"));var U=I.minX,T=I.minY;R.height=af;R.top=Math.round(p.convert(T-ac.ascent));R.left=Math.round(p.convert(U));ai.height=p.convert(ac.height)+"px";var F=Y.get("color");var ag=Cufon.CSS.textTransform(G,Y).split("");var L=ac.spacing(ag,f(ad,Y,p,"letterSpacing"),f(ad,Y,p,"wordSpacing"));if(!L.length){return null}var k=L.total;var x=-U+k+(I.width-L[L.length-1]);var ah=p.convert(x*P),X=Math.round(ah);var O=x+","+I.height,m;var J="r"+O+"ns";var u=C.textGradient&&d(C.textGradient);var o=ac.glyphs,S=0;var H=C.textShadow;var ab=-1,aa=0,w;while(w=ag[++ab]){var D=o[ag[ab]]||ac.missingGlyph,v;if(!D){continue}if(n){v=q.childNodes[aa];while(v.firstChild){v.removeChild(v.firstChild)}}else{v=document.createElement("cvml:shape");q.appendChild(v)}v.stroked="f";v.coordsize=O;v.coordorigin=m=(U-S)+","+T;v.path=(D.d?"m"+D.d+"xe":"")+"m"+m+J;v.fillcolor=F;if(u){v.appendChild(u.cloneNode(false))}var ae=v.style;ae.width=X;ae.height=af;if(H){var s=H[0],r=H[1];var B=Cufon.CSS.color(s.color),z;var N=document.createElement("cvml:shadow");N.on="t";N.color=B.color;N.offset=s.offX+","+s.offY;if(r){z=Cufon.CSS.color(r.color);N.type="double";N.color2=z.color;N.offset2=r.offX+","+r.offY}N.opacity=B.opacity||(z&&z.opacity)||1;v.appendChild(N)}S+=L[aa++]}var M=v.nextSibling,t,A;if(C.forceHitArea){if(!M){M=document.createElement("cvml:rect");M.stroked="f";M.className="cufon-vml-cover";t=document.createElement("cvml:fill");t.opacity=0;M.appendChild(t);q.appendChild(M)}A=M.style;A.width=X;A.height=af}else{if(M){q.removeChild(M)}}ai.width=Math.max(Math.ceil(p.convert(k*P)),0);if(h){var Q=Y.computedYAdjust;if(Q===undefined){var E=Y.get("lineHeight");if(E=="normal"){E="1em"}else{if(!isNaN(E)){E+="em"}}Y.computedYAdjust=Q=0.5*(a(ad,E)-parseFloat(ai.height))}if(Q){ai.marginTop=Math.ceil(Q)+"px";ai.marginBottom=Q+"px"}}return y}})());
+</script>
+
+<script>
+/*!
+* The following copyright notice may not be removed under any circumstances.
+*
+* Copyright:
+* Ryoichi Tsunekawa Bagel&Co All rights reserved
+*/
+Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"font-stretch":"normal","units-per-em":"360","panose-1":"0 0 0 0 0 0 0 0 0 0","ascent":"288","descent":"-72","x-height":"4","bbox":"14.4078 -422 343 54","underline-thickness":"12.7841","underline-position":"-12.7841","unicode-range":"U+0020-U+007E"},"glyphs":{" ":{"w":33},"!":{"d":"20,-80v-5,-76,-2,-160,-3,-241r48,0r0,180r-4,61r-41,0xm17,0r0,-48r48,0r0,48r-48,0","w":81},"\"":{"d":"24,-298r-7,-73r44,0r-7,73r-30,0xm81,-298r-7,-73r45,0r-8,73r-30,0","w":135},"#":{"d":"221,-185r-11,60r50,0r-7,49r-51,0r-12,76r-48,0r12,-76r-42,0r-12,76r-48,0r12,-76r-47,0r7,-49r48,0r10,-60r-47,0r7,-49r48,0r15,-87r48,0r-14,87r41,0r15,-87r48,0r-14,87r49,0r-7,49r-50,0xm172,-185r-41,0r-10,60r41,0","w":295},"$":{"d":"98,-283v-37,2,-31,57,-7,80v33,32,82,65,85,121v2,45,-22,74,-59,82r0,22r-41,0r0,-23v-35,-9,-57,-45,-59,-88r46,-4v-5,54,63,69,65,13v-13,-71,-106,-82,-106,-167v0,-39,22,-70,54,-77r0,-21r41,0r0,21v34,7,54,35,57,71r-46,8v-3,-20,-7,-39,-30,-38","w":193},"%":{"d":"57,-334v55,0,38,77,40,131v1,21,-19,40,-40,40v-21,0,-41,-18,-40,-40v3,-55,-16,-131,40,-131xm71,-295v0,-18,-30,-18,-30,0r0,92v0,18,30,18,30,0r0,-92xm159,-38v2,-55,-15,-132,40,-132v55,0,38,78,40,132v1,21,-19,40,-40,40v-21,0,-41,-19,-40,-40xm198,-24v8,0,16,-7,15,-15r0,-91v1,-8,-8,-15,-15,-15v-7,0,-14,7,-14,15r0,91v-1,8,6,15,14,15xm60,5r-28,0r164,-339r28,0","w":255},"&":{"d":"96,-336v64,-2,88,78,47,123r-36,48v11,22,23,44,36,63v8,-18,14,-38,18,-59r44,10v-8,34,-18,63,-31,87v12,11,23,17,32,17r0,44v-19,0,-38,-8,-58,-25v-44,56,-131,29,-131,-46v0,-37,19,-68,38,-95v-11,-28,-29,-53,-29,-91v1,-44,26,-75,70,-76xm96,-299v-34,12,-31,49,-11,88v11,-16,33,-35,34,-57v1,-19,-9,-31,-23,-31xm78,-123v-16,20,-31,79,9,81v10,0,20,-7,31,-19v-13,-17,-27,-38,-40,-62","w":222},"'":{"d":"17,-371r44,0r-7,73r-30,0","w":77},"(":{"d":"81,24v-55,-89,-91,-224,-32,-331v11,-20,20,-40,32,-58r31,15v-24,50,-47,109,-49,174v-2,47,28,137,49,184","w":129},")":{"d":"66,-175v1,-49,-26,-131,-49,-175r31,-14v59,90,90,209,32,325v-11,22,-20,43,-32,63r-31,-16v22,-56,47,-115,49,-183","w":128},"*":{"d":"143,-260r-39,7r27,28r-33,24r-19,-35r-18,35r-34,-24r28,-28r-38,-7r13,-38r35,17r-6,-40r41,0r-6,40r37,-17","w":160},"+":{"d":"117,-175r64,0r0,36r-64,0r0,65r-36,0r0,-65r-64,0r0,-36r64,0r0,-64r36,0r0,64","w":197},",":{"d":"17,0r0,-48r48,0r0,48r-17,37r-21,0r12,-37r-22,0","w":81},"-":{"d":"17,-184r143,0r0,48r-143,0r0,-48","w":176},"\u2010":{"d":"17,-184r143,0r0,48r-143,0r0,-48","w":176},".":{"d":"17,-48r48,0r0,48r-48,0r0,-48","w":81},"\/":{"d":"150,-341r40,0r-134,351r-39,0","w":206},"0":{"d":"93,-325v41,0,77,35,77,77r0,175v1,40,-36,76,-77,76v-41,0,-76,-35,-76,-76r0,-175v-1,-41,36,-77,76,-77xm92,-46v16,0,27,-13,28,-28r0,-175v-1,-15,-12,-28,-28,-28v-16,0,-28,12,-28,28r0,175v0,16,12,28,28,28","k":{"y":12,"x":12,"u":-9,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":12,"X":12,"U":-9,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"2":-5,"1":-6,"0":-8}},"1":{"d":"17,-280v25,-3,46,-20,55,-41r34,0r0,321r-48,0r0,-247r-41,0r0,-33","w":122,"k":{"z":-7,"y":-6,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-6,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-5,"3":-5,"2":-6,"1":-6,"0":-9}},"2":{"d":"96,-276v-21,-1,-34,25,-31,54r-48,0v-2,-59,26,-98,81,-99v66,-1,95,82,62,143v-17,30,-62,90,-85,130r95,0r0,48r-153,0v-9,-70,41,-100,68,-145v20,-33,43,-54,43,-95v0,-19,-14,-36,-32,-36","w":190,"k":{"y":16,"w":5,"v":6,"u":-7,"r":-7,"q":-7,"p":-7,"o":-7,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"g":-7,"f":-7,"e":-7,"d":-7,"c":-7,"b":-7,"Y":16,"W":5,"V":6,"U":-7,"R":-7,"Q":-7,"P":-7,"O":-7,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"G":-7,"F":-7,"E":-7,"D":-7,"C":-7,"B":-7,"9":-5,"6":-7,"4":31,"0":-7}},"3":{"d":"93,3v-43,0,-80,-36,-76,-84r46,-4v0,22,8,39,29,39v30,1,33,-20,33,-50v0,-33,-18,-49,-52,-49r0,-42v39,0,56,-21,54,-62v0,-21,-10,-31,-28,-31v-22,-1,-30,19,-28,43r-47,0v-3,-53,25,-85,73,-88v80,-5,97,123,37,156v27,15,39,44,39,92v0,45,-36,81,-80,80","w":189,"k":{"y":15,"x":14,"w":6,"v":6,"u":-8,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":6,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":15,"X":14,"W":6,"V":6,"U":-8,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":6,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-7,"6":-8,"5":-6,"0":-8}},"4":{"d":"17,-118r85,-203r48,0r0,203r31,0r0,49r-31,0r0,69r-48,0r0,-69r-85,0r0,-49xm102,-118r0,-100r-40,100r40,0","w":197,"k":{"y":25,"x":19,"w":23,"v":23,"u":-7,"t":25,"r":-7,"q":-7,"p":-7,"o":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":26,"i":-7,"h":-7,"g":-7,"f":-7,"e":-7,"d":-7,"c":-7,"b":-7,"a":6,"Y":25,"X":19,"W":23,"V":23,"U":-7,"T":25,"R":-7,"Q":-7,"P":-7,"O":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":26,"I":-7,"H":-7,"G":-7,"F":-7,"E":-7,"D":-7,"C":-7,"B":-7,"A":6,"9":-5,"8":-6,"7":26,"6":-7,"5":-5,"2":9,"1":24,"0":-7}},"5":{"d":"94,-183v-19,-1,-25,17,-24,37r-49,0r0,-175r142,0r0,49r-93,0r0,68v7,-10,19,-17,36,-18v68,-3,60,76,60,145v0,46,-32,82,-77,81v-43,0,-75,-37,-72,-85r46,-3v1,21,6,36,25,38v47,2,30,-68,30,-109v0,-14,-8,-28,-24,-28","w":182,"k":{"u":-8,"r":-8,"q":-7,"p":-8,"o":-7,"n":-8,"m":-8,"l":-8,"k":-8,"j":6,"i":-8,"h":-8,"g":-7,"f":-8,"e":-8,"d":-8,"c":-7,"b":-8,"U":-8,"R":-8,"Q":-7,"P":-8,"O":-7,"N":-8,"M":-8,"L":-8,"K":-8,"J":6,"I":-8,"H":-8,"G":-7,"F":-8,"E":-8,"D":-8,"C":-7,"B":-8,"9":-6,"8":-7,"6":-7,"5":-6,"0":-7}},"6":{"d":"89,-325v43,0,76,37,73,84r-50,0v1,-20,-5,-36,-24,-36v-37,1,-20,57,-24,92v43,-37,105,-1,98,61v7,70,-11,127,-73,127v-41,0,-74,-35,-72,-76v6,-100,-34,-252,72,-252xm88,-161v-34,0,-24,53,-24,87v0,16,8,29,24,28v36,0,24,-53,24,-87v0,-14,-8,-28,-24,-28","w":178,"k":{"y":13,"x":13,"u":-8,"s":-5,"r":-8,"q":-7,"p":-8,"o":-7,"n":-8,"m":-8,"l":-8,"k":-8,"j":6,"i":-8,"h":-8,"g":-7,"f":-8,"e":-8,"d":-8,"c":-7,"b":-8,"Y":13,"X":13,"U":-8,"S":-5,"R":-8,"Q":-7,"P":-8,"O":-7,"N":-8,"M":-8,"L":-8,"K":-8,"J":6,"I":-8,"H":-8,"G":-7,"F":-8,"E":-8,"D":-8,"C":-7,"B":-8,"9":-6,"8":-7,"6":-7,"5":-6,"0":-7}},"7":{"d":"162,-321r0,49r-68,272r-47,0r68,-272r-98,0r0,-49r145,0","w":178,"k":{"u":-7,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":51,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"a":37,"U":-7,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":51,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"A":37,"4":31,"3":6}},"8":{"d":"134,-169v28,15,40,47,40,96v0,42,-36,76,-81,76v-84,0,-106,-138,-37,-172v-24,-12,-38,-40,-36,-81v2,-44,32,-75,77,-75v80,0,99,126,37,156xm95,-46v22,0,32,-22,30,-50v-2,-27,-6,-42,-30,-43v-27,-1,-32,27,-30,58v0,19,12,35,30,35xm95,-195v23,0,32,-18,32,-42v0,-26,-9,-42,-32,-43v-24,-1,-32,18,-32,43v0,27,7,41,32,42","w":190,"k":{"y":15,"x":13,"w":6,"v":7,"u":-8,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":5,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":15,"X":13,"W":6,"V":7,"U":-8,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":5,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-8,"5":-7,"0":-8}},"9":{"d":"17,-198v0,-70,9,-125,72,-127v41,-1,74,35,73,77r0,175v2,41,-32,76,-73,76v-43,0,-75,-36,-72,-83r50,0v-1,20,5,36,24,36v37,-1,20,-57,24,-92v-44,37,-98,1,-98,-62xm91,-161v34,0,24,-53,24,-87v0,-16,-8,-27,-24,-27v-36,1,-24,53,-24,87v0,13,7,27,24,27","w":178,"k":{"y":12,"x":12,"u":-9,"s":-6,"r":-9,"q":-9,"p":-9,"o":-9,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"g":-9,"f":-9,"e":-9,"d":-9,"c":-9,"b":-9,"Y":12,"X":12,"U":-9,"S":-6,"R":-9,"Q":-9,"P":-9,"O":-9,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"G":-9,"F":-9,"E":-9,"D":-9,"C":-9,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"2":-5,"1":-6,"0":-9}},":":{"d":"17,-48r48,0r0,48r-48,0r0,-48xm17,-184r48,0r0,48r-48,0r0,-48","w":81},";":{"d":"17,-48r48,0r0,48r-17,37r-21,0r11,-37r-21,0r0,-48xm17,-184r48,0r0,48r-48,0r0,-48","w":81},"<":{"d":"177,-244r0,41r-110,45r110,47r0,40r-160,-69r0,-35","w":193},"=":{"d":"17,-182r0,-36r164,0r0,36r-164,0xm17,-112r0,-36r164,0r0,36r-164,0","w":197},">":{"d":"17,-244r160,69r0,35r-160,69r0,-40r110,-46r-110,-46r0,-41","w":193},"?":{"d":"17,-251v5,-43,29,-73,78,-74v45,-2,74,36,74,80v0,33,-14,64,-44,94v-17,17,-19,39,-18,71r-48,0v-12,-87,56,-96,60,-166v2,-37,-43,-49,-52,-15v-2,5,-3,11,-4,18xm59,-46r48,0r0,48r-48,0r0,-48","w":185},"@":{"d":"187,-10v38,0,74,-14,104,-39r52,0v-30,44,-87,76,-156,77v-98,2,-170,-75,-170,-178v0,-105,65,-190,172,-189v98,1,150,67,151,154v1,66,-48,144,-111,141v-17,0,-29,-7,-34,-21v-15,13,-24,20,-47,21v-47,1,-73,-42,-73,-92v0,-81,75,-184,140,-114r2,-17r49,0r-28,176v0,3,1,5,4,5v38,-7,60,-51,60,-99v0,-67,-45,-115,-113,-115v-81,0,-134,64,-134,148v0,82,52,143,132,142xm153,-82v40,-3,45,-72,48,-113v1,-20,-8,-38,-26,-38v-33,0,-49,68,-49,108v0,22,9,44,27,43","w":360},"A":{"d":"79,-74r-12,74r-50,0r54,-320r67,0r53,320r-50,0r-12,-74r-50,0xm104,-247r-18,126r36,0","w":207,"k":{"y":45,"w":43,"v":43,"t":38,"s":7,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"Y":45,"W":43,"V":43,"T":38,"S":7,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"7":25,"4":7,"3":7,"1":33}},"B":{"d":"179,-89v0,51,-27,89,-73,89r-89,0r0,-321v87,-5,156,2,156,89v0,30,-12,55,-34,64v25,11,40,39,40,79xm126,-93v2,-40,-17,-54,-57,-50r0,95v37,4,57,-10,57,-45xm122,-232v0,-31,-19,-44,-53,-40r0,82v35,4,53,-8,53,-42","w":196,"k":{"y":21,"x":16,"w":10,"v":11,"u":-8,"t":7,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-8,"m":-8,"l":-9,"k":-8,"j":8,"i":-9,"h":-9,"g":-8,"f":-8,"e":-8,"d":-8,"c":-8,"b":-8,"Y":21,"X":16,"W":10,"V":11,"U":-8,"T":7,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-8,"M":-8,"L":-9,"K":-8,"J":8,"I":-9,"H":-9,"G":-8,"F":-8,"E":-8,"D":-8,"C":-8,"B":-8,"9":-6,"8":-7,"7":8,"6":-8,"5":-6,"0":-8}},"C":{"d":"170,-117v9,69,-19,120,-77,121v-41,2,-76,-35,-76,-76r0,-175v-2,-41,35,-79,76,-77v54,1,86,47,77,113r-50,0v1,-32,2,-65,-28,-65v-16,0,-28,12,-28,28r0,175v0,16,12,28,28,28v32,0,29,-39,28,-72r50,0","k":{"y":15,"x":15,"w":5,"v":6,"u":-6,"r":-6,"q":-6,"p":-6,"o":-6,"n":-6,"m":-6,"l":-6,"k":-6,"j":7,"i":-6,"h":-6,"g":-6,"f":-6,"e":-6,"d":-6,"c":-6,"b":-6,"a":6,"Y":15,"X":15,"W":5,"V":6,"U":-6,"R":-6,"Q":-6,"P":-6,"O":-6,"N":-6,"M":-6,"L":-6,"K":-6,"J":7,"I":-6,"H":-6,"G":-6,"F":-6,"E":-6,"D":-6,"C":-6,"B":-6,"A":6,"8":-5,"6":-6,"0":-6}},"D":{"d":"93,-321v40,-1,75,36,75,77r0,167v1,41,-34,77,-75,77r-76,0r0,-321r76,0xm121,-243v0,-27,-27,-30,-56,-28r0,223v30,2,56,0,56,-28r0,-167","w":185,"k":{"y":13,"x":14,"u":-9,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":6,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":13,"X":14,"U":-9,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":6,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"1":-6,"0":-8}},"E":{"d":"17,0r0,-321r137,0r0,49r-89,0r0,87r65,0r0,49r-65,0r0,88r89,0r0,48r-137,0","w":170,"k":{"4":28}},"F":{"d":"65,0r-48,0r0,-321r137,0r0,49r-89,0r0,87r65,0r0,49r-65,0r0,136","w":170,"k":{"s":7,"j":55,"a":40,"S":7,"J":55,"A":40,"4":29,"3":10,"2":6}},"G":{"d":"170,-72v1,40,-36,76,-77,76v-41,0,-76,-35,-76,-76r0,-175v-2,-41,35,-79,76,-77v54,1,86,47,77,113r-50,0v1,-32,2,-65,-28,-65v-16,0,-28,12,-28,28r0,175v0,16,12,28,28,28v38,-1,26,-54,28,-91r-27,0r0,-48r77,0r0,112","k":{"y":13,"x":13,"u":-8,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":5,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":13,"X":13,"U":-8,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":5,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-7,"6":-8,"5":-6,"0":-8}},"H":{"d":"65,-136r0,136r-48,0r0,-320r48,0r0,136r58,0r0,-136r49,0r0,320r-49,0r0,-136r-58,0","w":188,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-6,"3":-5,"2":-6,"1":-6,"0":-9}},"I":{"d":"65,0r-48,0r0,-320r48,0r0,320","w":81,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-6,"3":-5,"2":-6,"1":-6,"0":-9}},"J":{"d":"24,-45v27,5,52,-2,52,-27r0,-248r47,0r0,247v1,51,-51,91,-106,73","w":139,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-9,"t":-5,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-9,"T":-5,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"9":-8,"8":-8,"6":-9,"5":-7,"4":-5,"2":-6,"1":-6,"0":-9}},"K":{"d":"65,-101r0,101r-48,0r0,-321r48,0r0,115r59,-115r52,0r-67,132r78,189r-57,0r-50,-130","w":203,"k":{"y":8,"w":7,"v":7,"t":8,"s":20,"r":-6,"q":14,"p":-6,"o":14,"n":-6,"m":-6,"l":-6,"k":-6,"i":-6,"h":-6,"g":14,"f":-6,"e":-6,"d":-6,"c":14,"b":-6,"Y":8,"W":7,"V":7,"T":8,"S":20,"R":-6,"Q":14,"P":-6,"O":14,"N":-6,"M":-6,"L":-6,"K":-6,"I":-6,"H":-6,"G":14,"F":-6,"E":-6,"D":-6,"C":14,"B":-6,"9":15,"8":14,"7":9,"6":13,"5":11,"4":23,"3":18,"1":26,"0":14}},"L":{"d":"148,0r-131,0r0,-320r48,0r0,272r83,0r0,48","w":164,"k":{"y":60,"w":40,"v":43,"t":48,"s":6,"Y":60,"W":40,"V":43,"T":48,"S":6,"7":29,"4":76,"1":37}},"M":{"d":"65,0r-48,0r0,-321r69,0r45,230r43,-230r67,0r0,321r-48,0r0,-201r-42,201r-39,0r-47,-201r0,201","w":257,"k":{"z":-7,"y":-6,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-6,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-5,"3":-5,"2":-6,"1":-6,"0":-9}},"N":{"d":"71,-321r64,216r0,-216r48,0r0,321r-52,0r-66,-205r0,205r-48,0r0,-321r54,0","w":199,"k":{"z":-7,"y":-6,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-6,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-5,"3":-5,"2":-6,"1":-6,"0":-9}},"O":{"d":"17,-248v-2,-41,35,-76,76,-76v41,0,78,36,77,76r0,175v1,41,-36,77,-77,77v-41,0,-76,-36,-76,-77r0,-175xm92,-46v15,0,27,-12,27,-27r0,-176v0,-15,-12,-27,-27,-27v-16,0,-28,11,-28,27r0,176v0,16,12,27,28,27","k":{"y":12,"x":12,"u":-9,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":12,"X":12,"U":-9,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"2":-5,"1":-6,"0":-8}},"P":{"d":"168,-244v0,81,-20,133,-103,123r0,121r-48,0r0,-320r76,0v45,-1,75,31,75,76xm65,-168v29,2,57,-1,57,-28v0,-34,6,-76,-28,-75r-29,0r0,103","w":185,"k":{"y":17,"x":17,"w":7,"v":7,"u":-5,"r":-5,"p":-5,"n":-5,"m":-5,"l":-5,"k":-5,"j":53,"i":-5,"h":-5,"f":-5,"e":-5,"d":-5,"b":-5,"a":26,"Y":17,"X":17,"W":7,"V":7,"U":-5,"R":-5,"P":-5,"N":-5,"M":-5,"L":-5,"K":-5,"J":53,"I":-5,"H":-5,"F":-5,"E":-5,"D":-5,"B":-5,"A":26,"4":21,"3":6}},"Q":{"d":"93,-324v41,0,77,35,77,76r0,175v0,14,-3,26,-10,38v4,5,10,8,18,8r0,45v-24,0,-41,-8,-50,-23v-51,29,-111,-14,-111,-68r0,-175v-2,-41,35,-76,76,-76xm92,-46v15,0,27,-12,28,-27r0,-176v-1,-15,-13,-27,-28,-27v-16,0,-28,11,-28,27r0,176v0,16,12,27,28,27","w":194,"k":{"z":-6,"y":20,"x":-6,"w":10,"v":11,"t":6,"r":-9,"p":-9,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"f":-9,"e":-9,"d":-9,"b":-9,"a":-6,"Z":-6,"Y":20,"X":-6,"W":10,"V":11,"T":6,"R":-9,"P":-9,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"F":-9,"E":-9,"D":-9,"B":-9,"A":-6,"7":7,"2":-5}},"R":{"d":"93,-320v69,-3,76,52,76,123v0,23,-9,41,-26,57r36,140r-52,0r-30,-121r-32,0r0,121r-48,0r0,-320r76,0xm65,-168v29,2,57,-1,57,-28v0,-33,8,-78,-28,-75r-29,0r0,103","w":195,"k":{"z":-5,"y":21,"x":-5,"w":13,"v":13,"t":8,"s":8,"r":-8,"p":-8,"n":-8,"m":-8,"l":-8,"k":-8,"i":-8,"h":-8,"f":-8,"e":-8,"d":-8,"b":-8,"a":-6,"Z":-5,"Y":21,"X":-5,"W":13,"V":13,"T":8,"S":8,"R":-8,"P":-8,"N":-8,"M":-8,"L":-8,"K":-8,"I":-8,"H":-8,"F":-8,"E":-8,"D":-8,"B":-8,"A":-6,"8":5,"7":9,"5":7,"4":12,"3":10}},"S":{"d":"72,-246v8,72,98,87,104,166v7,89,-120,114,-149,38v-6,-13,-9,-28,-10,-45r46,-3v-5,53,63,67,65,12v-14,-69,-106,-84,-106,-167v0,-80,108,-107,142,-43v6,11,9,23,10,37r-46,9v-2,-21,-9,-38,-31,-39v-16,0,-27,16,-25,35","w":193,"k":{"y":17,"x":15,"w":7,"v":8,"u":-7,"r":-7,"q":-6,"p":-7,"o":-6,"n":-7,"m":-7,"l":-7,"k":-7,"j":7,"i":-7,"h":-7,"g":-6,"f":-7,"e":-7,"d":-7,"c":-6,"b":-7,"a":5,"Y":17,"X":15,"W":7,"V":8,"U":-7,"R":-7,"Q":-6,"P":-7,"O":-6,"N":-7,"M":-7,"L":-7,"K":-7,"J":7,"I":-7,"H":-7,"G":-6,"F":-7,"E":-7,"D":-7,"C":-6,"B":-7,"A":5,"8":-6,"6":-6,"0":-6}},"T":{"d":"68,-272r-51,0r0,-48r150,0r0,48r-51,0r0,272r-48,0r0,-272","w":184,"k":{"u":-5,"r":-6,"p":-6,"n":-6,"m":-6,"l":-6,"k":-6,"j":45,"i":-6,"h":-6,"f":-6,"e":-6,"d":-6,"b":-6,"a":38,"U":-5,"R":-6,"P":-6,"N":-6,"M":-6,"L":-6,"K":-6,"J":45,"I":-6,"H":-6,"F":-6,"E":-6,"D":-6,"B":-6,"A":38,"4":45,"3":8}},"U":{"d":"170,-73v1,41,-35,77,-77,77v-41,0,-76,-36,-76,-77r0,-247r47,0r0,247v0,16,12,27,28,27v15,0,27,-12,27,-27r0,-247r51,0r0,247","k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-9,"t":-5,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-9,"T":-5,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"9":-8,"8":-8,"6":-9,"5":-7,"4":-5,"2":-6,"1":-6,"0":-9}},"V":{"d":"74,0r-57,-320r50,0r40,249r41,-249r51,0r-59,320r-66,0","w":215,"k":{"u":-7,"s":10,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":48,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"a":44,"U":-7,"S":10,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":48,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"A":44,"8":7,"4":30,"3":14,"2":9}},"W":{"d":"215,-320r51,0r-50,320r-46,0r-28,-175r-25,175r-47,0r-53,-320r50,0r26,171r23,-171r50,0r26,171","w":282,"k":{"u":-7,"s":9,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":42,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"a":39,"U":-7,"S":9,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":42,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"A":39,"8":5,"4":25,"3":13,"2":7}},"X":{"d":"195,0r-52,0r-37,-102r-37,102r-52,0r63,-161r-63,-159r53,0r36,99r35,-99r54,0r-63,159","w":211,"k":{"u":-7,"s":18,"r":-7,"q":12,"p":-7,"o":12,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"g":12,"f":-7,"e":-7,"d":-7,"c":12,"b":-7,"U":-7,"S":18,"R":-7,"Q":12,"P":-7,"O":12,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"G":12,"F":-7,"E":-7,"D":-7,"C":12,"B":-7,"9":13,"8":13,"6":12,"4":21,"3":16,"1":10,"0":12}},"Y":{"d":"81,-134r-64,-187r53,0r36,115r35,-115r54,0r-65,187r0,134r-49,0r0,-134","w":211,"k":{"u":-5,"s":19,"r":-5,"q":12,"p":-5,"o":12,"n":-5,"m":-5,"l":-5,"k":-5,"j":53,"i":-5,"h":-5,"g":12,"f":-5,"e":-5,"d":-5,"c":12,"b":-5,"a":46,"U":-5,"S":19,"R":-5,"Q":12,"P":-5,"O":12,"N":-5,"M":-5,"L":-5,"K":-5,"J":53,"I":-5,"H":-5,"G":12,"F":-5,"E":-5,"D":-5,"C":12,"B":-5,"A":46,"9":13,"8":15,"6":12,"4":58,"3":22,"2":18,"1":10,"0":12}},"Z":{"d":"158,-320r0,48r-89,224r89,0r0,48r-141,0r0,-48r89,-224r-89,0r0,-48r141,0","w":174,"k":{"u":-7,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"U":-7,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"4":51}},"[":{"d":"17,-341r81,0r0,49r-33,0r0,244r33,0r0,48r-81,0r0,-341","w":114},"\\":{"d":"17,-341r39,0r134,351r-40,0","w":206},"]":{"d":"17,-341r81,0r0,341r-81,0r0,-48r32,0r0,-244r-32,0r0,-49","w":114},"^":{"d":"80,-371r40,89r-33,0r-18,-43r-19,43r-33,0r40,-89r23,0","w":136},"_":{"d":"17,54r0,-36r247,0r0,36r-247,0","w":280},"`":{"d":"17,-362r44,0r26,73r-29,0","w":104},"a":{"d":"79,-74r-12,74r-50,0r54,-320r67,0r53,320r-50,0r-12,-74r-50,0xm104,-247r-18,126r36,0","w":207,"k":{"y":45,"w":43,"v":43,"t":38,"s":7,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"Y":45,"W":43,"V":43,"T":38,"S":7,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"7":25,"4":7,"3":7,"1":33}},"b":{"d":"179,-89v0,51,-27,89,-73,89r-89,0r0,-321v87,-5,156,2,156,89v0,30,-12,55,-34,64v25,11,40,39,40,79xm126,-93v2,-40,-17,-54,-57,-50r0,95v37,4,57,-10,57,-45xm122,-232v0,-31,-19,-44,-53,-40r0,82v35,4,53,-8,53,-42","w":196,"k":{"y":21,"x":16,"w":10,"v":11,"u":-8,"t":7,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-8,"m":-8,"l":-9,"k":-8,"j":8,"i":-9,"h":-9,"g":-8,"f":-8,"e":-8,"d":-8,"c":-8,"b":-8,"Y":21,"X":16,"W":10,"V":11,"U":-8,"T":7,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-8,"M":-8,"L":-9,"K":-8,"J":8,"I":-9,"H":-9,"G":-8,"F":-8,"E":-8,"D":-8,"C":-8,"B":-8,"9":-6,"8":-7,"7":8,"6":-8,"5":-6,"0":-8}},"c":{"d":"170,-117v9,69,-19,120,-77,121v-41,2,-76,-35,-76,-76r0,-175v-2,-41,35,-79,76,-77v54,1,86,47,77,113r-50,0v1,-32,2,-65,-28,-65v-16,0,-28,12,-28,28r0,175v0,16,12,28,28,28v32,0,29,-39,28,-72r50,0","k":{"y":15,"x":15,"w":5,"v":6,"u":-6,"r":-6,"q":-6,"p":-6,"o":-6,"n":-6,"m":-6,"l":-6,"k":-6,"j":7,"i":-6,"h":-6,"g":-6,"f":-6,"e":-6,"d":-6,"c":-6,"b":-6,"a":6,"Y":15,"X":15,"W":5,"V":6,"U":-6,"R":-6,"Q":-6,"P":-6,"O":-6,"N":-6,"M":-6,"L":-6,"K":-6,"J":7,"I":-6,"H":-6,"G":-6,"F":-6,"E":-6,"D":-6,"C":-6,"B":-6,"A":6,"8":-5,"6":-6,"0":-6}},"d":{"d":"93,-321v40,-1,75,36,75,77r0,167v1,41,-34,77,-75,77r-76,0r0,-321r76,0xm121,-243v0,-27,-27,-30,-56,-28r0,223v30,2,56,0,56,-28r0,-167","w":185,"k":{"y":13,"x":14,"u":-9,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":6,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":13,"X":14,"U":-9,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":6,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"1":-6,"0":-8}},"e":{"d":"17,0r0,-321r137,0r0,49r-89,0r0,87r65,0r0,49r-65,0r0,88r89,0r0,48r-137,0","w":170,"k":{"4":28}},"f":{"d":"65,0r-48,0r0,-321r137,0r0,49r-89,0r0,87r65,0r0,49r-65,0r0,136","w":170,"k":{"s":7,"j":55,"a":40,"S":7,"J":55,"A":40,"4":29,"3":10,"2":6}},"g":{"d":"170,-72v1,40,-36,76,-77,76v-41,0,-76,-35,-76,-76r0,-175v-2,-41,35,-79,76,-77v54,1,86,47,77,113r-50,0v1,-32,2,-65,-28,-65v-16,0,-28,12,-28,28r0,175v0,16,12,28,28,28v38,-1,26,-54,28,-91r-27,0r0,-48r77,0r0,112","k":{"y":13,"x":13,"u":-8,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"j":5,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":13,"X":13,"U":-8,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"J":5,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-7,"6":-8,"5":-6,"0":-8}},"h":{"d":"65,-136r0,136r-48,0r0,-320r48,0r0,136r58,0r0,-136r49,0r0,320r-49,0r0,-136r-58,0","w":188,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-6,"3":-5,"2":-6,"1":-6,"0":-9}},"i":{"d":"65,0r-48,0r0,-320r48,0r0,320","w":81,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-6,"3":-5,"2":-6,"1":-6,"0":-9}},"j":{"d":"24,-45v27,5,52,-2,52,-27r0,-248r47,0r0,247v1,51,-51,91,-106,73","w":139,"k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-9,"t":-5,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-9,"T":-5,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"9":-8,"8":-8,"6":-9,"5":-7,"4":-5,"2":-6,"1":-6,"0":-9}},"k":{"d":"65,-101r0,101r-48,0r0,-321r48,0r0,115r59,-115r52,0r-67,132r78,189r-57,0r-50,-130","w":203,"k":{"y":8,"w":7,"v":7,"t":8,"s":20,"r":-6,"q":14,"p":-6,"o":14,"n":-6,"m":-6,"l":-6,"k":-6,"i":-6,"h":-6,"g":14,"f":-6,"e":-6,"d":-6,"c":14,"b":-6,"Y":8,"W":7,"V":7,"T":8,"S":20,"R":-6,"Q":14,"P":-6,"O":14,"N":-6,"M":-6,"L":-6,"K":-6,"I":-6,"H":-6,"G":14,"F":-6,"E":-6,"D":-6,"C":14,"B":-6,"9":15,"8":14,"7":9,"6":13,"5":11,"4":23,"3":18,"1":26,"0":14}},"l":{"d":"148,0r-131,0r0,-320r48,0r0,272r83,0r0,48","w":164,"k":{"y":60,"w":40,"v":43,"t":48,"s":6,"Y":60,"W":40,"V":43,"T":48,"S":6,"7":29,"4":76,"1":37}},"m":{"d":"65,0r-48,0r0,-321r69,0r45,230r43,-230r67,0r0,321r-48,0r0,-201r-42,201r-39,0r-47,-201r0,201","w":257,"k":{"z":-7,"y":-6,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-6,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-5,"3":-5,"2":-6,"1":-6,"0":-9}},"n":{"d":"71,-321r64,216r0,-216r48,0r0,321r-52,0r-66,-205r0,205r-48,0r0,-321r54,0","w":199,"k":{"z":-7,"y":-6,"x":-7,"w":-7,"v":-7,"u":-10,"t":-6,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"a":-7,"Z":-7,"Y":-6,"X":-7,"W":-7,"V":-7,"U":-10,"T":-6,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"A":-7,"9":-8,"8":-9,"6":-9,"5":-8,"4":-5,"3":-5,"2":-6,"1":-6,"0":-9}},"o":{"d":"17,-248v-2,-41,35,-76,76,-76v41,0,78,36,77,76r0,175v1,41,-36,77,-77,77v-41,0,-76,-36,-76,-77r0,-175xm92,-46v15,0,27,-12,27,-27r0,-176v0,-15,-12,-27,-27,-27v-16,0,-28,11,-28,27r0,176v0,16,12,27,28,27","k":{"y":12,"x":12,"u":-9,"s":-6,"r":-9,"q":-8,"p":-9,"o":-8,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"g":-8,"f":-9,"e":-9,"d":-9,"c":-8,"b":-9,"Y":12,"X":12,"U":-9,"S":-6,"R":-9,"Q":-8,"P":-9,"O":-8,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"G":-8,"F":-9,"E":-9,"D":-9,"C":-8,"B":-9,"9":-7,"8":-8,"6":-9,"5":-7,"2":-5,"1":-6,"0":-8}},"p":{"d":"168,-244v0,81,-20,133,-103,123r0,121r-48,0r0,-320r76,0v45,-1,75,31,75,76xm65,-168v29,2,57,-1,57,-28v0,-34,6,-76,-28,-75r-29,0r0,103","w":185,"k":{"y":17,"x":17,"w":7,"v":7,"u":-5,"r":-5,"p":-5,"n":-5,"m":-5,"l":-5,"k":-5,"j":53,"i":-5,"h":-5,"f":-5,"e":-5,"d":-5,"b":-5,"a":26,"Y":17,"X":17,"W":7,"V":7,"U":-5,"R":-5,"P":-5,"N":-5,"M":-5,"L":-5,"K":-5,"J":53,"I":-5,"H":-5,"F":-5,"E":-5,"D":-5,"B":-5,"A":26,"4":21,"3":6}},"q":{"d":"93,-324v41,0,77,35,77,76r0,175v0,14,-3,26,-10,38v4,5,10,8,18,8r0,45v-24,0,-41,-8,-50,-23v-51,29,-111,-14,-111,-68r0,-175v-2,-41,35,-76,76,-76xm92,-46v15,0,27,-12,28,-27r0,-176v-1,-15,-13,-27,-28,-27v-16,0,-28,11,-28,27r0,176v0,16,12,27,28,27","w":194,"k":{"z":-6,"y":20,"x":-6,"w":10,"v":11,"t":6,"r":-9,"p":-9,"n":-9,"m":-9,"l":-9,"k":-9,"i":-9,"h":-9,"f":-9,"e":-9,"d":-9,"b":-9,"a":-6,"Z":-6,"Y":20,"X":-6,"W":10,"V":11,"T":6,"R":-9,"P":-9,"N":-9,"M":-9,"L":-9,"K":-9,"I":-9,"H":-9,"F":-9,"E":-9,"D":-9,"B":-9,"A":-6,"7":7,"2":-5}},"r":{"d":"93,-320v69,-3,76,52,76,123v0,23,-9,41,-26,57r36,140r-52,0r-30,-121r-32,0r0,121r-48,0r0,-320r76,0xm65,-168v29,2,57,-1,57,-28v0,-33,8,-78,-28,-75r-29,0r0,103","w":195,"k":{"z":-5,"y":21,"x":-5,"w":13,"v":13,"t":8,"s":8,"r":-8,"p":-8,"n":-8,"m":-8,"l":-8,"k":-8,"i":-8,"h":-8,"f":-8,"e":-8,"d":-8,"b":-8,"a":-6,"Z":-5,"Y":21,"X":-5,"W":13,"V":13,"T":8,"S":8,"R":-8,"P":-8,"N":-8,"M":-8,"L":-8,"K":-8,"I":-8,"H":-8,"F":-8,"E":-8,"D":-8,"B":-8,"A":-6,"8":5,"7":9,"5":7,"4":12,"3":10}},"s":{"d":"72,-246v8,72,98,87,104,166v7,89,-120,114,-149,38v-6,-13,-9,-28,-10,-45r46,-3v-5,53,63,67,65,12v-14,-69,-106,-84,-106,-167v0,-80,108,-107,142,-43v6,11,9,23,10,37r-46,9v-2,-21,-9,-38,-31,-39v-16,0,-27,16,-25,35","w":193,"k":{"y":17,"x":15,"w":7,"v":8,"u":-7,"r":-7,"q":-6,"p":-7,"o":-6,"n":-7,"m":-7,"l":-7,"k":-7,"j":7,"i":-7,"h":-7,"g":-6,"f":-7,"e":-7,"d":-7,"c":-6,"b":-7,"a":5,"Y":17,"X":15,"W":7,"V":8,"U":-7,"R":-7,"Q":-6,"P":-7,"O":-6,"N":-7,"M":-7,"L":-7,"K":-7,"J":7,"I":-7,"H":-7,"G":-6,"F":-7,"E":-7,"D":-7,"C":-6,"B":-7,"A":5,"8":-6,"6":-6,"0":-6}},"t":{"d":"68,-272r-51,0r0,-48r150,0r0,48r-51,0r0,272r-48,0r0,-272","w":184,"k":{"u":-5,"r":-6,"p":-6,"n":-6,"m":-6,"l":-6,"k":-6,"j":45,"i":-6,"h":-6,"f":-6,"e":-6,"d":-6,"b":-6,"a":38,"U":-5,"R":-6,"P":-6,"N":-6,"M":-6,"L":-6,"K":-6,"J":45,"I":-6,"H":-6,"F":-6,"E":-6,"D":-6,"B":-6,"A":38,"4":45,"3":8}},"u":{"d":"170,-73v1,41,-35,77,-77,77v-41,0,-76,-36,-76,-77r0,-247r47,0r0,247v0,16,12,27,28,27v15,0,27,-12,27,-27r0,-247r51,0r0,247","k":{"z":-7,"y":-5,"x":-7,"w":-7,"v":-7,"u":-9,"t":-5,"s":-7,"r":-10,"q":-9,"p":-10,"o":-9,"n":-10,"m":-10,"l":-10,"k":-10,"i":-10,"h":-10,"g":-9,"f":-10,"e":-10,"d":-10,"c":-9,"b":-10,"Z":-7,"Y":-5,"X":-7,"W":-7,"V":-7,"U":-9,"T":-5,"S":-7,"R":-10,"Q":-9,"P":-10,"O":-9,"N":-10,"M":-10,"L":-10,"K":-10,"I":-10,"H":-10,"G":-9,"F":-10,"E":-10,"D":-10,"C":-9,"B":-10,"9":-8,"8":-8,"6":-9,"5":-7,"4":-5,"2":-6,"1":-6,"0":-9}},"v":{"d":"74,0r-57,-320r50,0r40,249r41,-249r51,0r-59,320r-66,0","w":215,"k":{"u":-7,"s":10,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":48,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"a":44,"U":-7,"S":10,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":48,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"A":44,"8":7,"4":30,"3":14,"2":9}},"w":{"d":"215,-320r51,0r-50,320r-46,0r-28,-175r-25,175r-47,0r-53,-320r50,0r26,171r23,-171r50,0r26,171","w":282,"k":{"u":-7,"s":9,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"j":42,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"a":39,"U":-7,"S":9,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"J":42,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"A":39,"8":5,"4":25,"3":13,"2":7}},"x":{"d":"195,0r-52,0r-37,-102r-37,102r-52,0r63,-161r-63,-159r53,0r36,99r35,-99r54,0r-63,159","w":211,"k":{"u":-7,"s":18,"r":-7,"q":12,"p":-7,"o":12,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"g":12,"f":-7,"e":-7,"d":-7,"c":12,"b":-7,"U":-7,"S":18,"R":-7,"Q":12,"P":-7,"O":12,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"G":12,"F":-7,"E":-7,"D":-7,"C":12,"B":-7,"9":13,"8":13,"6":12,"4":21,"3":16,"1":10,"0":12}},"y":{"d":"81,-134r-64,-187r53,0r36,115r35,-115r54,0r-65,187r0,134r-49,0r0,-134","w":211,"k":{"u":-5,"s":19,"r":-5,"q":12,"p":-5,"o":12,"n":-5,"m":-5,"l":-5,"k":-5,"j":53,"i":-5,"h":-5,"g":12,"f":-5,"e":-5,"d":-5,"c":12,"b":-5,"a":46,"U":-5,"S":19,"R":-5,"Q":12,"P":-5,"O":12,"N":-5,"M":-5,"L":-5,"K":-5,"J":53,"I":-5,"H":-5,"G":12,"F":-5,"E":-5,"D":-5,"C":12,"B":-5,"A":46,"9":13,"8":15,"6":12,"4":58,"3":22,"2":18,"1":10,"0":12}},"z":{"d":"158,-320r0,48r-89,224r89,0r0,48r-141,0r0,-48r89,-224r-89,0r0,-48r141,0","w":174,"k":{"u":-7,"r":-7,"p":-7,"n":-7,"m":-7,"l":-7,"k":-7,"i":-7,"h":-7,"f":-7,"e":-7,"d":-7,"b":-7,"U":-7,"R":-7,"P":-7,"N":-7,"M":-7,"L":-7,"K":-7,"I":-7,"H":-7,"F":-7,"E":-7,"D":-7,"B":-7,"4":51}},"{":{"d":"17,-183v54,-2,0,-121,44,-148v13,-8,31,-14,59,-14r0,34v-78,-11,-4,114,-62,140v32,12,23,66,24,109v1,28,9,30,38,31r0,34v-74,5,-82,-41,-78,-113v2,-36,-1,-44,-25,-49r0,-24","w":137},"|":{"d":"17,-422r46,0r0,448r-46,0r0,-448","w":79},"}":{"d":"95,-279v2,40,-13,96,25,98r0,25v-54,4,0,120,-44,148v-12,8,-31,13,-59,13r0,-33v78,11,4,-115,62,-141v-32,-12,-23,-66,-24,-109v-1,-28,-9,-30,-38,-31r0,-34v53,1,75,13,78,64","w":137},"~":{"d":"17,-348v29,-47,72,-20,109,-4v6,0,13,-5,20,-15r27,20v-14,19,-30,29,-48,28v-24,4,-63,-46,-82,-9","w":189},"\u00a0":{"w":33}}});
+
+</script>
+		<script type="text/javascript">
+			Cufon('.cn_wrapper h1,h2', {
+				textShadow: '-1px 1px black'
+			});
+		</script>
+        <style type="text/css">
+          span.reference a{
+			text-shadow:1px 1px 1px #fff;
+			color:#999;
+			text-transform:uppercase;
+            text-decoration:none;
+            position:fixed;
+            right:10px;
+            top:10px;
+            font-size:13px;
+			font-weight:bold;
+          }
+          span.reference a:hover{
+            color:#555;
+          }
+		  h1.title{
+			  color:#777;
+			  font-size:30px;
+			  margin:10px;
+			  font-weight:normal;
+			  text-shadow:1px 1px 1px #fff;
+			}
+      </style>
+    </head>
+
+		<h1 class="title">Compact News Previewer with jQuery Demo</h1>
+		<div class="cn_wrapper">
+			<div id="cn_preview" class="cn_preview">
+				<div class="cn_content" style="top:5px;">
+					<img src="images/polaroidphotobar.jpg" alt=""/>
+					<h1>Polaroid Photobar Gallery with jQuery</h1>
+					<span class="cn_date">28/09/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>In this tutorial we are going to create an image gallery with a Polaroid look.
+						We will have albums that will expand to sets of slightly rotated thumbnails
+						that pop out on hover.</p>
+					<a href="http://tympanus.net/codrops/2010/09/28/polaroid-photobar-gallery/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/fullpageimagegallery.jpg" alt=""/>
+					<h1>Full Page Image Gallery with jQuery</h1>
+					<span class="cn_date">08/09/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>In this tutorial we are going to create a stunning full page gallery with
+						scrollable thumbnails and a scrollable full screen preview.
+						</p>
+					<a href="http://tympanus.net/codrops/2010/09/08/full-page-image-gallery/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/collapsingsitenavigation.jpg" alt=""/>
+					<h1>Collapsing Site Navigation with jQuery</h1>
+					<span class="cn_date">06/09/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						Today we will create a collapsing menu that contains vertical
+						navigation bars and a slide out content area. When hovering
+						over a menu item, an image slides down from the top and a
+						submenu slides up from the bottom.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/09/06/collapsing-site-navigation/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/thumbnailsnavigation.jpg" alt=""/>
+					<h1>Thumbnails Navigation Gallery with jQuery</h1>
+					<span class="cn_date">29/07/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						In this tutorial we are going to create an extraordinary
+						gallery with scrollable thumbnails that slide out from a
+						navigation. We are going to use jQuery and some CSS3
+						properties for the style.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/29/thumbnails-navigation-gallery/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/musicportfoliotemplate.jpg" alt=""/>
+					<h1>Music Portfolio Template</h1>
+					<span class="cn_date">26/07/2010</span>
+					<span class="cn_category">Development</span>
+					<p>
+						Today we want to share a music portfolio template with you.
+						The idea is to create an artist portfolio with a discography
+						line up and HTML5 audio player jPlayer.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/26/music-portfolio-template/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/relatedpostsslideouts.jpg" alt=""/>
+					<h1>Related Posts Slide Out Boxes</h1>
+					<span class="cn_date">21/07/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						The main idea is to show a fixed list at the right side
+						of the screen with some thumbnails sticking out. When
+						the user hovers over the items, they slide out.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/21/related-posts-slide-out-boxes/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/LatestTweetsTooltip.jpg" alt=""/>
+					<h1>Latest Tweets Tooltip with jQuery</h1>
+					<span class="cn_date">20/07/2010</span>
+					<span class="cn_category">Development</span>
+					<p>
+						If you have a news website, it might be interesting
+						for you to allow your users to see the latests tweets
+						about a topic. Here is a jQuery plugin for showing the
+						latest tweets about a certain word or phrase.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/20/latest-tweets-tooltip/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/slidedownbox.jpg" alt=""/>
+					<h1>Slide Down Box Menu with jQuery and CSS3</h1>
+					<span class="cn_date">16/07/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						In this tutorial we will create a unique sliding box
+						navigation. The idea is to make a box with the menu
+						item slide out, while a thumbnail pops up.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/16/slide-down-box-menu/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/MinimalisticSlideshowGallery.jpg" alt=""/>
+					<h1>Minimalistic Slideshow Gallery with jQuery</h1>
+					<span class="cn_date">05/07/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						In today’s tutorial we will create a simple and
+						beautiful slideshow gallery that can be easily
+						integrated in your web site.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/05/minimalistic-slideshow-gallery/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/imagehighlight.jpg" alt=""/>
+					<h1>Image Highlighting and Preview with jQuery</h1>
+					<span class="cn_date">04/07/2010</span>
+					<span class="cn_category">Tutorials</span>
+					<p>
+						In this tutorial we will show you how to highlight
+						and preview images that are integrated in an
+						article or spread over a page.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/04/image-highlighting-preview/" target="_blank" class="cn_more">Read more</a>
+				</div>
+				<div class="cn_content">
+					<img src="images/photodesk.jpg" alt=""/>
+					<h1>Interactive Photo Desk</h1>
+					<span class="cn_date">01/07/2010</span>
+					<span class="cn_category">Development</span>
+					<p>
+						In this little experiment we created an interactive photo
+						desk that provides some “realistic” interaction possibilities
+						for the user.
+					</p>
+					<a href="http://tympanus.net/codrops/2010/07/01/interactive-photo-desk/" target="_blank" class="cn_more">Read more</a>
+				</div>
+			</div>
+			<div id="cn_list" class="cn_list">
+				<div class="cn_page" style="display:block;">
+					<div class="cn_item selected">
+						<h2>Polaroid Photobar Gallery with jQuery</h2>
+						<p>Tutorial on how to create a gallery in polaroid style</p>
+					</div>
+					<div class="cn_item">
+						<h2>Full Page Image Gallery with jQuery</h2>
+						<p>Another tutorial on how to make a full page image gallery with some jQuery</p>
+					</div>
+					<div class="cn_item">
+						<h2>Collapsing Site Navigation with jQuery</h2>
+						<p>This tutorial shows how to create a stylish sliding site navigation</p>
+					</div>
+					<div class="cn_item">
+						<h2>Thumbnails Navigation Gallery</h2>
+						<p>This gallery will show images in a scrollable menu navigation</p>
+					</div>
+				</div>
+				<div class="cn_page">
+					<div class="cn_item">
+						<h2>Music Portfolio Template</h2>
+						<p>A template for a music portfolio website with an HTML5 audio player</p>
+					</div>
+					<div class="cn_item">
+						<h2>Related Posts Slide Out Boxes</h2>
+						<p>Show users more of your articles with these slide out boxes</p>
+					</div>
+					<div class="cn_item">
+						<h2>Latest Tweets Tooltip with jQuery</h2>
+						<p>A Plugin for showing the latest tweets with a certain word in your article</p>
+					</div>
+					<div class="cn_item">
+						<h2>Slide Down Box Menu with jQuery and CSS3</h2>
+						<p>A menu with a nice effect</p>
+					</div>
+				</div>
+				<div class="cn_page">
+					<div class="cn_item">
+						<h2>Minimalistic Slideshow Gallery</h2>
+						<p>A compact image gallery for your website</p>
+					</div>
+					<div class="cn_item">
+						<h2>Image Highlighting and Preview</h2>
+						<p>Highlight and preview images that are integrated in an article</p>
+					</div>
+					<div class="cn_item">
+						<h2>Interactive Photo Desk</h2>
+						<p>Creating a photo desk with some real world interaction</p>
+					</div>
+				</div>
+				<div class="cn_nav">
+					<a id="cn_prev" class="cn_prev disabled"></a>
+					<a id="cn_next" class="cn_next"></a>
+				</div>
+			</div>
+		</div>
+        <div>
+            <span class="reference">
+                <a href="http://tympanus.net/codrops/2010/10/03/compact-news-previewer/">back to the Codrops tutorial</a>
+            </span>
+		</div>
+
+        <!-- The JavaScript -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(function() {
+                //caching
+				//next and prev buttons
+				var $cn_next	= $('#cn_next');
+				var $cn_prev	= $('#cn_prev');
+				//wrapper of the left items
+				var $cn_list 	= $('#cn_list');
+				var $pages		= $cn_list.find('.cn_page');
+				//how many pages
+				var cnt_pages	= $pages.length;
+				//the default page is the first one
+				var page		= 1;
+				//list of news (left items)
+				var $items 		= $cn_list.find('.cn_item');
+				//the current item being viewed (right side)
+				var $cn_preview = $('#cn_preview');
+				//index of the item being viewed.
+				//the default is the first one
+				var current		= 1;
+
+				/*
+				for each item we store its index relative to all the document.
+				we bind a click event that slides up or down the current item
+				and slides up or down the clicked one.
+				Moving up or down will depend if the clicked item is after or
+				before the current one
+				*/
+				$items.each(function(i){
+					var $item = $(this);
+					$item.data('idx',i+1);
+
+					$item.bind('click',function(){
+						var $this 		= $(this);
+						$cn_list.find('.selected').removeClass('selected');
+						$this.addClass('selected');
+						var idx			= $(this).data('idx');
+						var $current 	= $cn_preview.find('.cn_content:nth-child('+current+')');
+						var $next		= $cn_preview.find('.cn_content:nth-child('+idx+')');
+
+						if(idx > current){
+							$current.stop().animate({'top':'-300px'},600,'easeOutBack',function(){
+								$(this).css({'top':'310px'});
+							});
+							$next.css({'top':'310px'}).stop().animate({'top':'5px'},600,'easeOutBack');
+						}
+						else if(idx < current){
+							$current.stop().animate({'top':'310px'},600,'easeOutBack',function(){
+								$(this).css({'top':'310px'});
+							});
+							$next.css({'top':'-300px'}).stop().animate({'top':'5px'},600,'easeOutBack');
+						}
+						current = idx;
+					});
+				});
+
+				/*
+				shows next page if exists:
+				the next page fades in
+				also checks if the button should get disabled
+				*/
+				$cn_next.bind('click',function(e){
+					var $this = $(this);
+					$cn_prev.removeClass('disabled');
+					++page;
+					if(page == cnt_pages)
+						$this.addClass('disabled');
+					if(page > cnt_pages){
+						page = cnt_pages;
+						return;
+					}
+					$pages.hide();
+					$cn_list.find('.cn_page:nth-child('+page+')').fadeIn();
+					e.preventDefault();
+				});
+				/*
+				shows previous page if exists:
+				the previous page fades in
+				also checks if the button should get disabled
+				*/
+				$cn_prev.bind('click',function(e){
+					var $this = $(this);
+					$cn_next.removeClass('disabled');
+					--page;
+					if(page == 1)
+						$this.addClass('disabled');
+					if(page < 1){
+						page = 1;
+						return;
+					}
+					$pages.hide();
+					$cn_list.find('.cn_page:nth-child('+page+')').fadeIn();
+					e.preventDefault();
+				});
+
+            });
+        </script>
+
+          <script>
+    
+          /*
+           * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
+           *
+           * Uses the built in easing capabilities added In jQuery 1.1
+           * to offer multiple easing options
+           *
+           * TERMS OF USE - jQuery Easing
+           *
+           * Open source under the BSD License.
+           *
+           * Copyright © 2008 George McGinley Smith
+           * All rights reserved.
+           *
+           * Redistribution and use in source and binary forms, with or without modification,
+           * are permitted provided that the following conditions are met:
+           *
+           * Redistributions of source code must retain the above copyright notice, this list of
+           * conditions and the following disclaimer.
+           * Redistributions in binary form must reproduce the above copyright notice, this list
+           * of conditions and the following disclaimer in the documentation and/or other materials
+           * provided with the distribution.
+           *
+           * Neither the name of the author nor the names of contributors may be used to endorse
+           * or promote products derived from this software without specific prior written permission.
+           *
+           * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+           * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+           * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+           *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+           *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+           *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+           * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+           *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+           * OF THE POSSIBILITY OF SUCH DAMAGE.
+           *
+          */
+
+          // t: current time, b: begInnIng value, c: change In value, d: duration
+          jQuery.easing['jswing'] = jQuery.easing['swing'];
+
+          jQuery.extend( jQuery.easing,
+          {
+            def: 'easeOutQuad',
+            swing: function (x, t, b, c, d) {
+              //alert(jQuery.easing.default);
+              return jQuery.easing[jQuery.easing.def](x, t, b, c, d);
+            },
+            easeInQuad: function (x, t, b, c, d) {
+              return c*(t/=d)*t + b;
+            },
+            easeOutQuad: function (x, t, b, c, d) {
+              return -c *(t/=d)*(t-2) + b;
+            },
+            easeInOutQuad: function (x, t, b, c, d) {
+              if ((t/=d/2) < 1) return c/2*t*t + b;
+              return -c/2 * ((--t)*(t-2) - 1) + b;
+            },
+            easeInCubic: function (x, t, b, c, d) {
+              return c*(t/=d)*t*t + b;
+            },
+            easeOutCubic: function (x, t, b, c, d) {
+              return c*((t=t/d-1)*t*t + 1) + b;
+            },
+            easeInOutCubic: function (x, t, b, c, d) {
+              if ((t/=d/2) < 1) return c/2*t*t*t + b;
+              return c/2*((t-=2)*t*t + 2) + b;
+            },
+            easeInQuart: function (x, t, b, c, d) {
+              return c*(t/=d)*t*t*t + b;
+            },
+            easeOutQuart: function (x, t, b, c, d) {
+              return -c * ((t=t/d-1)*t*t*t - 1) + b;
+            },
+            easeInOutQuart: function (x, t, b, c, d) {
+              if ((t/=d/2) < 1) return c/2*t*t*t*t + b;
+              return -c/2 * ((t-=2)*t*t*t - 2) + b;
+            },
+            easeInQuint: function (x, t, b, c, d) {
+              return c*(t/=d)*t*t*t*t + b;
+            },
+            easeOutQuint: function (x, t, b, c, d) {
+              return c*((t=t/d-1)*t*t*t*t + 1) + b;
+            },
+            easeInOutQuint: function (x, t, b, c, d) {
+              if ((t/=d/2) < 1) return c/2*t*t*t*t*t + b;
+              return c/2*((t-=2)*t*t*t*t + 2) + b;
+            },
+            easeInSine: function (x, t, b, c, d) {
+              return -c * Math.cos(t/d * (Math.PI/2)) + c + b;
+            },
+            easeOutSine: function (x, t, b, c, d) {
+              return c * Math.sin(t/d * (Math.PI/2)) + b;
+            },
+            easeInOutSine: function (x, t, b, c, d) {
+              return -c/2 * (Math.cos(Math.PI*t/d) - 1) + b;
+            },
+            easeInExpo: function (x, t, b, c, d) {
+              return (t==0) ? b : c * Math.pow(2, 10 * (t/d - 1)) + b;
+            },
+            easeOutExpo: function (x, t, b, c, d) {
+              return (t==d) ? b+c : c * (-Math.pow(2, -10 * t/d) + 1) + b;
+            },
+            easeInOutExpo: function (x, t, b, c, d) {
+              if (t==0) return b;
+              if (t==d) return b+c;
+              if ((t/=d/2) < 1) return c/2 * Math.pow(2, 10 * (t - 1)) + b;
+              return c/2 * (-Math.pow(2, -10 * --t) + 2) + b;
+            },
+            easeInCirc: function (x, t, b, c, d) {
+              return -c * (Math.sqrt(1 - (t/=d)*t) - 1) + b;
+            },
+            easeOutCirc: function (x, t, b, c, d) {
+              return c * Math.sqrt(1 - (t=t/d-1)*t) + b;
+            },
+            easeInOutCirc: function (x, t, b, c, d) {
+              if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
+              return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
+            },
+            easeInElastic: function (x, t, b, c, d) {
+              var s=1.70158;var p=0;var a=c;
+              if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+              if (a < Math.abs(c)) { a=c; var s=p/4; }
+              else var s = p/(2*Math.PI) * Math.asin (c/a);
+              return -(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+            },
+            easeOutElastic: function (x, t, b, c, d) {
+              var s=1.70158;var p=0;var a=c;
+              if (t==0) return b;  if ((t/=d)==1) return b+c;  if (!p) p=d*.3;
+              if (a < Math.abs(c)) { a=c; var s=p/4; }
+              else var s = p/(2*Math.PI) * Math.asin (c/a);
+              return a*Math.pow(2,-10*t) * Math.sin( (t*d-s)*(2*Math.PI)/p ) + c + b;
+            },
+            easeInOutElastic: function (x, t, b, c, d) {
+              var s=1.70158;var p=0;var a=c;
+              if (t==0) return b;  if ((t/=d/2)==2) return b+c;  if (!p) p=d*(.3*1.5);
+              if (a < Math.abs(c)) { a=c; var s=p/4; }
+              else var s = p/(2*Math.PI) * Math.asin (c/a);
+              if (t < 1) return -.5*(a*Math.pow(2,10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )) + b;
+              return a*Math.pow(2,-10*(t-=1)) * Math.sin( (t*d-s)*(2*Math.PI)/p )*.5 + c + b;
+            },
+            easeInBack: function (x, t, b, c, d, s) {
+              if (s == undefined) s = 1.70158;
+              return c*(t/=d)*t*((s+1)*t - s) + b;
+            },
+            easeOutBack: function (x, t, b, c, d, s) {
+              if (s == undefined) s = 1.70158;
+              return c*((t=t/d-1)*t*((s+1)*t + s) + 1) + b;
+            },
+            easeInOutBack: function (x, t, b, c, d, s) {
+              if (s == undefined) s = 1.70158;
+              if ((t/=d/2) < 1) return c/2*(t*t*(((s*=(1.525))+1)*t - s)) + b;
+              return c/2*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2) + b;
+            },
+            easeInBounce: function (x, t, b, c, d) {
+              return c - jQuery.easing.easeOutBounce (x, d-t, 0, c, d) + b;
+            },
+            easeOutBounce: function (x, t, b, c, d) {
+              if ((t/=d) < (1/2.75)) {
+                return c*(7.5625*t*t) + b;
+              } else if (t < (2/2.75)) {
+                return c*(7.5625*(t-=(1.5/2.75))*t + .75) + b;
+              } else if (t < (2.5/2.75)) {
+                return c*(7.5625*(t-=(2.25/2.75))*t + .9375) + b;
+              } else {
+                return c*(7.5625*(t-=(2.625/2.75))*t + .984375) + b;
+              }
+            },
+            easeInOutBounce: function (x, t, b, c, d) {
+              if (t < d/2) return jQuery.easing.easeInBounce (x, t*2, 0, c, d) * .5 + b;
+              return jQuery.easing.easeOutBounce (x, t*2-d, 0, c, d) * .5 + c*.5 + b;
+            }
+          });
+
+          /*
+           *
+           * TERMS OF USE - EASING EQUATIONS
+           *
+           * Open source under the BSD License.
+           *
+           * Copyright © 2001 Robert Penner
+           * All rights reserved.
+           *
+           * Redistribution and use in source and binary forms, with or without modification,
+           * are permitted provided that the following conditions are met:
+           *
+           * Redistributions of source code must retain the above copyright notice, this list of
+           * conditions and the following disclaimer.
+           * Redistributions in binary form must reproduce the above copyright notice, this list
+           * of conditions and the following disclaimer in the documentation and/or other materials
+           * provided with the distribution.
+           *
+           * Neither the name of the author nor the names of contributors may be used to endorse
+           * or promote products derived from this software without specific prior written permission.
+           *
+           * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY
+           * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+           * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+           *  COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+           *  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+           *  GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+           * AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+           *  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+           * OF THE POSSIBILITY OF SUCH DAMAGE.
+           *
+           */
+
+          </script>
