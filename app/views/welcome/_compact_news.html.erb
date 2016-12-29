@@ -510,6 +510,45 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
       </style>
     </head>
 
+    <!-- BEGIN ERB NEWS -->
+<% @espns.past_day.each do |a| %>
+<%= a.title %>
+<% end %>
+    <div class="cn_wrapper">
+      <div id="cn_preview" class="cn_preview">
+        <% @espns.past_day.each do |a| %>
+        <div class="cn_content">
+          <img src="images/fullpageimagegallery.jpg" alt=""/>
+          <h1><%= a.title %></h1>
+          <span class="cn_date">08/09/2010</span>
+          <span class="cn_category">Tutorials</span>
+          <p>In this tutorial we are going to create a stunning full page gallery with scrollable thumbnails and a scrollable full screen preview.</p>
+          <a href="http://tympanus.net/codrops/2010/09/08/full-page-image-gallery/" target="_blank" class="cn_more">Read more</a>
+        </div>
+        <% end %>
+      </div>
+      <div id="cn_list" class="cn_list">
+        <div class="cn_page" style="display:block;">
+          <div class="cn_item selected">
+            <h2><% @espns.past_day.first.title %></h2>
+            <p>Tutorial on how to create a gallery in polaroid style</p>
+          </div>
+          <% @espns.past_day.offset(1).each do |a| %>
+          <div class="cn_item">
+            <h2><%= a.title%></h2>
+            <p>Another tutorial on how to make a full page image gallery with some jQuery</p>
+          </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="cn_nav">
+        <a id="cn_prev" class="cn_prev disabled"></a>
+        <a id="cn_next" class="cn_next"></a>
+      </div>
+    </div>
+
+<!-- END ERB NEWS -->
+<!--
 		<h1 class="title">Compact News Previewer with jQuery Demo</h1>
 		<div class="cn_wrapper">
 			<div id="cn_preview" class="cn_preview">
@@ -706,7 +745,7 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
             <span class="reference">
                 <a href="http://tympanus.net/codrops/2010/10/03/compact-news-previewer/">back to the Codrops tutorial</a>
             </span>
-		</div>
+		</div> -->
 
         <!-- The JavaScript -->
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
@@ -730,7 +769,7 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
 				var $cn_preview = $('#cn_preview');
 				//index of the item being viewed.
 				//the default is the first one
-				var current		= 1;
+				var current		= 2;
 
 				/*
 				for each item we store its index relative to all the document.
@@ -810,7 +849,7 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
         </script>
 
           <script>
-    
+
           /*
            * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
            *
