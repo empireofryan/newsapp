@@ -25,6 +25,8 @@ class WelcomeController < ApplicationController
     @buzzfeeds = Buzzfeed.all
     @washingtonposts = Washingtonpost.all
     @drudges = Drudge.all
+    @total_articles = Nytime.past_day.all.count
+
   #  Movie.first_three
     @chart = Fusioncharts::Chart.new({
         width: "600",
@@ -71,5 +73,7 @@ class WelcomeController < ApplicationController
               ]
         }
     })
+
+
   end
 end
