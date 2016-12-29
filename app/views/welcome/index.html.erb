@@ -324,6 +324,9 @@ body {
 .six .button-active .button-out {  }
 .six .button-active .button-in {  }
 .six .button-active .button-bg {  }
+
+
+
 </style>
 <script>
 dontGo({
@@ -335,6 +338,12 @@ dontGo({
 
 
 <link href="https://fonts.googleapis.com/css?family=Mrs+Saint+Delafield" rel="stylesheet">
+<!-- Preloader -->
+<div id="preloader">
+  <div id="status">&nbsp;</div>
+</div>
+
+
 <div class="container-fluid">
   <nav class="navbar navbar-default navbar-fixed-top" style="background-color:black; border-bottom: 2px solid rgba(128, 128, 128, 0.38)">
   <div class="container">
@@ -579,4 +588,10 @@ $( "button" ).click(function() {
 $( "button" ).click(function() {
   $( "#cnn" ).toggle( "fast" );
 });
+// 
+// $(window).on('load', function() { // makes sure the whole site is loaded
+//   $('#status').fadeOut(); // will first fade out the loading animation
+//   $('#preloader').delay(350).fadeOut('slow'); // will fade out the white DIV that covers the website.
+//   $('body').delay(350).css({'overflow':'visible'});
+// })
 </script>
