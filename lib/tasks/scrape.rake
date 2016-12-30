@@ -504,6 +504,51 @@ task :cnn_3 => [ :environment ] do
   puts 'entries saved to cnn model'
 end #end task cnn do
 
+task :cnn_4 => [ :environment ] do
+  base_url = 'http://www.cnn.com/'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto base_url
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+   puts 'now only special links'
+   puts hrefs.count
+   @counter = 0
+   hrefs.each do |href|
+     link = href['href'] rescue nil
+     title = href.text rescue nil
+    begin
+      if ((link.include?('2016')) && (!title.nil?))
+        @counter +=1
+        if (link.include?('cnn')) && (!link.include?('videos'))
+          @remote_url = link
+        elsif (link.include?('videos'))
+          @remote_url = 'http://cnn.com' + link
+        else
+          @remote_url = 'http://cnn.com' + link
+        end
+        if (!title.include?('alt'))
+          @new_title = title
+          puts @new_title
+        end
+
+        puts @new_title
+        BingSearch.account_key = ENV["bing_key"]
+        results = BingSearch.image("#{@new_title}").first
+        puts results.url
+        @bing_image = results.url
+
+
+        puts @remote_url
+        @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
+      end
+    rescue
+    end
+  end # done: hrefs.each
+  puts @counter
+  puts 'entries saved to cnn model'
+end #end task cnn do
+
 task :espn_3 => [ :environment ] do
   base_url = 'http://www.espn.com/'
   b = Watir::Browser.new(:phantomjs)

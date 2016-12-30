@@ -26,12 +26,15 @@
 
 
   <div class="grid">
-      <% @cnns.past_day.each do |a| %>
+      <% @cnns.past_day.uniq.each do |a| %>
         <div style=''>
-            <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041"] %>
+            <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041", "#7E2F38", "#276927", "#2F3F05"] %>
         <div class="grid-item" style="background-color: <%= cycle(b) %>;  padding:25px; font-size:2em">
-
-          <a href='<%=a.url%>'>  <%= a.title %> </a>
+          <a href='<%=a.url%>'>  <%= a.title %>
+            <% if a.image.present? %>
+              <img src='<%= a.image  %>' style='width:100%'>
+            <% end %>
+          </a>
         </div>
         </div>
       <% end %>
@@ -45,12 +48,6 @@
 .grid-item--width2 { width: 400px; }
 </style>
 
-<div class="grid">
-  <div class="grid-item">...</div>
-  <div class="grid-item grid-item--width2">...</div>
-  <div class="grid-item">...</div>
-  ...
-</div>
 
 <script>
 $('.grid').masonry({
