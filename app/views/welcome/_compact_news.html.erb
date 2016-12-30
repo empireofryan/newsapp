@@ -664,24 +664,16 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
 						<p>This gallery will show images in a scrollable menu navigation</p>
 					</div>
 				</div>
-				<div class="cn_page">
-					<div class="cn_item">
-						<h2>Music Portfolio Template</h2>
-						<p>A template for a music portfolio website with an HTML5 audio player</p>
-					</div>
-					<div class="cn_item">
-						<h2>Related Posts Slide Out Boxes</h2>
-						<p>Show users more of your articles with these slide out boxes</p>
-					</div>
-					<div class="cn_item">
-						<h2>Latest Tweets Tooltip with jQuery</h2>
-						<p>A Plugin for showing the latest tweets with a certain word in your article</p>
-					</div>
-					<div class="cn_item">
-						<h2>Slide Down Box Menu with jQuery and CSS3</h2>
-						<p>A menu with a nice effect</p>
-					</div>
-				</div>
+        <% @cnns.each_slice(4) do |espn_4| %>
+  				<div class="cn_page">
+            <% espn_4.each do |e| %>
+    					<div class="cn_item">
+    						<h2><%= e.title %></h2>
+    						<p>A template for a music portfolio website with an HTML5 audio player</p>
+    					</div>
+            <% end %>
+  				</div>
+        <% end %>
 				<div class="cn_page">
 					<div class="cn_item">
 						<h2>Minimalistic Slideshow Gallery</h2>
@@ -810,7 +802,7 @@ Cufon.registerFont({"w":186,"face":{"font-family":"Bebas","font-weight":400,"fon
         </script>
 
           <script>
-    
+
           /*
            * jQuery Easing v1.3 - http://gsgd.co.uk/sandbox/jquery/easing/
            *
