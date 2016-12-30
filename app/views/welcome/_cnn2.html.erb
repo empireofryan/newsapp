@@ -24,10 +24,13 @@
       </div>
       <%# end %> -->
 
+
   <div class="grid">
       <% @cnns.past_day.each do |a| %>
         <div style=''>
-        <div class="grid-item" style="background-color:blue; border:5px; margin-top:10px; padding:5px">
+            <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041"] %>
+        <div class="grid-item" style="background-color: <%= cycle(b) %>;  padding:25px; font-size:2em">
+
           <a href='<%=a.url%>'>  <%= a.title %> </a>
         </div>
         </div>
