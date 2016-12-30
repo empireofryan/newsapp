@@ -1,3 +1,5 @@
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
+
 <div class="row style2" id="cnn">
   <div class="col-md-12">
     <p class="site">
@@ -9,16 +11,48 @@
         background-color:blue !important;
         background:blue !important;
         font-size:1.6em;
+        padding:10px;
+        margin:5px;
       }
       </style>
-    <!-- <p style="font-size:.9em; text-align:center"> -->
-      <% @cnns.past_day.each do |a| %>
-      <div class="<%= cycle('col-md-4', 'col-md-4', 'col-md-4', 'col-md-4', 'other') %>">
+      <!-- <%# @cnns.past_day.each do |a| %>
+        <div class="col-md-3 other">
+
         <div class="each_cnn" style='margin:10px; padding:10px'>
-          <a href='<%=a.url%>'>  <%= a.title %> </a>
+          <a href='<%#=a.url%>'>  <%#= a.title %> </a>
         </div>
       </div>
+      <%# end %> -->
+
+  <div class="grid">
+      <% @cnns.past_day.each do |a| %>
+        <div style=''>
+        <div class="grid-item" style="background-color:blue; border:5px; margin-top:10px; padding:5px">
+          <a href='<%=a.url%>'>  <%= a.title %> </a>
+        </div>
+        </div>
       <% end %>
+        </div>
     <!-- </p> -->
   </div>
 </div>
+
+<style>
+.grid-item { width: 200px; }
+.grid-item--width2 { width: 400px; }
+</style>
+
+<div class="grid">
+  <div class="grid-item">...</div>
+  <div class="grid-item grid-item--width2">...</div>
+  <div class="grid-item">...</div>
+  ...
+</div>
+
+<script>
+$('.grid').masonry({
+  // options
+  itemSelector: '.grid-item',
+  columnWidth: 200
+});
+</script>

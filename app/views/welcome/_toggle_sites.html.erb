@@ -1,0 +1,299 @@
+<!-- <button>Toggle 'em</button>
+<div class='boo'>Hiya</div>
+<div class='boo'>Such intersting boo.</div> -->
+<div style="background-color:white; background:white; height:200px">
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="espn_btn">ESPN
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="cnn_btn">CNN
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="buzzfeed_btn">Buzzfeed
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="fox_news_btn">Fox News
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="drudge_btn">Drudge
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="ny_times_btn">New York Times
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="huff_post_btn">Huffington Post
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="newsweek_btn">Newsweek
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="usa_today_btn">USA Today
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap button-active switch" id="time_btn">Time
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap switch" id="wsj_btn">WSJ
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#espn_btn').on("click", function(){
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#espn').hide();
+  $( "#espn" ).toggle(  );
+});
+
+$( "#cnn_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#cnn').hide();
+  $( "#cnn" ).toggle(  );
+});
+
+$( "#drudge_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#drudge').hide();
+  $( "#drudge" ).toggle(  );
+});
+
+$( "#fox_news_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#fox_news').hide();
+  $( "#fox_news" ).toggle(  );
+});
+
+$( "#buzzfeed_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#buzzfeed').hide();
+  $( "#buzzfeed" ).toggle(  );
+});
+
+$( "#ny_times_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#ny_times').hide();
+  $( "#ny_times" ).toggle(  );
+});
+
+$( "#huff_post_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#huff_post').hide();
+  $( "#huff_post" ).toggle(  );
+});
+
+$( "#newsweek_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#newsweek').hide();
+  $( "#newsweek" ).toggle(  );
+});
+//
+// var sources = ["#newsweek_btn", "#huff_post_btn", "#ny_times_btn"]
+// $.each([ sources ], function( index, value ) {
+//   console.log( index + ": " + value );
+// });
+
+$( "#usa_today_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#usa_today').hide();
+  $( "#usa_today" ).toggle(  );
+});
+
+$( "#time_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#time').hide();
+  $( "#time" ).toggle( );
+});
+
+$( "#wsj_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#wsj').hide();
+  $( "#wsj" ).toggle(  );
+});
+</script>
+
+
+
+
+<!-- BUTTON STYLES NOT used -->
+
+<!--
+<div class="zero">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-off">&#8226;</div>
+      <div class="button-on">&#8226;</div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+
+<div class="one">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-out">out</div>
+      <div class="button-in">in</div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+
+<div class="two">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-out">out</div>
+      <div class="button-in">in</div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+
+<div class="three">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-out"></div>
+      <div class="button-in"></div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+
+<div class="four">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-out"></div>
+      <div class="button-in"></div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+
+<div class="six">
+  <div class="button-wrap">
+    <div class="button-bg">
+      <div class="button-out"></div>
+      <div class="button-in"></div>
+      <div class="button-switch"></div>
+    </div>
+  </div>
+</div>
+-->

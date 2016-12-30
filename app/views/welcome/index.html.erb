@@ -20,7 +20,6 @@ body {
 
 .button-wrap {
   width: 160px;
-  margin: 40px auto 0;
   cursor: pointer;
 }
 .button-bg {
@@ -289,7 +288,6 @@ body {
 
 .six .button-wrap {
   width: 100px;
-  margin: 40px auto 0;
   cursor: pointer;
 }
 .six .button-bg {
@@ -383,113 +381,14 @@ dontGo({
 
     <!-- OVERVIEW -->
   <%= render 'abovefold' %>
-  <%= render 'compact_news' %>
-  <button>Toggle 'em</button>
-  <div class='boo'>Hiya</div>
-  <div class='boo'>Such intersting boo.</div>
+  <%#= render 'compact_news' %>
+  <%= render 'toggle_sites' %>
 
-  <h1>Latest Stories</h1>
-  <div class="zero">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-off">&#8226;</div>
-        <div class="button-on">&#8226;</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <h1>Source</h1>
-  <div class="zero">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-off">&#8226;</div>
-        <div class="button-on">&#8226;</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <h1>News</h1>
-  <div class="zero">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-off">&#8226;</div>
-        <div class="button-on">&#8226;</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="one">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out">out</div>
-        <div class="button-in">in</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="two">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out">out</div>
-        <div class="button-in">in</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="three">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out"></div>
-        <div class="button-in"></div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="four">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out"></div>
-        <div class="button-in"></div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="five">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out">out</div>
-        <div class="button-in">in</div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="six">
-    <div class="button-wrap">
-      <div class="button-bg">
-        <div class="button-out"></div>
-        <div class="button-in"></div>
-        <div class="button-switch"></div>
-      </div>
-    </div>
-  </div>
-  <script>
-  $('.button-wrap').on("click", function(){
-    $(this).toggleClass('button-active');
-  });
-  </script>
   <%#= render 'belowfold' %>
   <%#= render 'test' %>
   <%#= render 'snapshot' %>
   <section id="#">
-    <%#= render 'foxnews' %>
+    <%= render 'foxnews' %>
   </section>
     <!-- MEDIA -->
   <section id="#">
@@ -505,37 +404,37 @@ dontGo({
     <%#= render 'hackernews' %>
   </section>
   <section id="#">
-    <%#= render 'wsj' %>
+    <%= render 'wsj' %>
   </section>
   <section id="#">
-    <%#= render 'time' %>
+    <%= render 'time' %>
   </section>
   <section id="#">
-    <%#= render 'usatoday' %>
+    <%= render 'usatoday' %>
   </section>
   <section id="#">
-    <%#= render 'newsweek' %>
+    <%= render 'newsweek' %>
   </section>
   <section id="#">
-    <%#= render 'nytimes2' %>
+    <%= render 'nytimes2' %>
   </section>
   <section id="#">
-    <%#= render 'huffpost' %>
+    <%= render 'huffpost' %>
   </section>
   <section id="#">
-    <%#= render 'cnn2' %>
+    <%= render 'cnn2' %>
   </section>
   <section id="#">
     <%= render 'espn' %>
   </section>
   <section id="#">
-    <%#= render 'buzzfeed' %>
+    <%= render 'buzzfeed' %>
   </section>
   <section id="#">
     <%#= render 'washingtonpost' %>
   </section>
   <section id="#">
-    <%#= render 'drudge' %>
+    <%= render 'drudge' %>
   </section>
   <section id="menu1">
   <%#= render 'movies' %>
@@ -584,9 +483,7 @@ dontGo({
 
 
 <script>
-$( "button" ).click(function() {
-  $( ".boo" ).toggle( "fast" );
-});
+
 $( "button" ).click(function() {
   $( "#cnn" ).toggle( "fast" );
 });
