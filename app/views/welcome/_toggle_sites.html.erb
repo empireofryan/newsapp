@@ -4,13 +4,19 @@
 <style>
 .switch {
   color:white;
+}
+.style2 {
+  display: none;
+}
+.style3 {
+  display: none;
 }</style>
-<div style="background-color:#061D2A; background:#061D2A; height:200px;     margin-left: -15px;
+<div style="background-color:#061D2A; background:#061D2A; height:300px;     margin-left: -15px;
     margin-right: -15px;">
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="espn_btn">ESPN
+      <div class="button-wrap  switch" id="espn_btn">ESPN
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -22,7 +28,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="cnn_btn">CNN
+      <div class="button-wrap  switch" id="cnn_btn">CNN
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -34,7 +40,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="buzzfeed_btn">Buzzfeed
+      <div class="button-wrap  switch" id="buzzfeed_btn">Buzzfeed
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -46,7 +52,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="fox_news_btn">Fox News
+      <div class="button-wrap  switch" id="fox_news_btn">Fox News
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -58,7 +64,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="drudge_btn">Drudge
+      <div class="button-wrap  switch" id="drudge_btn">Drudge
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -70,7 +76,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="ny_times_btn">New York Times
+      <div class="button-wrap  switch" id="ny_times_btn">New York Times
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -82,7 +88,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="huff_post_btn">Huffington Post
+      <div class="button-wrap  switch" id="huff_post_btn">Huffington Post
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -94,7 +100,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="newsweek_btn">Newsweek
+      <div class="button-wrap  switch" id="newsweek_btn">Newsweek
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -106,7 +112,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="usa_today_btn">USA Today
+      <div class="button-wrap  switch" id="usa_today_btn">USA Today
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -118,7 +124,7 @@
 
   <div class="col-md-2">
     <div class="six">
-      <div class="button-wrap button-active switch" id="time_btn">Time
+      <div class="button-wrap  switch" id="time_btn">Time
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -131,6 +137,42 @@
   <div class="col-md-2">
     <div class="six">
       <div class="button-wrap switch" id="wsj_btn">WSJ
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap switch" id="reddit_btn">Reddit
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap switch" id="medium_btn">Medium
+        <div class="button-bg">
+          <div class="button-out"></div>
+          <div class="button-in"></div>
+          <div class="button-switch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-2">
+    <div class="six">
+      <div class="button-wrap switch" id="hacker_news_btn">Hacker News
         <div class="button-bg">
           <div class="button-out"></div>
           <div class="button-in"></div>
@@ -233,6 +275,30 @@ $( "#wsj_btn" ).click(function() {
   $('.style2').hide();
   $(".style3").not('#wsj').hide();
   $( "#wsj" ).toggle(  );
+});
+
+$( "#reddit_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#reddit').hide();
+  $( "#reddit" ).toggle(  );
+});
+
+$( "#medium_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#medium').hide();
+  $( "#medium" ).toggle(  );
+});
+
+$( "#hacker_news_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#hacker_news').hide();
+  $( "#hacker_news" ).toggle(  );
 });
 </script>
 

@@ -67,11 +67,12 @@ li {
     </p>
     <p class="col-md-4 site text-left" style ='font-family: "Catamaran"'>
       <br>
-      New Articles: 1,281
+      Today's Articles:
+      <%= @cnns.past_day.all.count + @drudges.past_day.all.count %>
     </p>
-    <div class="col-md-1 site text-left" style ='font-family: "Catamaran";
+    <!-- <div class="col-md-1 site text-left" style ='font-family: "Catamaran";
     '>
-<br>
+    <br>
         <span>Email</span>
       </div>
       <div class="col-md-3 site text-left"><br>
@@ -80,7 +81,7 @@ li {
         color: black;
         width:100%;">
 
-    </div>
+    </div> -->
 
     <div class="marquee">
       <%@nytimes.past_day.all.each do |a|%>

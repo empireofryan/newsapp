@@ -23,22 +23,35 @@
         </div>
       </div>
       <%# end %> -->
+      <style>
+      .color-overlay {
+        opacity:.5;
+      }
+      </style>
 
 
   <div class="grid">
-      <% @cnns.past_day.uniq.each do |a| %>
-        <div style=''>
-            <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041", "#7E2F38", "#276927", "#2F3F05"] %>
-        <div class="grid-item" style="background-color: <%= cycle(b) %>;  padding:25px; font-size:2em">
-          <a href='<%=a.url%>'>  <%= a.title %>
-            <% if a.image.present? %>
-              <img src='<%= a.image  %>' style='width:100%'>
-            <% end %>
-          </a>
+    <% todays_articles = [] %>
+      <% @cnns.past_day.find_each do |a| %>
+        <% if !todays_articles.include?(a.title) %>
+        <%  todays_articles << a.title %>
+        <div class="hello" style=''>
+        <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041", "#7E2F38", "#276927", "#2F3F05"] %>
+        <div class="grid-item" style="border:5px solid white; background: url('<%= a.image %>'); ">
+          <div class="color-overlay" style="background-color: <%= cycle(b) %>;">
+            <div class="text-overlay" style="padding:25px; font-size:2em; opacity:1;">
+              <p style="font-weight:bold; opacity:1 !important;"><a href='<%=a.url%>'>  <%= a.title %></p>
+                <!-- <%# if a.image.present? %>
+                  <img src='<%#= a.image  %>' style='width:200%; opacity: 0.5;'>
+                <%# end %> -->
+              </a>
+                </div>
+            </div>
         </div>
         </div>
       <% end %>
-        </div>
+      <% end %>
+      </div>
     <!-- </p> -->
   </div>
 </div>
