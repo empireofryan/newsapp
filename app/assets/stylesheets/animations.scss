@@ -1,4 +1,3 @@
-<style>
 /*animations*/
 
 /******************
@@ -1827,7 +1826,7 @@
         opacity: 1;
         transform: translateX(0);
     }
-}
+} 
 .fadeInLeftShort {
     opacity: 0;
     -webkit-transform: translateX(-20px);
@@ -1837,23 +1836,3 @@
     -webkit-animation-name: fadeInLeftShort;
     animation-name: fadeInLeftShort;
 }
-</style>
-
-
-<div class="row style2" id="buzzfeed">
-  <div class="col-md-12">
-    <p class="site">
-      <img src='https://upload.wikimedia.org/wikipedia/commons/e/e4/BuzzFeed.svg'
-      style='width:235px; margin-top:100px'><br>
-    </p>
-    <div  style="font-size:.9em; text-align:center">
-      <% @buzzfeeds.past_day.each_with_index do |a, i| %>
-      <a href='<%=a.url%>'>
-        <div class="animatedParent">
-          <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>
-        </div>
-      </a>
-      <% end %>
-    </div>
-  </div>
-</div>
