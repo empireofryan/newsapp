@@ -40,7 +40,20 @@ namespace :scrape do
 
 
 task :run_new  => [ :environment ] do
-  array = ['nytimes3', 'newsweek', 'huffpost', 'cnn_4', 'espn_3', 'foxnews_3', 'buzzfeed_3', 'washingtonpost_3', 'drudge_3']
+  array = ['foxnews_3', 'buzzfeed_3', 'washingtonpost_3', 'drudge_3']
+  Rake::Task['scrape:newsweek3'].invoke
+  array.each do |source|
+    begin
+      Rake::Task["scrape:#{source}"].invoke
+    rescue
+      Rake::Task["#{source}"].reenable
+      Rake::Task["#{source}"].invoke
+    end
+  end
+end
+
+task :run_new2  => [ :environment ] do
+  array = ['nytimes3', 'newsweek', 'huffpost', 'cnn_4', 'espn_3']
   Rake::Task['scrape:newsweek3'].invoke
   array.each do |source|
     begin

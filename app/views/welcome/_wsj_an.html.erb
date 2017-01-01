@@ -1,0 +1,17 @@
+
+<div class="row style2" id="wsj">
+  <div class="col-md-12">
+    <p class="site">
+      <br>
+    </p>
+<div style="font-size:.9em; text-align:center; margin-left:15%; margin-right:15%">
+  <% @reddits.each_with_index do |a, i| %>
+  <a href='<%=a.url%>'>
+    <div class="animatedParent">
+      <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>
+    </div>
+  </a>
+  <% end %>
+</div>
+</div>
+</div>
