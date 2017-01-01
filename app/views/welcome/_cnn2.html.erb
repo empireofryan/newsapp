@@ -1,11 +1,12 @@
 <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.js"></script>
-
+<script src="https://npmcdn.com/imagesloaded@4.1/imagesloaded.pkgd.min.js"></script>
+</a>
 <div class="row style2" id="cnn">
   <div class="col-md-12">
     <p class="site">
       <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png'
       style='width:235px; margin-top:100px'><br>
-      Latest News</p>
+      </p>
       <style>
       .other {
         background-color:blue !important;
@@ -24,9 +25,9 @@
       </div>
       <%# end %> -->
       <style>
-      .color-overlay {
+      /*.color-overlay {
         opacity:.5;
-      }
+      }*/
       </style>
 
 
@@ -37,17 +38,18 @@
         <%  todays_articles << a.title %>
         <div class="hello" style=''>
         <% b = ["#224154", "#3A2759", "#837B31", "#835E31", "#423C05", "#665E19", "#133041", "#7E2F38", "#276927", "#2F3F05"] %>
-        <div class="grid-item" style="border:5px solid white; background: url('<%= a.image %>'); ">
+        <!-- <div class="grid-item" style="border:5px solid white; background: url('<%#= a.image %>'); "> -->
+        <div class="grid-item" style="border:5px solid white;">
           <div class="color-overlay" style="background-color: <%= cycle(b) %>;">
             <div class="text-overlay" style="padding:25px; font-size:2em; opacity:1;">
               <p style="font-weight:bold; opacity:1 !important;"><a href='<%=a.url%>'>  <%= a.title %></p>
-                <!-- <%# if a.image.present? %>
-                  <img src='<%#= a.image  %>' style='width:200%; opacity: 0.5;'>
-                <%# end %> -->
+                <% if a.image.present? %>
+                  <img src='<%#= a.image  %>' style='width:100%;'>
+                <% end %>
               </a>
-                </div>
+
             </div>
-        </div>
+          </div>
         </div>
       <% end %>
       <% end %>
@@ -63,9 +65,22 @@
 
 
 <script>
+
+var freeMasonry = $('.grid');
+
+freeMasonry.imagesLoaded()
+  .done(function(){
+    freeMasonry.masonry({
+      itemSelector: 'img'
+    });
+  });
+
+
 $('.grid').masonry({
   // options
   itemSelector: '.grid-item',
   columnWidth: 200
 });
+
+
 </script>

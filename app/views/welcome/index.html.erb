@@ -484,6 +484,13 @@ dontGo({
 
 </div>
 
+<script>
+function doStuff() {
+   console.log("hello!");
+   $(window).trigger('resize');
+}
+setInterval(doStuff, 10);
+</script>
 
 <script>
 
