@@ -2,10 +2,10 @@
 <div class="row style2" id="wsj">
   <div class="col-md-12">
     <p class="site">
-      <br>
+      <img src="http://tbs-cob.mnsu.edu/wp-content/uploads/2013/08/wsj_header2-870x276.jpg" style='width:435px; margin-top:10px'>
     </p>
 <div style="font-size:.9em; text-align:center; margin-left:15%; margin-right:15%">
-  <% @reddits.each_with_index do |a, i| %>
+  <% @wsjs.past_day.each_with_index do |a, i| %>
   <a href='<%=a.url%>'>
     <div class="animatedParent">
       <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>

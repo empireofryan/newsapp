@@ -191,17 +191,17 @@ task :reddit_2 => [ :environment ] do
   b.goto base_url
   doc = Nokogiri::HTML(b.html)
   hrefs = doc.css(".entry")
-   puts hrefs.text
+  #  puts hrefs.text
    puts 'now only special links'
    puts hrefs.count
    @counter = 0
    hrefs.each do |href|
-    # puts href
-    #  link = href['href'] rescue nil
-    #  title = href.text rescue nil
-    # begin
+    puts href
+     @remote_url = href['a']['href']
+     @new_title = href.text rescue nil
+  #  begin
     #   if ((link.include?('2016')) && (!title.nil?))
-    #     @counter +=1
+        @counter +=1
     #     if (link.include?('cnn')) && (!link.include?('videos'))
     #       @remote_url = link
     #     elsif (link.include?('videos'))
@@ -214,22 +214,23 @@ task :reddit_2 => [ :environment ] do
     #       puts @new_title
     #     end
     #
-    #     puts @new_title
-    #     BingSearch.account_key = ENV["bing_key"]
-    #     results = BingSearch.image("#{@new_title}").first
-    #     puts results.url
-    #     @bing_image = results.url
+        puts @new_title
+        BingSearch.account_key = ENV["bing_key"]
+        results = BingSearch.image("#{@new_title}").first
+        puts results.url
+        @bing_image = results.url
     #
     #
-    #     puts @remote_url
-    #     @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
-    #   end
-    # rescue
-    # end
+        puts @remote_url
+        debugger
+        @reddit = Reddit.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
+      # end
+#    rescue
+#    end
   end # done: hrefs.each
   puts @counter
   puts 'entries saved to reddit model'
-end #end task cnn do
+end #end task reddit do
 
 task :sources => [ :environment ] do
   url = 'https://newsapi.org/v1/sources'
@@ -294,6 +295,36 @@ task :wsj  => [ :environment ] do
     puts 'created WSJ entry'
   end
 end
+
+task :wsj_2  => [ :environment ] do
+  url = 'http://www.wsj.com'
+  b = Watir::Browser.new(:phantomjs)
+  b.goto url
+  doc = Nokogiri::HTML(b.html)
+  hrefs = doc.css("a")
+  puts hrefs
+  puts 'now only special links'
+  puts hrefs.count
+  @counter = 0
+  hrefs.each do |href|
+    link = href['href'] rescue nil
+    title = href.text rescue nil
+    begin
+      if link.include?('articles')
+      @counter +=1
+      @remote_url = link
+      @new_title = title
+      puts @new_title
+      puts @remote_url
+      end
+    rescue
+    end
+    @wsj = Wsj.find_or_create_by!(url: @remote_url, title: @new_title)
+  end # done: hrefs.each
+  puts @counter
+
+  puts 'entries saved to nytime model'
+end #end task nytimes3 do
 
 task :time  => [ :environment ] do
   url = 'https://newsapi.org/v1/articles?source=time&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
@@ -826,6 +857,38 @@ task :drudge_3 => [ :environment ] do
   puts 'entries saved to drudge model'
 end #end task do
 
+task :medium => [ :environment ] do
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'https://medium.com/browse/top'
+
+  doc = Nokogiri::HTML(b.html)
+  a = doc.css('.postArticle-content a h3')
+  b = doc.css('.postArticle-content a')
+  d = doc.css('.postArticle-content img')
+  puts d
+  c = a.count.to_i
+  c = c - 1
+  z = (0..c).to_a
+  puts z
+   z.each do |i|
+     link = b[i]['href']
+     puts link
+     url = link
+     title = a[i.to_i].text
+     puts title
+     begin
+     picture = d[i]['src']
+     puts picture
+     rescue
+       'nilclass rescue'
+     end
+     @medium = Medium.find_or_create_by(title: title, url: url, picture: picture)
+     @medium.save
+     puts 'Medium article created!'
+     puts " "
+   end
+end # end of medium
+
 task :moneymaker => [ :environment ] do
 
 RSpec.configure do |config|
@@ -887,16 +950,16 @@ end
 
   movie
 #  movies   #run movies scraper
-  mediu   #run medium scraper
-  awwward #run awwwards scraper
+
+  awwwards #run awwwards scraper
   # deals_pt1
-  #  economists
-  #  vimeo
-  #  twitter
-  #  next_web
-  #  google
+    economists
+    vimeo
+    twitter
+    next_web
+    google
   #  nytimes
-  #imgur
+  imgur
   puts 'Scraper successfully executed.'
 end
 
@@ -957,63 +1020,33 @@ end
   #   end
   # end # end movies
 
-  def mediu
-    b = Watir::Browser.new(:phantomjs)
-    b.goto 'https://medium.com/browse/top'
 
-    doc = Nokogiri::HTML(b.html)
-    a = doc.css('.postArticle-content a h3')
-    b = doc.css('.postArticle-content a')
-    d = doc.css('.postArticle-content img')
-    puts d
-    c = a.count.to_i
-    c = c - 1
-    z = (0..c).to_a
-    puts z
-     z.each do |i|
-       link = b[i]['href']
-       puts link
-       url = link
-       title = a[i.to_i].text
-       puts title
-       begin
-       picture = d[i]['src']
-       puts picture
-       rescue
-         'nilclass rescue'
-       end
-       @medium = Medium.find_or_create_by(title: title, url: url, picture: picture)
-       @medium.save
-       puts 'Medium article created!'
-       puts " "
-     end
-  end # end of medium
 
-  def awwward
-    b = Watir::Browser.new(:phantomjs)
-    b.goto 'http://www.awwwards.com/awards-of-the-day/'
-    doc = Nokogiri::HTML(b.html)
-    a = doc.css('.inner .rollover')
-    b = doc.css('.inner .rollover a[2]')
-    c = doc.css('.inner .rollover img')
-  #  puts a
-    z = (0..11).to_a
-    puts z
-     z.each do |i|
-       url = b[i]['href']
-       puts url
-       screenshot = c[i]['src']
-       puts screenshot
-       rough_title = c[i]['alt']
-       title_refactor = rough_title.slice(0..(rough_title.index('|')))
-       title = title_refactor[0..-3]
-       puts title
-       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
-       @awward.save
-       puts 'Awwward entry created!'
-       puts " "
-     end
-  end #end of awwwards
+  # def awwward
+  #   b = Watir::Browser.new(:phantomjs)
+  #   b.goto 'http://www.awwwards.com/awards-of-the-day/'
+  #   doc = Nokogiri::HTML(b.html)
+  #   a = doc.css('.inner .rollover')
+  #   b = doc.css('.inner .rollover a[2]')
+  #   c = doc.css('.inner .rollover img')
+  # #  puts a
+  #   z = (0..11).to_a
+  #   puts z
+  #    z.each do |i|
+  #      url = b[i]['href'] rescue nil
+  #      puts url
+  #      screenshot = c[i]['src'] rescue nil
+  #      puts screenshot
+  #      rough_title = c[i]['alt'] rescue nil
+  #      title_refactor = rough_title.slice(0..(rough_title.index('|')))
+  #      title = title_refactor[0..-3]
+  #      puts title
+  #      @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+  #      @awward.save
+  #      puts 'Awwward entry created!'
+  #      puts " "
+  #    end
+  # end #end of awwwards
 
   def awwwards
     b = Watir::Browser.new(:phantomjs)

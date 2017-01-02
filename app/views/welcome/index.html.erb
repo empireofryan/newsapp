@@ -324,8 +324,9 @@ body {
 .six .button-active .button-in {  }
 .six .button-active .button-bg {  }
 
-
-
+body {
+   overflow-x: hidden;
+ }
 </style>
 <script>
 dontGo({
@@ -404,7 +405,7 @@ dontGo({
     <%#= render 'hackernews' %>
   </section>
   <section id="#">
-    <%= render 'wsj' %>
+    <%= render 'wsj_an' %>
   </section>
   <section id="#">
     <%= render 'time' %>
@@ -437,17 +438,17 @@ dontGo({
     <%= render 'drudge' %>
   </section>
   <section id="menu1">
-  <%#= render 'movies' %>
+  <%= render 'movies' %>
   </section>
   <section id="menu2">
-  <%#= render 'vimeo' %>
+  <%= render 'vimeo' %>
   </section>
     <!-- TECH -->
   <section id="menu3">
   <%= render 'medium' %>
   </section>
   <section id="menu4">
-  <%#= render 'awwward' %>
+  <%= render 'awwward' %>
   </section>
   <%#= render 'nextweb' %>
     <!-- TRENDING -->
@@ -458,7 +459,7 @@ dontGo({
   <%#= render 'google' %>
   </section>
   <section id="menu7">
-  <%#= render 'twitter' %>
+  <%= render 'twitter' %>
   </section>
     <!-- NEWS -->
   <section id="menu8">

@@ -181,6 +181,54 @@
       </div>
     </div>
   </div>
+
+<div class="col-md-2">
+  <div class="six">
+    <div class="button-wrap switch" id="rt_btn">Rotten Tomatoes
+      <div class="button-bg">
+        <div class="button-out"></div>
+        <div class="button-in"></div>
+        <div class="button-switch"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="six">
+    <div class="button-wrap switch" id="awwwards_btn">Awwwards
+      <div class="button-bg">
+        <div class="button-out"></div>
+        <div class="button-in"></div>
+        <div class="button-switch"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="six">
+    <div class="button-wrap switch" id="google_btn">Google Trends
+      <div class="button-bg">
+        <div class="button-out"></div>
+        <div class="button-in"></div>
+        <div class="button-switch"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-2">
+  <div class="six">
+    <div class="button-wrap switch" id="twitter_btn">Twitter Trending
+      <div class="button-bg">
+        <div class="button-out"></div>
+        <div class="button-in"></div>
+        <div class="button-switch"></div>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 
 <script>
@@ -299,6 +347,46 @@ $( "#hacker_news_btn" ).click(function() {
   $('.style2').hide();
   $(".style3").not('#hacker_news').hide();
   $( "#hacker_news" ).toggle(  );
+});
+
+$( "#rt_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#rt').hide();
+  $( "#rt" ).toggle(  );
+});
+
+$( "#awwwards_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#awwwards').hide();
+  $( "#awwwards" ).toggle(  );
+});
+
+$( "#google_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#google').hide();
+  $( "#google" ).toggle(  );
+});
+
+$( "#twitter_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#twitter').hide();
+  $( "#twitter" ).toggle(  );
+});
+
+$( "#vimeo_btn" ).click(function() {
+  $('.switch').not(this).removeClass('button-active');
+  $(this).toggleClass('button-active');
+  $('.style2').hide();
+  $(".style3").not('#vimeo').hide();
+  $( "#vimeo" ).toggle(  );
 });
 </script>
 
