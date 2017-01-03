@@ -323,8 +323,8 @@ task :wsj_2  => [ :environment ] do
   end # done: hrefs.each
   puts @counter
 
-  puts 'entries saved to nytime model'
-end #end task nytimes3 do
+  puts 'entries saved to wsj model'
+end #end task wsj do
 
 task :time  => [ :environment ] do
   url = 'https://newsapi.org/v1/articles?source=time&sortBy=top&apiKey=8297a15e41fb4d47993c6f8392ad09f4'
@@ -428,7 +428,7 @@ task :newsweek2 => [ :environment ] do
 end
 
 task :newsweek3 => [ :environment ] do
-  BASE_NEWSWEEK_URL = 'http://newsweek.com/2016/12/02/issue.html'
+  BASE_NEWSWEEK_URL = 'http://newsweek.com/'
   b = Watir::Browser.new(:phantomjs)
   b.goto BASE_NEWSWEEK_URL
   doc = Nokogiri::HTML(b.html)
@@ -494,15 +494,22 @@ task :nytimes3 => [ :environment ] do
     title = href.text rescue nil
     begin
       if (link.include?('2016')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
-      @counter +=1
+
       @remote_url = link
       @new_title = title
       puts @new_title
       puts @remote_url
+
+      BingSearch.account_key = ENV["bing_key"]
+      results = BingSearch.image("#{@new_title}").first
+      puts results.url
+      @url = results.url
+      @nytime = Nytime.find_or_create_by!(url: @remote_url, title: @new_title, image: @url)
+        @counter +=1
       end
     rescue
     end
-    @nytime = Nytime.find_or_create_by!(url: @remote_url, title: @new_title)
+
   end # done: hrefs.each
   puts @counter
 
@@ -888,6 +895,34 @@ task :medium => [ :environment ] do
      puts " "
    end
 end # end of medium
+
+task :awwwards => [ :environment ] do
+
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'http://www.awwwards.com/awards-of-the-day/'
+
+  doc = Nokogiri::HTML(b.html)
+  a = doc.css('.inner .rollover')
+  b = doc.css('.inner .rollover a[2]')
+  c = doc.css('.inner .rollover img')
+#  puts a
+  z = (0..11).to_a
+  puts z
+   z.each do |i|
+     url = b[i]['href'] rescue nil
+     #puts url
+     screenshot = c[i]['src'] rescue nil
+     puts screenshot
+     rough_title = c[i]['alt'] rescue nil
+     title_refactor = rough_title.slice(0..(rough_title.index('|')))
+     title = title_refactor[0..-3]
+    # puts title
+     @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+     @awward.save
+     puts 'Awwward entry created!'
+     puts " "
+   end
+end #end of awwwards
 
 task :moneymaker => [ :environment ] do
 
