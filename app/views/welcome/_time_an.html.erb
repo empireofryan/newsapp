@@ -1,0 +1,18 @@
+
+<div class="row style2" id="newsweek">
+  <div class="col-md-12">
+    <p class="site">
+      <img src='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg'
+      style='width:435px; margin-top:0px'><br>
+    </p>
+<div style="font-size:.9em; text-align:center; margin-left:15%; margin-right:15%">
+  <% @times.past_day.each_with_index do |a, i| %>
+  <a href='<%=a.url%>'>
+    <div class="animatedParent">
+      <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>
+    </div>
+  </a>
+  <% end %>
+</div>
+</div>
+</div>

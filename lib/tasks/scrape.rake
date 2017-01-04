@@ -53,7 +53,7 @@ task :run_new  => [ :environment ] do
 end
 
 task :run_new2  => [ :environment ] do
-  array = ['nytimes3', 'newsweek', 'huffpost', 'cnn_4', 'espn_3']
+  array = ['nytimes3', 'newsweek', 'huffpost', 'cnn_4', 'espn_3', 'usatoday']
   # Rake::Task['scrape:newsweek3'].invoke
   array.each do |source|
     begin

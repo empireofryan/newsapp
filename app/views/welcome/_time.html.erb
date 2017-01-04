@@ -25,7 +25,7 @@
            <h2='width:140px; margin-top:0px'><br>
            Time Top Stories</h2>
          <p style="font-size:.9em; text-align:center">
-         <% @times.all.limit(9).each_with_index do |a, index| %>
+         <% @times.past_day.each_with_index do |a, index| %>
          <% if !a.image.nil? %>
          <div class="col-md-3 time">
          <a href='<%=a.url%>' style="color:#FFCE00">
