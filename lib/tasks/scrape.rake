@@ -428,9 +428,9 @@ task :newsweek2 => [ :environment ] do
 end
 
 task :newsweek3 => [ :environment ] do
-  BASE_NEWSWEEK_URL = 'http://newsweek.com/'
+  url = 'http://newsweek.com/'
   b = Watir::Browser.new(:phantomjs)
-  b.goto BASE_NEWSWEEK_URL
+  b.goto url
   doc = Nokogiri::HTML(b.html)
   #  array = []
   hrefs = doc.css("a")
@@ -845,7 +845,7 @@ task :drudge_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if !title.nil?
+      if !title.nil? && title.count > 2
         #  if ((link.include?('http')) || (link.include?('www')))
             @remote_url = link
         #  else
