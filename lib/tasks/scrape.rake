@@ -65,6 +65,19 @@ task :run_new2  => [ :environment ] do
   end
 end
 
+task :run_new3  => [ :environment ] do
+  array = ['time', 'wsj_2']
+  # Rake::Task['scrape:newsweek3'].invoke
+  array.each do |source|
+    begin
+      Rake::Task["scrape:#{source}"].invoke
+    rescue
+      Rake::Task["#{source}"].reenable
+      Rake::Task["#{source}"].invoke
+    end
+  end
+end
+
 task :sources => [ :environment ] do
   url = 'https://newsapi.org/v1/sources'
   uri = URI(url)
