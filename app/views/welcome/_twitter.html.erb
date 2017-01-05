@@ -2,8 +2,8 @@
   <div class="col-md-12">
     <p class="site">
       <img src='https://upload.wikimedia.org/wikipedia/en/thumb/9/9f/Twitter_bird_logo_2012.svg/220px-Twitter_bird_logo_2012.svg.png'
-      style='width:75px; margin-top:0px'><br>
-      Trending</p>
+      style='width:125px; margin-top:0px'><br>
+      </p>
       <style>
       .foobar {
         font-size:2em;
@@ -28,7 +28,7 @@
       }
       </style>
     <p style="font-size:.9em; text-align:center">
-      <% @twitters.last(20).each_slice(10) do |b| %>
+      <% @twitters.last(60).each_slice(10) do |b| %>
       <%# a.each(5) %>
         <%# a.each(10) do %>
           <div class="col-md-6 twitter">

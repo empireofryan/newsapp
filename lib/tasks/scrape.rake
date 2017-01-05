@@ -66,7 +66,7 @@ task :run_new2  => [ :environment ] do
 end
 
 task :run_new3  => [ :environment ] do
-  array = ['time', 'wsj_2']
+  array = ['time', 'wsj_2', 'twitter']
   # Rake::Task['scrape:newsweek3'].invoke
   array.each do |source|
     begin
@@ -936,6 +936,26 @@ task :awwwards => [ :environment ] do
      puts " "
    end
 end #end of awwwards
+
+task :twitter => [ :environment ] do
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'http://trends24.in/united-states/'
+  doc = Nokogiri::HTML(b.html)
+  a = doc.css('.trend-card__list li')
+  # puts a
+  # b = doc.css('.trend-items .trend-item')
+  # puts b
+   a.each do |twitter|
+     hashtag = twitter.text
+     puts hashtag
+     url = twitter.css('a')[0]['href']
+    #  hashtag = video.css('a')[0]['title']
+     puts url
+    @twitter = Twitter.find_or_create_by(hashtag: hashtag, url: url)
+    @twitter.save
+    puts 'Twitter entry created!'
+  end #end a.each
+end # end twitter
 
 task :moneymaker => [ :environment ] do
 

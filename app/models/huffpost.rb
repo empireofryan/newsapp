@@ -7,5 +7,5 @@ class Huffpost < ApplicationRecord
     end
     @num
   end
-  
+
 end

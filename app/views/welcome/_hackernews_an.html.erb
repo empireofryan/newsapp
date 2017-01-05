@@ -1,12 +1,12 @@
 
-<div class="row style2" id="wsj">
+<div class="row style2" id="hacker_news">
   <div class="col-md-12">
     <p class="site">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/WSJ_Logo.svg/2000px-WSJ_Logo.svg.png" style='width:435px; margin-top:0px'>
+      <img src='https://s3.amazonaws.com/GoRoost-Heroku/wp-content/uploads/2014/08/hacker-news.jpg'
+      style='width:385px; margin-top:0px'><br>
     </p>
 <div style="font-size:.9em; text-align:center; margin-left:15%; margin-right:15%">
-  <h2>New Articles Today: <%= @wsjs.past_day.all.count %></h2>
-  <% @wsjs.past_day.each_with_index do |a, i| %>
+  <% @hackernews.past_day.each_with_index do |a, i| %>
   <a href='<%=a.url%>'>
     <div class="animatedParent">
       <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>
