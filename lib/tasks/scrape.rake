@@ -213,7 +213,7 @@ task :reddit_2 => [ :environment ] do
      @remote_url = href['a']['href']
      @new_title = href.text rescue nil
   #  begin
-    #   if ((link.include?('2016')) && (!title.nil?))
+    #   if ((link.include?('2017')) && (!title.nil?))
         @counter +=1
     #     if (link.include?('cnn')) && (!link.include?('videos'))
     #       @remote_url = link
@@ -431,7 +431,7 @@ task :newsweek2 => [ :environment ] do
   #rows[1..-2].each do |row|
 
   hrefs = doc.css("a").map{ |a|
-    a['href'] if a['href'] =~ /^\/2016\//
+    a['href'] if a['href'] =~ /^\/2017\//
   }.compact.uniq
 
   hrefs.each do |href|
@@ -455,7 +455,7 @@ task :newsweek3 => [ :environment ] do
     link = href['href'] rescue nil
     title = href.text rescue nil
     begin
-      if (link.include?('2016')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
+      if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
       @counter +=1
       @remote_url = link
       @new_title = title
@@ -475,7 +475,7 @@ end
 # end #end task newsweek3 do
 
 task :foxnews_pics => [ :environment ] do
-  article_url = 'http://www.foxnews.com/politics/2016/12/13/media-types-hit-panic-button-over-cia-russia-assessment.html?refresh=true'
+  article_url = 'http://www.foxnews.com/politics/2017/12/13/media-types-hit-panic-button-over-cia-russia-assessment.html?refresh=true'
   b = Watir::Browser.new(:phantomjs)
   b.goto article_url
   doc = Nokogiri::HTML(b.html)
@@ -591,7 +591,7 @@ task :cnn_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if ((link.include?('2016')) && (!title.nil?))
+      if ((link.include?('2017')) && (!title.nil?))
         @counter +=1
         if (link.include?('cnn')) && (!link.include?('videos'))
           @remote_url = link
@@ -628,7 +628,7 @@ task :cnn_4 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if ((link.include?('2016')) && (!title.nil?))
+      if ((link.include?('2017')) && (!title.nil?))
         @counter +=1
         if (link.include?('cnn')) && (!link.include?('videos'))
           @remote_url = link
@@ -712,7 +712,7 @@ task :foxnews_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if ((link.include?('2016')) && (!title.nil?))
+      if ((link.include?('2017')) && (!title.nil?))
 
          if ((link.include?('http')) || (link.include?('www')))
            @remote_url = link
@@ -791,7 +791,7 @@ task :washingtonpost_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if ((link.include?('2016')) && (!title.nil?))
+      if ((link.include?('2017')) && (!title.nil?))
 
          if ((link.include?('http')) || (link.include?('www')))
            @remote_url = link
@@ -825,7 +825,7 @@ task :hackernews_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-    #  if ((link.include?('2016')) && (!title.nil?))
+    #  if ((link.include?('2017')) && (!title.nil?))
          if ((link.include?('http')) || (link.include?('www')))
            @remote_url = link
          else
@@ -1401,7 +1401,7 @@ end
      a.each do |article|
        begin
          a_url = article.css('a')[0]['href']
-        if a_url.start_with?('/2016')
+        if a_url.start_with?('/2017')
           url = 'http://www.nytimes.com' + a_url
           puts url
         end
