@@ -519,7 +519,7 @@ task :nytimes3 => [ :environment ] do
       results = BingSearch.image("#{@new_title}").first
       puts results.url
       @url = results.url
-      @nytime = Nytime.find_or_create_by(url: @remote_url, title: @new_title, image: @url)
+      @nytime = Newyorktime.find_or_create_by(url: @remote_url, title: @new_title, image: @url)
         @counter +=1
       # end
     rescue

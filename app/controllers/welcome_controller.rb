@@ -25,6 +25,7 @@ class WelcomeController < ApplicationController
     @buzzfeeds = Buzzfeed.all
     @washingtonposts = Washingtonpost.all
     @drudges = Drudge.all
+    @newyorktimes = Newyorktime.al
     @total_articles = Nytime.past_day.all.count
 
   #  Movie.first_three
