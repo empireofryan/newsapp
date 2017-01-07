@@ -60,22 +60,19 @@ li {
 <script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
 
 <div class="row style1">
-  <div class="col-md-12">
-    <p class="col-md-4 site text-left" style ='font-family: "Catamaran"'>
-    <br>
+  <div class="col-md-12" style='margin-top:25px'>
+    <p class="col-md-4 site text-center" style ='font-family: "Catamaran"; border:1px solid white'>
       <%= Time.now.strftime('%B %d, %Y') %>
     </p>
-    <p class="col-md-6 site text-left" style ='font-family: "Catamaran"'>
-      <br>
+    <p class="col-md-6 site text-center" style ='font-family: "Catamaran"; border:1px solid white'>
       New Articles Today:
       <% articles = [@movies, @mediums, @awwwards, @economists, @vimeos, @deals, @twitters, @nytimes, @googles, @nextwebs, @imgurs, @cnns, @reddits,  @hackernews, @wsjs, @times, @usatodays, @newsweeks, @huffpost, @espns, @foxnews, @buzzfeeds, @washingtonposts] %>
-      <% numba = 0 %>
+      <% number = 0 %>
       <% articles.each do |a| %>
-      <% numba += a.past_day.all.count %>
+      <% number += a.past_day.all.count %>
       <% end %>
-      <%= numba %>
+      <%= number %>
     </p>
-    <!-- @economists2, -->
     <!-- <div class="col-md-1 site text-left" style ='font-family: "Catamaran";
     '>
     <br>

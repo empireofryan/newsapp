@@ -1,0 +1,56 @@
+<style>
+.bobo {
+background-image:url('http://fullhdwall.com/wp-content/uploads/2016/03/Hd-Best-Background.jpeg');
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position:center; }
+
+.malduk{
+background-color: rgba(5,4,2,0.9);
+width:850px;
+height: 200px;
+margin-left:auto;
+margin-right:auto;
+padding: 55px; }
+
+
+p{ color: white; }
+/* each second do something else */
+/* array = [@nytimes, @blah] */
+
+<%# @nytimes.all.last %>
+
+</style>
+</head>
+<div class='bobo' style="height:200px">
+  <div id='moo' class='malduk'>
+    <% offset = rand(Nytime.count) %>
+    <% rand_record = Nytime.offset(offset).first.title %>
+    <%= rand_record %>
+    <p class="barley"> Hello!  </p>
+
+<script>
+$(document).ready(function () {
+    // will call refreshPartial every 3 seconds
+    setInterval(refreshPartial, 3000)
+
+});
+
+// calls action refreshing the partial
+function refreshPartial() {
+  $.ajax({
+    url: "welcome_controller/refresh_part"
+ })
+}
+</script>
+    <script>
+    // function newRecord() {
+    //    console.log("newrec");
+    //     $( ".barley" ).replaceWith("<h2><%= rand_record%></h2>");
+    // }
+    // setInterval(newRecord, 100);
+    </script>
+  </div>
+</div>
+</body>
+</html>

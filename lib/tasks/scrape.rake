@@ -332,7 +332,9 @@ task :wsj_2  => [ :environment ] do
       end
     rescue
     end
-    @wsj = Wsj.find_or_create_by!(url: @remote_url, title: @new_title)
+    if @new_title.length > 3
+      @wsj = Wsj.find_or_create_by!(url: @remote_url, title: @new_title)
+    end
   end # done: hrefs.each
   puts @counter
 
