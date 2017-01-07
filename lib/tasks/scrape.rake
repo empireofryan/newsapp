@@ -507,7 +507,7 @@ task :nytimes3 => [ :environment ] do
   hrefs.each do |href|
     link = href['href'] rescue nil
     title = href.text rescue nil
-    begin
+    # begin
       # if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
 
       @remote_url = link
@@ -522,13 +522,13 @@ task :nytimes3 => [ :environment ] do
       @nytime = Newyorktime.find_or_create_by(url: @remote_url, title: @new_title, image: @url)
         @counter +=1
       # end
-    rescue
-    end
+    # rescue
+    # end
 
   end # done: hrefs.each
   puts @counter
 
-  puts 'entries saved to nytime model'
+  puts 'entries saved to newyorktime model'
 end #end task nytimes3 do
 
 task :huffpost => [ :environment ] do
