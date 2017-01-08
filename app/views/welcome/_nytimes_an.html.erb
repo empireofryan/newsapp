@@ -6,7 +6,7 @@
       </p>
 
     <div  style="font-size:.9em; text-align:center">
-      <% @nytimes.past_day.each_with_index do |a, i| %>
+      <% @newyorktimes.past_day.each_with_index do |a, i| %>
       <a href='<%=a.url%>'>
         <div class="animatedParent">
           <h2 class='animated bounceInDown' data-id='<%=i+1%>'> <%= a.title %> </h2>
