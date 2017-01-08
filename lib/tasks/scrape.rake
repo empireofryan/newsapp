@@ -509,7 +509,7 @@ task :nytimes3 => [ :environment ] do
     link = href['href'] rescue nil
     title = href.text rescue nil
     # begin
-      if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
+      if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx')) rescue nil
 
       @remote_url = link
       @new_title = title
