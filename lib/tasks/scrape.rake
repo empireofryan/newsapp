@@ -227,17 +227,17 @@ task :reddit_2 => [ :environment ] do
     #       puts @new_title
     #     end
     #
-        puts @new_title
-        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
-        # BingSearch.account_key = ENV["bing_key"]
-        results = BingSearch.image("#{@new_title}").first
-        puts results.url
-        @bing_image = results.url
+        # puts @new_title
+        # BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+        # # BingSearch.account_key = ENV["bing_key"]
+        # results = BingSearch.image("#{@new_title}").first
+        # puts results.url
+        # @bing_image = results.url
     #
     #
         puts @remote_url
         debugger
-        @reddit = Reddit.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
+        @reddit = Reddit.find_or_create_by!(url: @remote_url, title: @new_title)
       # end
 #    rescue
 #    end
@@ -517,11 +517,11 @@ task :nytimes3 => [ :environment ] do
       puts @new_title
       puts @remote_url
 
-      BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
-      results = BingSearch.image("#{@new_title}").first
-      puts results.url rescue nil
-      @url = results.url rescue nil
-      @nytime = Newyorktime.find_or_create_by(url: @remote_url, title: @new_title, image: @url)
+      # BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+      # results = BingSearch.image("#{@new_title}").first
+      # puts results.url rescue nil
+      # @url = results.url rescue nil
+      @nytime = Newyorktime.find_or_create_by(url: @remote_url, title: @new_title)
         @counter +=1
       end
     end
@@ -557,11 +557,11 @@ task :huffpost => [ :environment ] do
         end
         puts @remote_url
 
-        puts @new_title
-        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
-        results = BingSearch.image("#{@new_title}").first
-        puts results.url
-        @bing_image = results.url
+        # puts @new_title
+        # BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+        # results = BingSearch.image("#{@new_title}").first
+        # puts results.url
+        # @bing_image = results.url
       end
     rescue
     end
@@ -569,7 +569,7 @@ task :huffpost => [ :environment ] do
     if ((!@new_title.include?('%AP%')) || (!@new_title.include?('%Getty%')) || (!@new_title.include?('%Reuters%')) rescue nil)
       @huffpost = Huffpost.find_or_create_by!(url: @remote_url) do |a|
         a.title = @new_title
-        a.image = @bing_image
+        # a.image = @bing_image
       end
       puts 'created' + @new_title
     end
@@ -647,15 +647,15 @@ task :cnn_4 => [ :environment ] do
           puts @new_title
         end
 
-        puts @new_title
-        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
-        results = BingSearch.image("#{@new_title}").first
-        puts results.url
-        @bing_image = results.url
+        # puts @new_title
+        # BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+        # results = BingSearch.image("#{@new_title}").first
+        # puts results.url
+        # @bing_image = results.url
 
 
         puts @remote_url
-        @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title, image: @bing_image)
+        @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title)
       end
     rescue
     end
@@ -729,12 +729,12 @@ task :foxnews_3 => [ :environment ] do
           @counter +=1
           puts @remote_url
 
-          bing_title = @new_title
-          puts @new_title
-          BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
-          results = BingSearch.image("#{@new_title}").first
-          puts results.url
-          @bing_image = results.url
+          # bing_title = @new_title
+          # puts @new_title
+          # BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+          # results = BingSearch.image("#{@new_title}").first
+          # puts results.url
+          # @bing_image = results.url
 
           ##get rid of advertising bs
           if ((!@new_title.include?('%refinery29%')) || (!@new_title.include?('%kbb%')) || (!@new_title.include?('%nextadvisor%')))
