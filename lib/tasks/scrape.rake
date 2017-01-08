@@ -509,7 +509,7 @@ task :nytimes3 => [ :environment ] do
     link = href['href'] rescue nil
     title = href.text rescue nil
     # begin
-      # if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
+      if (link.include?('2017')) && (!link.include?('indexes')) && (link.include?('nytimes')) && (!link.include?('adx'))
 
       @remote_url = link
       @new_title = title
@@ -518,11 +518,11 @@ task :nytimes3 => [ :environment ] do
 
       BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
       results = BingSearch.image("#{@new_title}").first
-      puts results.url
-      @url = results.url
+      puts results.url rescue nil
+      @url = results.url rescue nil
       @nytime = Newyorktime.find_or_create_by(url: @remote_url, title: @new_title, image: @url)
         @counter +=1
-      # end
+      end
     # rescue
     # end
 
