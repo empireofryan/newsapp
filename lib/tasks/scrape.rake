@@ -129,7 +129,7 @@ end
 task :nyt_pics3 => [:environment] do
   nytimes_title = Nytime.first.title
   puts nytimes_title
-  BingSearch.account_key = ENV["bing_key"]
+  BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
   results = BingSearch.image("#{nytimes_title}").first
   puts results.url
 end
@@ -137,7 +137,7 @@ end
 task :nyt_pics4 => [:environment] do
   nytimes_title = Nytime.all.each do |n|
     puts n.title
-    BingSearch.account_key = ENV["bing_key"]
+    BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
     results = BingSearch.image("#{n.title}").first
     puts results.url
   end
@@ -228,7 +228,8 @@ task :reddit_2 => [ :environment ] do
     #     end
     #
         puts @new_title
-        BingSearch.account_key = ENV["bing_key"]
+        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
+        # BingSearch.account_key = ENV["bing_key"]
         results = BingSearch.image("#{@new_title}").first
         puts results.url
         @bing_image = results.url
@@ -515,7 +516,7 @@ task :nytimes3 => [ :environment ] do
       puts @new_title
       puts @remote_url
 
-      BingSearch.account_key = ENV["bing_key"]
+      BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
       results = BingSearch.image("#{@new_title}").first
       puts results.url
       @url = results.url
@@ -555,7 +556,7 @@ task :huffpost => [ :environment ] do
         puts @remote_url
 
         puts @new_title
-        BingSearch.account_key = ENV["bing_key"]
+        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
         results = BingSearch.image("#{@new_title}").first
         puts results.url
         @bing_image = results.url
@@ -645,7 +646,7 @@ task :cnn_4 => [ :environment ] do
         end
 
         puts @new_title
-        BingSearch.account_key = ENV["bing_key"]
+        BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
         results = BingSearch.image("#{@new_title}").first
         puts results.url
         @bing_image = results.url
@@ -728,7 +729,7 @@ task :foxnews_3 => [ :environment ] do
 
           bing_title = @new_title
           puts @new_title
-          BingSearch.account_key = ENV["bing_key"]
+          BingSearch.account_key = 'jgRfXs073p8B87c/TJamrnIDjbeyYtH5gAe7+TYvsIw'
           results = BingSearch.image("#{@new_title}").first
           puts results.url
           @bing_image = results.url
