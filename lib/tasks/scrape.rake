@@ -361,7 +361,7 @@ task :wsj_2  => [ :environment ] do
       end
     rescue
     end
-    if @new_title.length > 3
+    if @new_title.length > 3 rescue nil
       @wsj = Wsj.find_or_create_by!(url: @remote_url, title: @new_title)
     end
   end # done: hrefs.each
@@ -951,6 +951,7 @@ task :awwwards => [ :environment ] do
   a = doc.css('.inner .rollover')
   b = doc.css('.inner .rollover a[2]')
   c = doc.css('.inner .rollover img')
+  ds = doc.css('.inner .rollover a[2]')
 #  puts a
   z = (0..11).to_a
   puts z

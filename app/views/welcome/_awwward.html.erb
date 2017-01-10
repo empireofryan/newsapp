@@ -3,7 +3,7 @@
     <p class="site">
       <img src='http://www.eqtr.com/media/557763/awwwards2.png'
       style='width:240px; margin-top:0px'><br>
-      </p>
+    </p>
     <p style="font-size:.9em; text-align:center">
 <style>
 .awwward{
@@ -28,7 +28,7 @@ text-decoration:none;
       <a href='<%=a.url%>' style="color:#FFCE00">
         <img src="<%=a.screenshot%>" style="width:100%">
         <br><p style="margin-top:10px; height:50px">
-        <%=a.title.truncate_words(4, omission: '...')%>
+        <%=a.title.truncate_words(4, omission: '...') rescue nil %>
         </p></a>
       </div>
       <% end %>
