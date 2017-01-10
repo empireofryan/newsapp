@@ -960,8 +960,8 @@ task :awwwards => [ :environment ] do
      screenshot = c[i]['src'] rescue nil
      puts screenshot
      rough_title = c[i]['alt'] rescue nil
-     title_refactor = rough_title.slice(0..(rough_title.index('|')))
-     title = title_refactor[0..-3]
+     title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
+     title = title_refactor[0..-3] rescue nil
     # puts title
      @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
      @awward.save
