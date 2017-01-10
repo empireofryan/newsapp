@@ -101,14 +101,14 @@ task :awwwards => [ :environment ] do
   z = (0..11).to_a
   puts z
    z.each do |i|
-     url = b[i]['href']
+     url = b[i]['href'] rescue nil
      #puts url
-     screenshot = c[i]['src']
+     screenshot = c[i]['src'] rescue nil
      puts screenshot
-     binding.pry
-     rough_title = c[i]['alt']
-     title_refactor = rough_title.slice(0..(rough_title.index('|')))
-     title = title_refactor[0..-3]
+
+     rough_title = c[i]['alt'] rescue nil
+     title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
+     title = title_refactor[0..-3] rescue nil
     # puts title
      @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
      @awward.save
