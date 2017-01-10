@@ -66,7 +66,7 @@ task :run_new2  => [ :environment ] do
 end
 
 task :run_new3  => [ :environment ] do
-  array = ['time', 'wsj_2', 'twitter']
+  array = ['time', 'wsj_2', 'twitter', 'awwwards']
   # Rake::Task['scrape:newsweek3'].invoke
   array.each do |source|
     begin
@@ -88,6 +88,34 @@ task :sources => [ :environment ] do
     puts item["id"]
   end
 end
+
+task :awwwards => [ :environment ] do
+  b = Watir::Browser.new(:phantomjs)
+  b.goto 'http://www.awwwards.com/awards-of-the-day/'
+
+  doc = Nokogiri::HTML(b.html)
+  a = doc.css('.inner .rollover')
+  b = doc.css('.inner .rollover a[2]')
+  c = doc.css('.inner .rollover img')
+#  puts a
+  z = (0..11).to_a
+  puts z
+   z.each do |i|
+     url = b[i]['href']
+     #puts url
+     screenshot = c[i]['src']
+     puts screenshot
+     binding.pry
+     rough_title = c[i]['alt']
+     title_refactor = rough_title.slice(0..(rough_title.index('|')))
+     title = title_refactor[0..-3]
+    # puts title
+     @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+     @awward.save
+     puts 'Awwward entry created!'
+     puts " "
+   end
+end #end of awwwards
 
 task :nyt_pics => [ :environment ] do
   nytimes_urls = Nytime.past_day.all
@@ -1121,33 +1149,7 @@ end
   #    end
   # end #end of awwwards
 
-  def awwwards
-    b = Watir::Browser.new(:phantomjs)
-    b.goto 'http://www.awwwards.com/awards-of-the-day/'
 
-    doc = Nokogiri::HTML(b.html)
-    a = doc.css('.inner .rollover')
-    b = doc.css('.inner .rollover a[2]')
-    c = doc.css('.inner .rollover img')
-  #  puts a
-    z = (0..11).to_a
-    puts z
-     z.each do |i|
-       url = b[i]['href']
-       #puts url
-       screenshot = c[i]['src']
-       puts screenshot
-       binding.pry
-       rough_title = c[i]['alt']
-       title_refactor = rough_title.slice(0..(rough_title.index('|')))
-       title = title_refactor[0..-3]
-      # puts title
-       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
-       @awward.save
-       puts 'Awwward entry created!'
-       puts " "
-     end
-  end #end of awwwards
 
   def deals_pt1
     url = 'https://www.amazon.com/gp/goldbox/ref=gbps_ftr_s-3_3422_wht_1040660?gb_f_GB-SUPPLE=sortOrder:BY_DISCOUNT_DESCENDING,enforcedCategories:7192394011%252C7147440011%252C2619525011%252C2102313011%252C2858778011%252C2617941011%252C15684181%252C165796011%252C7147444011%252C3760911%252C283155%252C7147443011%252C502394%252C2335752011%252C4991425011%252C541966%252C7586165011%252C1233514011%252C228013%252C2625373011%252C172282%252C1063306%252C7147442011%252C16310101%252C3760901%252C1055398%252C16310091%252C133140011%252C284507%252C9479199011%252C679255011%252C6358539011%252C1040658%252C7147441011%252C11091801%252C1064954%252C2972638011%252C2619533011%252C3375251%252C165793011%252C679337011%252C6358543011%252C1040660&pf_rd_p=2609053422&pf_rd_s=slot-3&pf_rd_t=701&pf_rd_i=gb_main&pf_rd_m=ATVPDKIKX0DER&pf_rd_r=F76CPB8VFZY5TYSDDWJB&nocache=1474582112196'

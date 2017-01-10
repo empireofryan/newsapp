@@ -75,11 +75,11 @@ class WelcomeController < ApplicationController
         }
     })
   end
-  def refresh_part
-    # get whatever data you need to a variable named @data
-    @data = Nytime.all.last
-    respond_to do |format|
-      format.js
-    end
-  end
+  # def refresh_part
+  #   # get whatever data you need to a variable named @data
+  #   @data = Nytime.all.last
+  #   respond_to do |format|
+  #     format.js
+  #   end
+  # end
 end
