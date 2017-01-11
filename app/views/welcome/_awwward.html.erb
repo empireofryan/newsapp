@@ -23,7 +23,7 @@ text-decoration:none;
 /*background-color:blue;  doesn't work  */
 }
 </style>
-      <% @awwwards.each_with_index do |a, index| %>
+      <% @awwwards.past_month.each_with_index do |a, index| %>
       <div class="col-md-3 awwward">
       <a href='<%=a.url%>' style="color:#FFCE00">
         <img src="<%=a.screenshot%>" style="width:100%">
