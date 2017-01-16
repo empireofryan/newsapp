@@ -124,7 +124,7 @@ li {
              <% elsif @a.url.include?('economist') %>
                <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
              <% elsif @a.url.include?('wsj') %>
-               <%='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/WSJ_Logo.svg/2000px-WSJ_Logo.svg.png'%>
+               <%='http://graphics.wsj.com/billion-dollar-club/img/wsj.png'%>
              <% elsif @a.url.include?('time') %>
                <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
              <% elsif @a.url.include?('cnn') %>
@@ -140,68 +140,120 @@ li {
 
 
 <ul class="newsticker col-md-4" >
-  <% @nytimes.past_day.first(1).each do |a| %>
+  <% @b = @newsapis.sample %>
+  <%# @nytimes.past_day.first(1).each do |a| %>
 
-  <li class="col-md-12" style="background:url('<%=a.image%>');  background-size:     cover;                      /* <------ */
+  <li class="col-md-12" style="background:url('<%=@b.image%>');  background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: 0% 0%;height:150px;padding-top: 35px;text-align:center; border:2px solid red">
 
-      <a href='<%=a.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; text-align:center; color: #FFCE00;
+      <a href='<%=@b.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; text-align:center; color: #FFCE00;
                      text-align:center;
                      letter-spacing: -1px;
                      background: rgb(0, 0, 0); /* fallback color */
-                     background: rgba(0, 0, 0, 0.7);"><%= a.title %></span>
-                     <img src='https://upload.wikimedia.org/wikipedia/commons/7/77/The_New_York_Times_logo.png'
-                           style='width:135px; margin-top:0px'> </a>
-      <% end %>
+                     background: rgba(0, 0, 0, 0.7);"><%= @b.title %></span>
+                     <img src=<% if @b.url.include?('newsweek') %>
+                       <%='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' %>
+                     <% elsif @b.url.include?('economist') %>
+                       <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
+                     <% elsif @b.url.include?('wsj') %>
+                       <%='http://graphics.wsj.com/billion-dollar-club/img/wsj.png'%>
+                     <% elsif @b.url.include?('time') %>
+                       <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
+                     <% elsif @b.url.include?('cnn') %>
+                       <%='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png' %>
+                     <% elsif @b.url.include?('usatoday') %>
+                       <%='https://lh3.googleusercontent.com/2i2GvT7d5CxbPh9edK9PJXZDgLKsisFrAfRj90MubTAgY6EFRk0gAjGb1iIP4poB-k0=w300' %>
+                     <% end %>
+                           style='width:65px; margin-top:0px'> </a>
+      <%# end %>
 
   </li>
-  <% @foxnews.past_day.first(1).each do |a| %>
-  <li class="col-md-12" style="background:url('<%=a.image%>');  background-size:     cover;                      /* <------ */
+  <%# @foxnews.past_day.first(1).each do |a| %>
+  <% @c = @newsapis.sample %>
+  <li class="col-md-12" style="background:url('<%=@c.image%>');  background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: 0% 0%;height:150px;padding-top: 35px;text-align:center; border:2px solid green">
-  <a href='<%=a.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
+  <a href='<%=@c.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
                  text-align:center;
                  letter-spacing: -1px;
                  background: rgb(0, 0, 0); /* fallback color */
-                 background: rgba(0, 0, 0, 0.7);"><%= a.title %>              <img src='http://commonwealthmagazine.org/wp-content/uploads/sites/2/2015/12/fox-news-logo.png'
-                       style='width:45px; '>
+                 background: rgba(0, 0, 0, 0.7);"><%= @c.title %>              <img src=
+                 <% if @c.url.include?('newsweek') %>
+                   <%='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' %>
+                 <% elsif @c.url.include?('economist') %>
+                   <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
+                 <% elsif @c.url.include?('wsj') %>
+                   <%='http://graphics.wsj.com/billion-dollar-club/img/wsj.png'%>
+                 <% elsif @c.url.include?('time') %>
+                   <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
+                 <% elsif @c.url.include?('cnn') %>
+                   <%='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png' %>
+                 <% elsif @c.url.include?('usatoday') %>
+                   <%='https://lh3.googleusercontent.com/2i2GvT7d5CxbPh9edK9PJXZDgLKsisFrAfRj90MubTAgY6EFRk0gAjGb1iIP4poB-k0=w300' %>
+                 <% end %>
+                       style='width:65px; '>
                </span>
                </a>
-  <% end %>
-
+  <%# end %>
   </li>
-  <li class="col-md-12" style="background:url('http://assets.nydailynews.com/polopoly_fs/1.52009.1313770405!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/gal-prohibition17-web-jpg.jpg');  background-size:     cover;                      /* <------ */
+  <% @d = @newsapis.sample %>
+  <li class="col-md-12" style="background:url('<%=@d.image%>');   background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: 0% 0%;height:150px;padding-top: 35px;text-align:center; border:2px solid blue">
 
-      <% @buzzfeeds.past_day.last(1).each do |a| %>
-      <a href='<%=a.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
+      <%# @buzzfeeds.past_day.last(1).each do |a| %>
+      <a href='<%=@d.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
                      text-align:center;
                      letter-spacing: -1px;
                      background: rgb(0, 0, 0); /* fallback color */
-                     background: rgba(0, 0, 0, 0.7);"><%= a.title %>         <img src='https://upload.wikimedia.org/wikipedia/commons/e/e4/BuzzFeed.svg'
-                              style='width:105px;'>
+                     background: rgba(0, 0, 0, 0.7);"><%= @d.title %>         <img src=
+                     <% if @d.url.include?('newsweek') %>
+                       <%='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' %>
+                     <% elsif @d.url.include?('economist') %>
+                       <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
+                     <% elsif @d.url.include?('wsj') %>
+                       <%='http://graphics.wsj.com/billion-dollar-club/img/wsj.png'%>
+                     <% elsif @d.url.include?('time') %>
+                       <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
+                     <% elsif @d.url.include?('cnn') %>
+                       <%='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png' %>
+                     <% elsif @d.url.include?('usatoday') %>
+                       <%='https://lh3.googleusercontent.com/2i2GvT7d5CxbPh9edK9PJXZDgLKsisFrAfRj90MubTAgY6EFRk0gAjGb1iIP4poB-k0=w300' %>
+                     <% end %>
+                              style='width:65px;'>
                    </span>
                    </a>
-      <% end %>
-
+      <%# end %>
   </li>
-
-  <li class="col-md-12" style="background:url('http://assets.nydailynews.com/polopoly_fs/1.52009.1313770405!/img/httpImage/image.jpg_gen/derivatives/gallery_1200/gal-prohibition17-web-jpg.jpg');  background-size:     cover;                      /* <------ */
+  <% @e = @newsapis.sample %>
+  <li class="col-md-12" style="background:url('<%=@e.image%>');  background-size:     cover;                      /* <------ */
   background-repeat:   no-repeat;
   background-position: 0% 0%;height:150px;padding-top: 35px;text-align:center; border:2px solid blue">
 
-      <% @awwwards.last(1).each do |a| %>
-      <a href='<%=a.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
+      <%# @awwwards.last(1).each do |a| %>
+      <a href='<%=@e.url%>'>  <span style="margin-top: 10px; font-size:1.5em; height:1px; color: #FFCE00;
                      text-align:center;
                      letter-spacing: -1px;
                      background: rgb(0, 0, 0); /* fallback color */
-                     background: rgba(0, 0, 0, 0.7);"><%= a.title %>         <img src='http://www.eqtr.com/media/557763/awwwards2.png'
-                              style='width:105px;'>
+                     background: rgba(0, 0, 0, 0.7);"><%= @e.title %>         <img src=
+                     <% if @e.url.include?('newsweek') %>
+                       <%='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' %>
+                     <% elsif @e.url.include?('economist') %>
+                       <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
+                     <% elsif @e.url.include?('wsj') %>
+                       <%='http://graphics.wsj.com/billion-dollar-club/img/wsj.png'%>
+                     <% elsif @e.url.include?('time') %>
+                       <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
+                     <% elsif @e.url.include?('cnn') %>
+                       <%='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png' %>
+                     <% elsif @e.url.include?('usatoday') %>
+                       <%='https://lh3.googleusercontent.com/2i2GvT7d5CxbPh9edK9PJXZDgLKsisFrAfRj90MubTAgY6EFRk0gAjGb1iIP4poB-k0=w300' %>
+                     <% end %>
+                              style='width:65px;'>
                    </span>
                    </a>
-      <% end %>
+      <%# end %>
 
   </li>
   </ul>

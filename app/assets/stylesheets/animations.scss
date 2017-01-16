@@ -10,6 +10,7 @@
     animation-duration: 1s;
     -webkit-animation-fill-mode: both;
     animation-fill-mode: both;
+    
 }
 .slow{
      -webkit-animation-duration: 1.5s;
@@ -1826,7 +1827,7 @@
         opacity: 1;
         transform: translateX(0);
     }
-} 
+}
 .fadeInLeftShort {
     opacity: 0;
     -webkit-transform: translateX(-20px);

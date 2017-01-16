@@ -487,13 +487,12 @@ dontGo({
 
 </div>
 
-<!-- <script>
+<script>
 function doStuff() {
-   console.log("hello!");
    $(window).trigger('resize');
 }
 setInterval(doStuff, 10);
-</script> -->
+</script>
 
 <script>
 
@@ -989,7 +988,7 @@ $(document.body).on('appear', '.animatedParent', function(e, $affected){
 });
 
  $(document.body).on('disappear', '.animatedParent', function(e, $affected) {
-  if(!$(this).hasClass('animateOnce')){
+  if($(this).hasClass('animateOnce')){
     $(this).find('.animated').removeClass('go');
    }
  });
