@@ -78,6 +78,19 @@ task :run_new3  => [ :environment ] do
   end
 end
 
+task :news_api  => [ :environment ] do
+  array = ['cnn', 'economist2', 'wsj', 'time', 'newsweek']
+  # Rake::Task['scrape:newsweek3'].invoke
+  array.each do |source|
+    begin
+      Rake::Task["scrape:#{source}"].invoke
+    rescue
+      Rake::Task["#{source}"].reenable
+      Rake::Task["#{source}"].invoke
+    end
+  end
+end
+
 task :sources => [ :environment ] do
   url = 'https://newsapi.org/v1/sources'
   uri = URI(url)
@@ -200,7 +213,8 @@ task :cnn => [ :environment ] do
     url = item['url']
     image = item['urlToImage']
     published = item['publishedAt']
-    @cnn = Cnn.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    #@cnn = Cnn.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created cnn entry'
   end
 end
@@ -221,7 +235,8 @@ task :reddit => [ :environment ] do
     url = item['url']
     image = item['urlToImage']
     published = item['publishedAt']
-    @reddit = Reddit.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    #@reddit = Reddit.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created reddit entry'
   end
 end
@@ -296,6 +311,7 @@ task :economist2  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @economist = Economist2.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created economist entry'
   end
 end
@@ -315,6 +331,7 @@ task :hackernews  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @hackernews = Hackernew.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created hacker news entry'
   end
 end
@@ -334,6 +351,7 @@ task :wsj  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @wsjs = Wsj.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created WSJ entry'
   end
 end
@@ -387,6 +405,7 @@ task :time  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @times = Time2.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created Time entry'
   end
 end
@@ -406,6 +425,7 @@ task :usatoday  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @usatodays = Usatoday.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created Usa Today entry'
   end
 end
@@ -425,6 +445,7 @@ task :newsweek  => [ :environment ] do
     image = item['urlToImage']
     published = item['publishedAt']
     @newsweeks = Newsweek.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created newsweek entry'
   end
 end

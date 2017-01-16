@@ -26,6 +26,7 @@ class WelcomeController < ApplicationController
     @washingtonposts = Washingtonpost.all
     @drudges = Drudge.all
     @newyorktimes = Newyorktime.all
+    @newsapis = Newsapi.all
     @total_articles = Nytime.past_day.all.count
 
   #  Movie.first_three

@@ -1,0 +1,2 @@
+class Newsapi < ApplicationRecord
+end

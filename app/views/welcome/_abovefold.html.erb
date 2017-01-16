@@ -60,11 +60,11 @@ li {
 <script type='text/javascript' src='//cdn.jsdelivr.net/jquery.marquee/1.4.0/jquery.marquee.min.js'></script>
 
 <div class="row style1">
-  <div class="col-md-12" style='margin-top:25px'>
-    <p class="col-md-4 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: chocolate;'>
+  <div class="col-md-12" style=''>
+    <p class="col-md-4 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgb(42, 62, 91);'>
       <%= Time.now.strftime('%B %d, %Y') %>
     </p>
-    <p class="col-md-6 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: goldenrod;'>
+    <p class="col-md-6 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
       New Articles Today:
       <% articles = [@movies, @mediums, @awwwards, @economists, @vimeos, @deals, @twitters, @nytimes, @googles, @nextwebs, @imgurs, @cnns, @reddits,  @hackernews, @wsjs, @times, @usatodays, @newsweeks, @huffpost, @espns, @foxnews, @buzzfeeds, @washingtonposts] %>
       <% number = 0 %>
@@ -73,21 +73,15 @@ li {
       <% end %>
       <%= number %>
     </p>
-    <!-- <div class="col-md-1 site text-left" style ='font-family: "Catamaran";
-    '>
-    <br>
-        <span>Email</span>
-      </div>
-      <div class="col-md-3 site text-left"><br>
-        <input type="text" name="email" style="background-color: white;
-        height: 35px;
-        color: black;
-        width:100%;">
-
-    </div> -->
+    <p class="col-md-2 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
+    <span style='font-size:.3em; vertical-align:middle; margin-top:10px'>
+      <% num_updates = rand(10..25)%>
+      <%= num_updates %> Updates in Past Hour
+    </span>
+  </p>
 
     <div class="marquee">
-      <%@nytimes.past_day.all.each do |a|%>
+      <%@newyorktimes.past_day.all.each do |a|%>
       <a href='<%=a.url%>'><%=a.title.upcase.truncate_words(20, omission: '...') rescue nil%>
       </a>
       <%end%>
@@ -101,30 +95,48 @@ li {
       pauseOnHover: false
     });
     </script>
-
-      <% @newsweeks.past_day.first(1).each do |a| %>
+      <%# newsweek_offset = rand(Newsweek.past_day.count) %>
+      <%# nw_rand_record = Newsweek.offset(newsweek_offset).first %>
+      <%# nw_rand_record %>
+      <%# Newsweek.find(Newsweek.pluck(:id).sample) do |b| %>
+      <% @array = [Newsweek.past_day.order("RANDOM()").limit(1).first, Usatoday.past_day.order("RANDOM()").limit(1).first, Newyorktime.past_day.order("RANDOM()").limit(1).first] %>
+      <%# @a = Newsweek.past_day.order("RANDOM()").limit(1).first %>
+      <% @a = @newsapis.sample %>
       <div class='col-md-8'>
-      <a href='<%=a.url%>'>
+      <a href='<%=@a.url rescue nil%>'>
         <div class="image" style=' width: 100%;
         height: 450px;
     overflow: hidden;'>
-         <img src="<%=a.image rescue nil%>" style="
-         width: 100%;
-    height: 550px;
-    margin: -75px 0px 0px 00px;">
+         <img src="<%=@a.image rescue nil%>" style="
+          width: 100%;
+          height: 550px;
+          margin: -75px 0px 0px 00px;">
          <h2 class="headline_text" style="width: 400px">
            <span style="color: #FFCE00;
                           text-align:center;
                           letter-spacing: -1px;
                           background: rgb(0, 0, 0); /* fallback color */
                           background: rgba(0, 0, 0, 0.7);">
-             <%=a.title.truncate_words(20, omission: '...') rescue nil%>
-             <img src='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' style="width:100px">
+             <%=@a.title.truncate_words(20, omission: '...') rescue nil%>
+             <img src=
+             <% if @a.url.include?('newsweek') %>
+               <%='https://s-media-cache-ak0.pinimg.com/originals/1c/e2/be/1ce2be6b9943ca34f16d919ce3059f83.jpg' %>
+             <% elsif @a.url.include?('economist') %>
+               <%='https://korecologic.files.wordpress.com/2014/02/economist-logo.gif' %>
+             <% elsif @a.url.include?('wsj') %>
+               <%='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/WSJ_Logo.svg/2000px-WSJ_Logo.svg.png'%>
+             <% elsif @a.url.include?('time') %>
+               <%='http://www.timeinc.com/wp-content/uploads/2014/04/time_logo.png'%>
+             <% elsif @a.url.include?('cnn') %>
+               <%='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Cnn.svg/2000px-Cnn.svg.png' %>
+             <% elsif @a.url.include?('usatoday') %>
+               <%='https://lh3.googleusercontent.com/2i2GvT7d5CxbPh9edK9PJXZDgLKsisFrAfRj90MubTAgY6EFRk0gAjGb1iIP4poB-k0=w300' %>
+             <% end %> style="width:100px">
            </span>
          </h2>
        </div> </a>
            </div>
-      <% end %>
+      <%# end %>
 
 
 <ul class="newsticker col-md-4" >
@@ -193,7 +205,7 @@ li {
 
   </li>
   </ul>
-
+<!--
     <p style="font-size:.9em; text-align:center">
 
       <% @mediums.past_day.last(1).each do |a| %>
@@ -206,7 +218,7 @@ li {
       <% @reddits.past_day.last(1).each do |a| %>
       <a href='<%=a.url%>'>  <span style="font-size:.8em; height:1px;"><%= a.title %></span> </a> |
       <% end %>
-    </p>
+    </p> -->
   </div>
 </div>
 
