@@ -61,29 +61,48 @@ li {
 
 <div class="row style1">
   <div class="col-md-12" style=''>
-    <p class="col-md-4 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgb(42, 62, 91);'>
-      <%= Time.now.strftime('%B %d, %Y') %>
-    </p>
-    <p class="col-md-6 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
-      New Articles Today:
-      <% articles = [@movies, @mediums, @awwwards, @economists, @vimeos, @deals, @twitters, @nytimes, @googles, @nextwebs, @imgurs, @cnns, @reddits,  @hackernews, @wsjs, @times, @usatodays, @newsweeks, @huffpost, @espns, @foxnews, @buzzfeeds, @washingtonposts] %>
-      <% number = 0 %>
-      <% articles.each do |a| %>
-      <% number += a.past_day.all.count %>
-      <% end %>
-      <%= number %>
-    </p>
     <p class="col-md-2 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
-    <span style='font-size:.3em; vertical-align:middle; margin-top:10px'>
-      <% num_updates = rand(10..25)%>
-      <%= num_updates %> Updates in Past Hour
+    <span style='font-size:.5em; vertical-align:middle;'>
+      <%# num_updates = rand(10..25)%>
+      <%#= num_updates %>
+      OM<strong>NEWS</strong>ENCE
     </span>
   </p>
-
+    <p class="col-md-3 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgb(42, 62, 91);'>
+      <span style='font-size:.5em; vertical-align:middle; margin-top:10px'>
+      All news. All sources.
+      </span>
+    </p>
+    <p class="col-md-3 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
+      <span style='font-size:.5em; vertical-align:middle; margin-top:10px'>
+        New Articles Today:
+        <% articles = [@movies, @mediums, @awwwards, @economists, @vimeos, @deals, @twitters, @nytimes, @googles, @nextwebs, @imgurs, @cnns, @reddits,  @hackernews, @wsjs, @times, @usatodays, @newsweeks, @huffpost, @espns, @foxnews, @buzzfeeds, @washingtonposts] %>
+        <% number = 0 %>
+        <% articles.each do |a| %>
+        <% number += a.past_day.all.count %>
+        <% end %>
+        <%= number %>
+      </span>
+    </p>
+    <p class="col-md-2 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgb(42, 62, 91);'>
+    <span style='font-size:.3em; vertical-align:middle;'>
+      <%# num_updates = rand(10..25)%>
+      <%#= num_updates %>
+        <%= Time.now.strftime('%B %d, %Y') %>
+      <!-- OM<strong>NEWS</strong>ENCE -->
+    </span>
+  </p>
+  <p class="col-md-2 site text-center" style ='font-family: "Catamaran"; border:1px solid white; background-color: rgba(9, 34, 70, 0.65);'>
+    <span style='font-size:.5em; vertical-align:middle; margin-top:10px'>
+    Email
+    </span>
+  </p>
     <div class="marquee">
       <%@newyorktimes.past_day.all.each do |a|%>
-      <a href='<%=a.url%>'><%=a.title.upcase.truncate_words(20, omission: '...') rescue nil%>
-      </a>
+        <% if !a.title.include?('Comments') %>
+          <a href='<%=a.url%>'><%=a.title.upcase.truncate_words(20, omission: '...') rescue nil%>
+          </a>
+        <%end%>
       <%end%>
     </div>
 
