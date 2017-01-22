@@ -66,7 +66,7 @@ task :run_new2  => [ :environment ] do
 end
 
 task :run_new3  => [ :environment ] do
-  array = ['time', 'twitter', 'awwwards', 'wsj_2', 'medium']
+  array = ['time', 'twitter', 'awwwards', 'wsj_2', 'medium', 'hackernews_3']
   # Rake::Task['scrape:newsweek3'].invoke
   array.each do |source|
     begin
@@ -102,33 +102,45 @@ task :sources => [ :environment ] do
   end
 end
 
-task :awwwards => [ :environment ] do
-  b = Watir::Browser.new(:phantomjs)
-  b.goto 'http://www.awwwards.com/awards-of-the-day/'
-
-  doc = Nokogiri::HTML(b.html)
-  a = doc.css('.inner .rollover')
-  b = doc.css('.inner .rollover a[2]')
-  c = doc.css('.inner .rollover img')
-#  puts a
-  z = (0..11).to_a
-  puts z
-   z.each do |i|
-     url = b[i]['href'] rescue nil
-     #puts url
-     screenshot = c[i]['src'] rescue nil
-     puts screenshot
-
-     rough_title = c[i]['alt'] rescue nil
-     title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
-     title = title_refactor[0..-3] rescue nil
-    # puts title
-     @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
-     @awward.save
-     puts 'Awwward entry created!'
-     puts " "
-   end
-end #end of awwwards
+# task :awwwards => [ :environment ] do
+#   b = Watir::Browser.new(:phantomjs)
+#   b.goto 'http://www.awwwards.com/awards-of-the-day/'
+#
+#   doc = Nokogiri::HTML(b.html)
+#   a = doc.css('.inner .rollover')
+#   b = doc.css('.inner .rollover a[2]')
+#   c = doc.css('.inner .rollover img')
+# #  puts a
+#   z = (0..19).to_a
+#   puts z
+#    z.each do |i|
+#      url = b[i]['href'] rescue nil
+#
+#      #puts url
+#      screenshot = c[i]['src'] rescue nil
+#      puts screenshot
+#
+#      rough_title = c[i]['alt'] rescue nil
+#      title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
+#      title = title_refactor[0..-3] rescue nil
+#     # binding.pry
+#      if !(screenshot == 'https://assets.awwwards.com/bundles/tvweb/images/nophoto.png')
+#       #  binding.pry
+#        if !url == nil
+#           binding.pry
+#          if (url.include?('/sites/') rescue nil)
+#            url = 'http://www.awwwards.com' + url
+#
+#       # puts title
+#          @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+#          @awward.save
+#          puts 'Awwward entry created!'
+#          puts " "
+#          end
+#        end
+#      end
+#    end
+# end #end of awwwards
 
 task :nyt_pics => [ :environment ] do
   nytimes_urls = Nytime.past_day.all
@@ -914,7 +926,7 @@ task :drudge_3 => [ :environment ] do
      link = href['href'] rescue nil
      title = href.text rescue nil
     begin
-      if !title.nil? && title.count > 2
+      if !title.nil? && title.split.size > 2
         #  if ((link.include?('http')) || (link.include?('www')))
             @remote_url = link
         #  else
@@ -972,25 +984,40 @@ task :awwwards => [ :environment ] do
 
   doc = Nokogiri::HTML(b.html)
   a = doc.css('.inner .rollover')
-  b = doc.css('.inner .rollover a[2]')
+  b = doc.css('.inner .rollover a')
   c = doc.css('.inner .rollover img')
-  ds = doc.css('.inner .rollover a[2]')
+  d = doc.css('.inner .rollover a[2]')
 #  puts a
   z = (0..11).to_a
-  puts z
+  # puts z
    z.each do |i|
      url = b[i]['href'] rescue nil
-     #puts url
-     screenshot = c[i]['src'] rescue nil
+  #   puts url
+     screenshot = c[i]['data-src'] rescue nil
      puts screenshot
      rough_title = c[i]['alt'] rescue nil
-     title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
-     title = title_refactor[0..-3] rescue nil
+     puts rough_title
+     title = rough_title
+     if (url.include?('sites') rescue nil)
+      #  binding.pry
+       url = 'http://www.awwwards.com' + url
+       puts url
+       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+       @awward.save
+       puts 'Awwward entry created!'
+       puts " "
+     else
+       puts url
+       @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
+       @awward.save
+       puts 'Awwward entry created!'
+       puts " "
+     end
+  #   title_refactor = rough_title.slice(0..(rough_title.index('|'))) rescue nil
+     #title = title_refactor[0..-3] rescue nil
     # puts title
-     @awward = Awwward.find_or_create_by(title: title, url: url, screenshot: screenshot)
-     @awward.save
-     puts 'Awwward entry created!'
-     puts " "
+  #   byebug
+
    end
 end #end of awwwards
 

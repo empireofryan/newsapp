@@ -6,6 +6,7 @@
       </p>
 
     <div  style="font-size:.9em; text-align:center">
+      <h2>New Articles Today: <%= @newyorktimes.past_day.all.count %></h2>
       <% @newyorktimes.past_day.each_with_index do |a, i| %>
         <% if !a.title.include?('Comments') %>
           <a href='<%=a.url%>'>
