@@ -1847,6 +1847,7 @@
       style='width:235px; margin-top:0px'><br>
     </p>
     <div  style="font-size:.9em; text-align:center">
+      <h2>New Articles Today: <%= @buzzfeeds.past_day.all.count %></h2>
       <% @buzzfeeds.past_day.each_with_index do |a, i| %>
       <a href='<%=a.url%>'>
         <div class="animatedParent">

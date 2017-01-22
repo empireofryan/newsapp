@@ -247,7 +247,7 @@ task :reddit => [ :environment ] do
     url = item['url']
     image = item['urlToImage']
     published = item['publishedAt']
-    #@reddit = Reddit.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
+    @reddit = Reddit.find_or_create_by(title: title, url: url, description: description, image: image, published: published)
     @newsapis = Newsapi.find_or_create_by(title: title, url: url, image: image)
     puts 'created reddit entry'
   end
@@ -258,15 +258,19 @@ task :reddit_2 => [ :environment ] do
   b = Watir::Browser.new(:phantomjs)
   b.goto base_url
   doc = Nokogiri::HTML(b.html)
-  hrefs = doc.css(".entry")
+  entries = doc.css(".entry")
   #  puts hrefs.text
    puts 'now only special links'
-   puts hrefs.count
+   puts entries.count
    @counter = 0
-   hrefs.each do |href|
-    puts href
-     @remote_url = href['a']['href']
-     @new_title = href.text rescue nil
+   entries.each do |entry|
+    puts entry
+     remote_url1 = doc.css('.title a')
+     puts remote_url1
+     binding.pry
+     @remote_url = (remote_url1['href'] rescue nil)
+     puts @remote_url
+  #   @new_title = doc.css('.title a').text rescue nil
   #  begin
     #   if ((link.include?('2017')) && (!title.nil?))
         @counter +=1
@@ -290,9 +294,10 @@ task :reddit_2 => [ :environment ] do
         # @bing_image = results.url
     #
     #
-        puts @remote_url
-        debugger
+    #    puts @remote_url
+    #    debugger
         @reddit = Reddit.find_or_create_by!(url: @remote_url, title: @new_title)
+        puts 'reddit entry created'
       # end
 #    rescue
 #    end
@@ -697,11 +702,11 @@ task :cnn_4 => [ :environment ] do
      title = href.text rescue nil
     begin
       if ((link.include?('2017')) && (!title.nil?))
-        @counter +=1
-        if (link.include?('cnn')) && (!link.include?('videos'))
+
+        if (link.include?('cnn')) 
           @remote_url = link
-        elsif (link.include?('videos'))
-          @remote_url = 'http://cnn.com' + link
+        # elsif (link.include?('videos'))
+        #   @remote_url = 'http://cnn.com' + link
         else
           @remote_url = 'http://cnn.com' + link
         end
@@ -718,7 +723,10 @@ task :cnn_4 => [ :environment ] do
 
 
         puts @remote_url
-        @cnn = Cnn.find_or_create_by!(url: @remote_url, title: @new_title)
+        if Cnn.find(@new_title) == nil
+          @cnn = Cnn.find_or_create_by(title: @new_title, url: @remote_url)
+          @counter +=1
+        end
       end
     rescue
     end
