@@ -703,7 +703,7 @@ task :cnn_4 => [ :environment ] do
     begin
       if ((link.include?('2017')) && (!title.nil?))
 
-        if (link.include?('cnn')) 
+        if (link.include?('cnn'))
           @remote_url = link
         # elsif (link.include?('videos'))
         #   @remote_url = 'http://cnn.com' + link
@@ -723,10 +723,10 @@ task :cnn_4 => [ :environment ] do
 
 
         puts @remote_url
-        if Cnn.find(@new_title) == nil
+        # if Cnn.where(title: @new_title) == nil
           @cnn = Cnn.find_or_create_by(title: @new_title, url: @remote_url)
           @counter +=1
-        end
+        # end
       end
     rescue
     end
